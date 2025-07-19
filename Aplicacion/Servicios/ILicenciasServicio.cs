@@ -9,14 +9,9 @@ using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
 {
-    internal interface ILicenciasServicio: IService<Licencias>
+    public interface ILicenciasServicio: IServicio<Licencias>
     {
-        Task<IEnumerable<Licencias>> ObtenerLicenciasPorEmpleadoAsync(int empleadoId);
-        Task<Licencias> ObtenerLicenciaPorIdAsync(int licenciaId);
-        Task<bool> SolicitarLicenciaAsync(Licencias licencia);
-        Task<bool> AprobarLicenciaAsync(int licenciaId, bool aprobar);
-        Task<bool> CancelarLicenciaAsync(int licenciaId);
+       
     }
-    {
-    }
+   
 }
