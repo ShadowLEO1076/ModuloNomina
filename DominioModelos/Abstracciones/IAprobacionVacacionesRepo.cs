@@ -20,5 +20,6 @@ namespace Dominio.Modelos.Abstracciones
         Task<bool> ExistePorFechaAsync(DateTime fechaInicio, DateTime fechaFin);
 
 
+
     }
 }

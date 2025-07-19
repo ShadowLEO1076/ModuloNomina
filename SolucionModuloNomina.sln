@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Presentacion", "1.Presentacion", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuloNominaWebAPI", "Modul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplicacion", "Aplicacion\Aplicacion.csproj", "{FF6C09F7-AC07-417A-882E-38A9F7C27106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionDTO", "AplicacionDTO\AplicacionDTO.csproj", "{8420F2E4-281D-4190-95D0-CA1A2DBAD59E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplicacion.DTO", "AplicacionDTO\Aplicacion.DTO.csproj", "{8420F2E4-281D-4190-95D0-CA1A2DBAD59E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Modelos", "DominioModelos\Dominio.Modelos.csproj", "{EC1A26ED-6C8C-4AA4-A7A5-78FEFD426484}"
 EndProject
