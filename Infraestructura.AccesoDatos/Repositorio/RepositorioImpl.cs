@@ -64,6 +64,20 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
         }
 
+        public async Task<bool> ExisteAsync(int id)
+        {
+            try
+            {
+                return await _dbSet.AnyAsync(e => EF.Property<int>(e, "Id") == id);
+
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, logging, etc.
+                throw new NotImplementedException("ERROR AL VERIFICAR EXISTENCIA", ex);
+            }
+        }
+
         public async Task<T> ObtenerPorIdAsync(int id)
         {
             try
