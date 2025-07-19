@@ -13,6 +13,7 @@ namespace Dominio.Modelos.Abstracciones
         Task AgregarAsync(T entidad);
         Task ActualizarAsync(T entidad);
         Task EliminarAsync(int id);
-        //Task<bool> ExisteAsync(int id); opcional, si se necesita verificar la existencia de una entidad por ID
+        Task<bool> ExisteAsync(int id); //opcional, si se necesita verificar la existencia de una entidad por ID
+     
     }
 }

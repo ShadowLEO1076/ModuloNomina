@@ -12,5 +12,25 @@ namespace Infraestructura.AccesoDatos.Repositorio
         public PuestosRepositorioIMPL(NominaDBContext context) : base(context)
         {
         }
+
+        public Task<IEnumerable<Puestos>> BuscarPorDepartamentoAsync(string departamento)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Puestos>> BuscarPorNombreAsync(string nombre)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExistePuestoPorDepartamentoAsync(string departamento)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExistePuestoPorNombreAsync(string nombre)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
