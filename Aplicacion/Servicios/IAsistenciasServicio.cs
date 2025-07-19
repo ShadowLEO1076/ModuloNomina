@@ -4,10 +4,11 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
 {
-    public interface IAsistenciasServicio
+    public interface IAsistenciasServicio : IServicio<Asistencias>
     {
     }
 }

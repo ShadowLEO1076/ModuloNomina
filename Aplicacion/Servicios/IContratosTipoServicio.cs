@@ -9,12 +9,9 @@ using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
 {
-    public interface IContratosTipoServicio: IServicio<ContratosTipoServicio>
+    public interface IContratosTipoServicio: IServicio<ContratosTipo>
     {
-        Task<IEnumerable<ContratosTipoServicio>> ObtenerPorContratoAsync(int contratoId);
-        Task<IEnumerable<ContratosTipoServicio>> ObtenerPorTipoServicioAsync(int tipoServicioId);
-        Task<IEnumerable<ContratosTipoServicio>> ObtenerPorContratoYTipoServicioAsync(int contratoId, int tipoServicioId);
+        
     }
-    {
-    }
+   
 }

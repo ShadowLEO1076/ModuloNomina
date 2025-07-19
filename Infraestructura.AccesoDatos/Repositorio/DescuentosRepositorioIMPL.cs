@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Dominio.Modelos.Abstracciones;
 namespace Infraestructura.AccesoDatos.Repositorio
 {
-    internal class DescuentosRepositorioIMPL
+    public class DescuentosRepositorioIMPL : RepositorioImpl<Descuentos>, IDescuentosRepo
     {
+        public DescuentosRepositorioIMPL(NominaDBContext context) : base(context)
+        {
+        }
     }
 }

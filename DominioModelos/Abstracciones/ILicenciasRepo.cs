@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Infraestructura.AccesoDatos;
 namespace Dominio.Modelos.Abstracciones
 {
-    internal interface ILicenciasRepo
+    public interface ILicenciasRepo: IRepositorio<Licencias>
     {
+        
     }
 }
