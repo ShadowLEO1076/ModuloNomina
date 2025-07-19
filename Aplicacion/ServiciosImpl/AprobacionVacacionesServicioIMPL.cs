@@ -10,7 +10,10 @@ using Infraestructura.AccesoDatos.Repositorio;
 
 namespace Aplicacion.ServiciosImpl
 {
-    public class AprobacionVacacionesServicioIMPL
+    public class AprobacionVacacionesServicioIMPL : ServicioIMPL<AprobacionVacaciones>, IAprobacionVacacionesServicio
     {
+        public AprobacionVacacionesServicioIMPL(NominaDBContext context) : base(context)
+        {
+        }
     }
 }

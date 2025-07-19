@@ -10,7 +10,10 @@ using Infraestructura.AccesoDatos.Repositorio;
 
 namespace Aplicacion.ServiciosImpl
 {
-    public class BonificacionesServicioIMPL
+    public class BonificacionesServicioIMPL : ServicioIMPL<Bonificaciones>, IBonificacionesServicio
     {
+        public BonificacionesServicioIMPL(NominaDBContext context) : base(context)
+        {
+        }
     }
 }

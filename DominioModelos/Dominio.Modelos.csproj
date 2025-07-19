@@ -33,4 +33,8 @@
     <Folder Include="ObjetosValor\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AplicacionDTO\Aplicacion.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

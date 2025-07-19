@@ -10,7 +10,10 @@ using Infraestructura.AccesoDatos.Repositorio;
 
 namespace Aplicacion.ServiciosImpl
 {
-    public class PuestosServicioIMPL
+    public class PuestosServicioIMPL : ServicioIMPL<Puestos>, IPuestosServicio
     {
+        public PuestosServicioIMPL(NominaDBContext context) : base(context)
+        {
+        }
     }
 }

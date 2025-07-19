@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Aplicacion.DTO.DTOs;
 using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
@@ -14,6 +15,7 @@ namespace Aplicacion.Servicios
         // por cedula
         [OperationContract]
         Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
+        
 
     }
    

@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.DTO.DTOs
 {
-    internal class BonificacionesDTO
+    // creado para bonificaciones empleado DTO
+    public class BonificacionesDTO
     {
+
+        public string Tipo { get; set; }
+
+        public string Descripcion { get; set; }
+
+        public decimal Monto { get; set; }
+
+        public DateOnly Fecha { get; set; }
+
     }
 }

@@ -10,7 +10,10 @@ using Infraestructura.AccesoDatos.Repositorio;
 
 namespace Aplicacion.ServiciosImpl
 {
-    public class LicenciasServicioIMPL
+    public class LicenciasServicioIMPL : ServicioIMPL<Licencias>, ILicenciasServicio
     {
+        public LicenciasServicioIMPL(NominaDBContext context) : base(context)
+        {
+        }
     }
 }

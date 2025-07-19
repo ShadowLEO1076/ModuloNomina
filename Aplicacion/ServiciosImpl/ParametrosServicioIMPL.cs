@@ -10,7 +10,10 @@ using Infraestructura.AccesoDatos.Repositorio;
 
 namespace Aplicacion.ServiciosImpl
 {
-    public class ParametrosServicioIMPL
+    public class ParametrosServicioIMPL : ServicioIMPL<Parametros>, IParametrosServicio
     {
+        public ParametrosServicioIMPL(NominaDBContext context) : base(context)
+        {
+        }
     }
 }
