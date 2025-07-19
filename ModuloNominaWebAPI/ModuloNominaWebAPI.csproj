@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AplicacionDTO\AplicacionDTO.csproj" />
+    <ProjectReference Include="..\AplicacionDTO\Aplicacion.DTO.csproj" />
     <ProjectReference Include="..\Aplicacion\Aplicacion.csproj" />
     <ProjectReference Include="..\DominioModelos\Dominio.Modelos.csproj" />
     <ProjectReference Include="..\DominioServicios\Dominio.Servicios.csproj" />
