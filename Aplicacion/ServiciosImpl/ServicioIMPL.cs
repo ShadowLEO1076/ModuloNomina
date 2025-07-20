@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Aplicacion.Servicios;
 using Dominio.Modelos.Abstracciones;
 using Infraestructura.AccesoDatos;
 using Infraestructura.AccesoDatos.Repositorio;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aplicacion.ServiciosImpl
 {
-    public class ServicioIMPL<T> : IRepositorio<T> where T : class
+    public class ServicioIMPL<T> : IServicio<T> where T : class
     {
 
         IRepositorio<T> _repository;
