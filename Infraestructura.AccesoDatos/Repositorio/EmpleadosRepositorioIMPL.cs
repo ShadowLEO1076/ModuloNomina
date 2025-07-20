@@ -21,6 +21,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             throw new NotImplementedException();
         }
 
+
         public async Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula)
         {
             var hoy = DateOnly.FromDateTime(DateTime.Today);
@@ -62,9 +63,14 @@ namespace Infraestructura.AccesoDatos.Repositorio
                     throw new Exception($"Error - EmpleadosRepoImpl : no se logró hallar el dato con la cédula {cedula}. {ex.Message} ");
                 }
 
-            }
+            }   
 
-            /* --> método de Guille.
+        }
+
+       
+    }
+}
+/* --> método de Guille.
             public async Task<List<EmpleadoVacacionesDTO>> ObtenerResumenVacacionesAsync() // Método para obtener un resumen de vacaciones de los empleados LEONARDO
             {
                 try
@@ -88,8 +94,5 @@ namespace Infraestructura.AccesoDatos.Repositorio
                     // Manejo de excepciones, logging, etc.
                     throw new NotImplementedException("ERROR AL OBTENER RESUMEN DE VACACIONES", ex);
                 }
-            }
-            */
-        }
-    }
-}
+
+            }*/

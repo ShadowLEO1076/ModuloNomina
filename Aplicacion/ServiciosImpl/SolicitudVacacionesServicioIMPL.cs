@@ -36,5 +36,17 @@ namespace Aplicacion.ServiciosImpl
             }
 
         }
+        public async Task<List<SolicitudVacacionDTO>> ObtenerSolicitudesPorEstadoAsync(string estado)
+        {
+            try
+            {
+                return await _repo.ObtenerSolicitudesPorEstadoAsync(estado);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, logging, etc.
+                throw new NotImplementedException("ERROR AL OBTENER SOLICITUDES POR ESTADO", ex);
+            }
+        }
     }
 }

@@ -8,14 +8,14 @@ namespace ModuloNominaWebAPI.Controllers
     [Route("api/[controller]")]
     public class SolicitudVacacionesControlador : ControllerBase
     {
-        
+
         private ISolicitudVacacionesServicio _servicio;
 
         public SolicitudVacacionesControlador(ISolicitudVacacionesServicio servicio)
         {
             _servicio = servicio;
         }
-     
+
         [HttpGet("ListarSolicitudVacaciones")]
         public async Task<IActionResult> ListarSolicitudVacaciones()
         {
@@ -63,8 +63,8 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 await _servicio.AgregarAsync(solicitud);
                 return CreatedAtAction(nameof(BuscarPorId), new { id = solicitud.IdSolicitud }, solicitud);
-                  
-                    
+
+
             }
             catch (Exception ex)
             {
@@ -120,6 +120,19 @@ namespace ModuloNominaWebAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error al eliminar la solicitud: {ex.Message}");
+            }
+        }
+        [HttpGet("ObtenerSolicitudesPorEstado/{estado}")]
+        public async Task<IActionResult> ObtenerSolicitudesPorEstado(string estado)
+        {
+            try
+            {
+                var solicitudes = await _servicio.ObtenerSolicitudesPorEstadoAsync(estado);
+                return Ok(solicitudes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al obtener las solicitudes por estado: {ex.Message}");
             }
         }
     }

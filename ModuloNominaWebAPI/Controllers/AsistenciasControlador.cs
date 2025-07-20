@@ -60,5 +60,26 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
+        [HttpDelete("EliminarAsync")]
+        public async Task<IActionResult> EliminarAsync([FromQuery] int id)
+        {
+            try
+            {
+                var busq = await _serv.ObtenerPorIdAsync(id);
+
+                if (busq == null)
+                {
+                    return StatusCode(501, $"No se encontró el elemento que se desea eliminar.");
+                }
+
+                await _serv.EliminarAsync(id);
+                return Ok($"Asistencia con {id} eliminada correctamente.");
+            }
+            catch (Exception ex) 
+            {
+                return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
+            }
+        }
+
     }
 }

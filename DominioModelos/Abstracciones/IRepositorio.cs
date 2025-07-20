@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using Infraestructura.AccesoDatos;
 namespace Dominio.Modelos.Abstracciones
 {
+    /* This code snippet defines a generic interface in C# named `IRepositorio<T>`. The interface
+    includes several asynchronous methods that can be implemented by classes that inherit from it.
+    Here's a breakdown of the methods: */
+    // lo de arriba pero en espñol la traduccion abajo:
+    // Este fragmento de código define una interfaz genérica en C# llamada `IRepositorio<T>`. La interfaz
     public interface IRepositorio<T> where T : class
     {
         Task<T> ObtenerPorIdAsync(int id);

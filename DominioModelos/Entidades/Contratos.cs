@@ -25,6 +25,8 @@ public partial class Contratos
     public DateTime FechaCreacion { get; set; }
 
     public DateTime? FechaModificacion { get; set; }
+
+    public int? HorasJornada { get; set; }
     [JsonIgnore]
     public virtual Empleados Empleado { get; set; }
     [JsonIgnore]
