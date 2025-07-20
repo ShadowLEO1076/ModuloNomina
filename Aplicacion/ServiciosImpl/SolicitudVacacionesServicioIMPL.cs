@@ -16,15 +16,12 @@ namespace Aplicacion.ServiciosImpl
 
         private ISolicitudVacacionesRepo _repo;
         private readonly NominaDBContext _context;
- 
-
         public SolicitudVacacionesServicioIMPL(NominaDBContext context) : base(context)
         {
             _context = context;
             _repo = new SolicitudVacacionesRepositorioIMPL(context);
         }
-
-        public async  Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync()
+        public async Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync()
         {
             try
             {
@@ -37,6 +34,7 @@ namespace Aplicacion.ServiciosImpl
                 throw new NotImplementedException("ERROR AL OBTENER RESUMEN DE SOLICITUDES DE VACACIONES", ex);
 
             }
+
         }
     }
 }

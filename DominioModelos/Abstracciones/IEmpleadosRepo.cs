@@ -12,6 +12,6 @@ namespace Dominio.Modelos.Abstracciones
     {
         Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
 
-        Task<List<EmpleadoVacacionesDTO>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO
+        //Task<List<EmpleadoVacaciones>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO
     }
 }

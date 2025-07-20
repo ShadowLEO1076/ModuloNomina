@@ -9,6 +9,7 @@ using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
 {
+    [ServiceContract]
     public interface IContratosTipoServicio: IServicio<ContratosTipo>
     {
         
