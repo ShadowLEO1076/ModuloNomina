@@ -94,8 +94,8 @@ namespace ModuloNominaWebAPI.Controllers
 
 
 
-        [HttpDelete("EliminarSolicitudVacaciones/{id}")]
-        public async Task<IActionResult> EliminarSolicitudVacaciones(int id)
+        [HttpDelete("EliminarContratos/{id}")]
+        public async Task<IActionResult> EliminarContratos(int id)
         {
             try
             {
