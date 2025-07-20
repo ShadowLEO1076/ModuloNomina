@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.DTO.DTOs
 {
-    public class BonificacionesEmpleadoDTO
+    public class BusquedaDTO
     {
-        public string NombresCompletos { get; set; }
         public string CedulaEmpleado { get; set; }
-        public List<BonificacionesDTO> bonificaciones { get; set; }
 
+        public int mes {  get; set; }
+
+        public int anio { get; set; }
     }
 }

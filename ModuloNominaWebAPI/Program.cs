@@ -25,14 +25,18 @@ builder.Services.AddSwaggerGen();
 
 // 1. leer la cadena de conexion del appsettings.json y guardarla en una variable de entorno
 //var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection"); // ("ConnectionMateo") es la de mateo
+//var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection"); // ("ConnectionMateo") es la de mateo1
+var connectionDB = builder.Configuration.GetConnectionString("ConnectionMateo");
 // 2. crear el DbContext global con la cadena de conexion
 builder.Services.AddDbContext<NominaDBContext>(options =>
     options.UseSqlServer(connectionDB), ServiceLifetime.Scoped);
 // 3. configurar los servicios para que esten disponibles
+builder.Services.AddScoped<IAsistenciasRepo,AsistenciasRepositorioIMPL>();
+builder.Services.AddScoped<IAsistenciasServicio, AsistenciasServicioIMPL>();
 
-
-
+builder.Services.AddScoped<IBonificacionesRepo, BonificacionesRepositorioIMPL>();
+builder.Services.AddScoped<IBonificacionesServicio, BonificacionesServicioIMPL>();
+builder.Services.AddScoped<IEmpleadosServicio, EmpleadosServicioIMPL>();
 
 
 builder.Services.AddScoped<ISolicitudVacacionesServicio, SolicitudVacacionesServicioIMPL>();

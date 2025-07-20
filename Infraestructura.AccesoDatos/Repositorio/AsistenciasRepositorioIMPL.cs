@@ -9,8 +9,10 @@ namespace Infraestructura.AccesoDatos.Repositorio
 {
     public class AsistenciasRepositorioIMPL : RepositorioImpl<Asistencias>, IAsistenciasRepo
     {
+        private readonly NominaDBContext _dbContext;
         public AsistenciasRepositorioIMPL(NominaDBContext context) : base(context)
         {
+            _dbContext = context;
         }
 
         public Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula)

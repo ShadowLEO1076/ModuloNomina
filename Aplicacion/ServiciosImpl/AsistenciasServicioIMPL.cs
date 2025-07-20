@@ -12,8 +12,13 @@ namespace Aplicacion.ServiciosImpl
 {
     public class AsistenciasServicioIMPL : ServicioIMPL<Asistencias>, IAsistenciasServicio
     {
-        public AsistenciasServicioIMPL(NominaDBContext context) : base(context)
+        private readonly IAsistenciasRepo _serv;
+        private readonly NominaDBContext _db;
+
+        public AsistenciasServicioIMPL(IAsistenciasRepo serv, NominaDBContext db) : base(db)
         {
+            _serv = serv;
+            _db = db;
         }
     }
 }

@@ -21,16 +21,15 @@ namespace Infraestructura.AccesoDatos.Repositorio
             throw new NotImplementedException();
         }
 
-<<<<<<< HEAD
-        public async Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado)
+        public async Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula)
         {
             var hoy = DateOnly.FromDateTime(DateTime.Today);
 
             try
             {
                 var empleadoBusq =
-                    await _context.Empleados.Where(e => e.Cedula == empleado.Cedula)
-                    .Select(e => new EmpleadoDTO
+                    await _context.Empleados.Where(e => e.Cedula == cedula)
+                    .Select(e => new EmpleadoContratoDTO
                     {
                         NombresEmple = e.Nombres,
                         ApellidosEmple = e.Apellidos,
@@ -60,7 +59,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 {
 
-                    throw new Exception($"Error - EmpleadosRepoImpl : no se logró hallar el dato con la cédula {empleado.Cedula}. {ex.Message} ");
+                    throw new Exception($"Error - EmpleadosRepoImpl : no se logró hallar el dato con la cédula {cedula}. {ex.Message} ");
                 }
 
             }
@@ -92,8 +91,5 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
             */
         }
-=======
-        
->>>>>>> db990e6555157f0f4ae777444f15b42b7f976a10
     }
 }

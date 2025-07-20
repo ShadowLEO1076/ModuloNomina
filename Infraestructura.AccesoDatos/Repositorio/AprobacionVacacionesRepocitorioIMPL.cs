@@ -9,8 +9,10 @@ namespace Infraestructura.AccesoDatos.Repositorio
 {
     public class AprobacionVacacionesRepocitorioIMPL : RepositorioImpl<AprobacionVacaciones>, IAprobacionVacacionesRepo
     {
+        private readonly NominaDBContext _context;
         public AprobacionVacacionesRepocitorioIMPL(NominaDBContext context) : base(context)
         {
+            _context = context;
         }
 
         public Task<IEnumerable<AprobacionVacaciones>> BuscarPorEmpleadoAsync(int empleadoId)

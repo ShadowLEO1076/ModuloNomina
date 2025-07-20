@@ -13,7 +13,7 @@ namespace Aplicacion.Servicios
     public interface IEmpleadosServicio: IServicio<Empleados>
     {
         [OperationContract]
-        Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado);
+        Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
 
         /*
          * --> método de Guille
