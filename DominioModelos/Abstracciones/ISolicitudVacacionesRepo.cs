@@ -11,5 +11,7 @@ namespace Dominio.Modelos.Abstracciones
     public interface ISolicitudVacacionesRepo : IRepositorio<SolicitudVacaciones>
     {
         Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync(); // Método para obtener un resumen de solicitudes de vacaciones
+        // obtener por estado aprovado o desaprobados pendiente 
+        Task<List<SolicitudVacacionDTO>> ObtenerSolicitudesPorEstadoAsync(string estado); // Método para obtener solicitudes por estado
     }
 }

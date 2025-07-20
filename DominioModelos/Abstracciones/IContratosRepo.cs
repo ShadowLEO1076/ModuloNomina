@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Aplicacion.DTO.DTOs;
 using Infraestructura.AccesoDatos;
 
-
 namespace Dominio.Modelos.Abstracciones
 {
     public interface IContratosRepo : IRepositorio<Contratos>

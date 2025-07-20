@@ -40,6 +40,14 @@ builder.Services.AddScoped<IContratosServicio, ContratosServicioIMPL>();
 
 // contratotipo
 builder.Services.AddScoped<IContratosTipoServicio, ContratosTipoServicioIMPL>();
+// aprobacionvacaciones
+builder.Services.AddScoped<IAprobacionVacacionesServicio, AprobacionVacacionesServicioIMPL>();
+// para empleados puestos 
+builder.Services.AddScoped<IEmpleadosServicio, EmpleadosServicioIMPL>();
+
+// puestos 
+builder.Services.AddScoped<IPuestosServicio, PuestosServicioIMPL>();
+
 
 
 

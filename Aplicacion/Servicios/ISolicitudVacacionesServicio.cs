@@ -15,5 +15,7 @@ namespace Aplicacion.Servicios
     {
         [OperationContract]
         Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync();
+        [OperationContract]
+        Task<List<SolicitudVacacionDTO>> ObtenerSolicitudesPorEstadoAsync(string estado);
     }
 }

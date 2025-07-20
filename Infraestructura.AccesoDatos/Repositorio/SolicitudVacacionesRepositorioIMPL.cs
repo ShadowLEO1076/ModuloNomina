@@ -40,5 +40,32 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 throw new NotImplementedException("ERROR AL OBTENER RESUMEN DE SOLICITUDES", ex);
             }
         }
+
+        public  async Task<List<SolicitudVacacionDTO>> ObtenerSolicitudesPorEstadoAsync(string estado)
+        {
+            try
+            {
+                return await _context.SolicitudVacaciones
+                    .Include(sv => sv.Empleado)
+                    .Where(sv => sv.Estado == estado)
+                    .Select(sv => new SolicitudVacacionDTO
+                    {
+                        IdSolicitud = sv.IdSolicitud,
+                        Cedula = sv.Empleado.Cedula,
+                        NombreCompleto = sv.Empleado.Nombres + " " + sv.Empleado.Apellidos,
+                        FechaInicio = sv.FechaInicio.ToDateTime(TimeOnly.MinValue),
+                        FechaFin = sv.FechaFin.ToDateTime(TimeOnly.MinValue),
+                        Estado = sv.Estado
+                    })
+                    .ToListAsync();
+
+
+            }
+            catch(Exception ex) 
+            {
+                throw new NotImplementedException($"ERROR AL OBTENER SOLICITUDES POR ESTADO: {estado}", ex);
+
+            }
+        }
     }
 }

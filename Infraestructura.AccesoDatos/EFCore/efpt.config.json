@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "NominaDBContext",
+   "ContextClassName": "ModuloNominaContext",
    "ContextNamespace": null,
    "FilterSchemas": false,
    "IncludeConnectionString": true,
@@ -69,6 +69,10 @@
       },
       {
          "Name": "[dbo].[SolicitudVacaciones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Usuarios]",
          "ObjectType": 0
       }
    ],

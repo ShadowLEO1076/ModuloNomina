@@ -9,9 +9,9 @@ public partial class EmpleadosVacacionesTotales
 {
     public int EmpleadoId { get; set; }
 
-    public int DiasOtorgados { get; set; } // Total de días de vacaciones otorgados al empleado
+    public int DiasOtorgados { get; set; }
 
-    public int DiasUsados { get; set; } // Total de días de vacaciones que el empleado ha utilizado
+    public int DiasUsados { get; set; }
 
     public virtual Empleados Empleado { get; set; }
 }

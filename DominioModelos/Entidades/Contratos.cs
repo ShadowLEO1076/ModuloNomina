@@ -25,6 +25,8 @@ public partial class Contratos
 
     public DateTime? FechaModificacion { get; set; }
 
+    public int? HorasJornada { get; set; }
+
     public virtual Empleados Empleado { get; set; }
 
     public virtual ContratosTipo Tipo { get; set; }

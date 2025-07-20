@@ -14,14 +14,17 @@ namespace Aplicacion.Servicios
     {
         [OperationContract]
         Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado);
+       
 
-        /*
+
+
+
+    }
+   
+}
+/*
          * --> método de Guille
         // por cedula
         [OperationContract]
         Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
         */
-
-    }
-   
-}
