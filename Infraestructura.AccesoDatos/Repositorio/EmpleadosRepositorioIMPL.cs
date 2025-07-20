@@ -21,6 +21,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
         public async Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado)
         {
             var hoy = DateOnly.FromDateTime(DateTime.Today);
@@ -91,5 +92,8 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
             */
         }
+=======
+        
+>>>>>>> db990e6555157f0f4ae777444f15b42b7f976a10
     }
 }

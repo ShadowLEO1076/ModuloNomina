@@ -83,7 +83,8 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             try
             {
-                return await _dbSet.FindAsync(id);
+                return await _dbSet.FindAsync(id);  
+
             }
             catch (Exception ex)
             {
@@ -99,12 +100,10 @@ namespace Infraestructura.AccesoDatos.Repositorio
             try
             {
                 return await _dbSet.ToListAsync();
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // Manejo de excepciones, logging, etc.
-                throw new NotImplementedException("ERROR AL OBTENER TODOS");
+                throw new Exception("Error: No se pudo listar datos. " + e.Message);
             }
         }
     }

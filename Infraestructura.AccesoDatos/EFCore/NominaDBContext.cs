@@ -45,11 +45,16 @@ public partial class NominaDBContext : DbContext
 
     public virtual DbSet<SolicitudVacaciones> SolicitudVacaciones { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+   /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+<<<<<<< HEAD
         => optionsBuilder.UseSqlServer("Data Source=DESKTOP-NCNTGBP\\MIPRIMERSQL2024;Initial Catalog=NominaPisip;Integrated Security=True;TrustServerCertificate=True;"); 
         //optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True");
 
+=======
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated  Security=True;Encrypt=True");
+   */
+>>>>>>> db990e6555157f0f4ae777444f15b42b7f976a10
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AprobacionVacaciones>(entity =>

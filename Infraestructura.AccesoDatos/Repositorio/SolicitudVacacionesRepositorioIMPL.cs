@@ -17,9 +17,9 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             this._context = context;
         }
-
         public async Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync()
         {
+           
             try
             {
                 return await _context.SolicitudVacaciones
@@ -40,7 +40,5 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 throw new NotImplementedException("ERROR AL OBTENER RESUMEN DE SOLICITUDES", ex);
             }
         }
-
-
     }
 }

@@ -10,6 +10,6 @@ namespace Dominio.Modelos.Abstracciones
 {
     public interface ISolicitudVacacionesRepo : IRepositorio<SolicitudVacaciones>
     {
-        Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync();
+        Task<List<SolicitudVacacionDTO>> ObtenerResumenSolicitudesAsync(); // Método para obtener un resumen de solicitudes de vacaciones
     }
 }

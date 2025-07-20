@@ -1,4 +1,4 @@
-@ModuloNominaWebAPI_HostAddress = http://localhost:5106
+@ModuloNominaWebAPI_HostAddress = http://localhost:7164
 
 GET {{ModuloNominaWebAPI_HostAddress}}/weatherforecast/
 Accept: application/json
