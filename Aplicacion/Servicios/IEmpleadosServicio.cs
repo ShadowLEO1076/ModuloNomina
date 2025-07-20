@@ -12,10 +12,15 @@ namespace Aplicacion.Servicios
     [ServiceContract]
     public interface IEmpleadosServicio: IServicio<Empleados>
     {
+        [OperationContract]
+        Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado);
+
+        /*
+         * --> método de Guille
         // por cedula
         [OperationContract]
         Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
-        
+        */
 
     }
    
