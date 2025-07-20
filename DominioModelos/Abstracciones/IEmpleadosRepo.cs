@@ -11,9 +11,9 @@ namespace Dominio.Modelos.Abstracciones
     public interface IEmpleadosRepo: IRepositorio<Empleados>
     {
         //Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula); --> método de Guille
+        Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
+       // Task<List<EmpleadoVacacionesDTO>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO
 
-        Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado);
-
-       
+        //Task<List<EmpleadoVacaciones>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO
     }
 }

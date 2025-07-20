@@ -1,20 +1,25 @@
-﻿using System;
+﻿using Aplicacion.DTO.DTOs;
+using Infraestructura.AccesoDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
 {
+    [ServiceContract]
     public interface IBonificacionesServicio : IServicio<Bonificaciones>
     {
+        [OperationContract]
+        Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos);
+
         // Aquí puedes definir métodos específicos para el servicio de bonificaciones
         // Por ejemplo:
         // Task<IEnumerable<Bonificaciones>> ObtenerBonificacionesPorEmpleadoAsync(int empleadoId);
         // Task<Bonificaciones> CalcularBonificacionAsync(int empleadoId, DateTime fecha);
     }
-    
-    
+
+
 }

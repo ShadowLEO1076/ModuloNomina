@@ -13,10 +13,14 @@ namespace Aplicacion.Servicios
     public interface IEmpleadosServicio: IServicio<Empleados>
     {
         [OperationContract]
+<<<<<<< HEAD
+        Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
+=======
         Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado);
        
 
 
+>>>>>>> b21c18f976a1a96643dbd1ec730ad682cb8ba5fa
 
 
     }

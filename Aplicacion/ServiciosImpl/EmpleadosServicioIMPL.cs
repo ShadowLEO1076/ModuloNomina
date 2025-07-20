@@ -26,16 +26,16 @@ namespace Aplicacion.ServiciosImpl
             throw new NotImplementedException();
         }
 
-        public async Task<EmpleadoDTO> ObtenerEmpleadoDTOPorCedulaAsync(Empleados empleado)
+        public async Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula)
         {
             try
             {
-                return await _repo.ObtenerEmpleadoDTOPorCedulaAsync(empleado);
+                return await _repo.ObtenerEmpleadoDTOPorCedulaAsync(cedula);
             }
             catch (Exception ex)
             {
                 {
-                    throw new Exception($"Error - EmpleadosServicioImpl : no se pudo hallar al empleado con la cédula {empleado.Cedula}. {ex.Message}");
+                    throw new Exception($"Error - EmpleadosServicioImpl : no se pudo hallar al empleado con la cédula {cedula}. {ex.Message}");
                 }
             }
         }

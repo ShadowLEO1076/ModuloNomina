@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Aplicacion.DTO.DTOs;
 using Aplicacion.Servicios;
 using Dominio.Modelos.Abstracciones;
 using Infraestructura.AccesoDatos;
@@ -12,8 +13,25 @@ namespace Aplicacion.ServiciosImpl
 {
     public class BonificacionesServicioIMPL : ServicioIMPL<Bonificaciones>, IBonificacionesServicio
     {
-        public BonificacionesServicioIMPL(NominaDBContext context) : base(context)
+        private readonly IBonificacionesRepo _serv;
+        private readonly NominaDBContext _dbContext;
+
+        public BonificacionesServicioIMPL(IBonificacionesRepo serv, NominaDBContext dbContext) : base(dbContext)
         {
+            _serv = serv;
+            _dbContext = dbContext;
+        }
+
+        public async Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos)
+        {
+            try
+            {
+                return await _serv.ObtenerBonificacionesPorCedulaMesYAnio(datos);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - BonificacionesServicioImpl : no se puede hallar los datos con cédula {datos.CedulaEmpleado}. {ex.Message}");
+            }
         }
     }
 }
