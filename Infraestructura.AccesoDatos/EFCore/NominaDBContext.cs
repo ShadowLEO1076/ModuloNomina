@@ -55,8 +55,6 @@ public partial class NominaDBContext : DbContext
         => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated  Security=True;Encrypt=True");
    */
 
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AprobacionVacaciones>(entity =>

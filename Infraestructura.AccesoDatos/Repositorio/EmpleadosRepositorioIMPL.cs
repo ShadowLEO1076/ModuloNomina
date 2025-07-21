@@ -70,7 +70,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
 
         }
 
-       
+        
     }
 }
 /* --> método de Guille.

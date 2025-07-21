@@ -17,4 +17,20 @@ public partial class EmpleadosVacacionesTotales
     [JsonIgnore]
 
     public virtual Empleados Empleado { get; set; }
+
+    public int CalcularDiasOtorgados()
+    {
+        if (Empleado == null)
+            throw new InvalidOperationException("Empleado no cargado en VacacionesTotales.");
+
+        int años = (int)((DateTime.Now.Date - Empleado.FechaIngreso.ToDateTime(TimeOnly.MinValue)).TotalDays / 365);
+        return años * 15;
+    }
+
+    public int CalcularDiasDisponibles()
+    {
+        int otorgados = CalcularDiasOtorgados();
+        int disponibles = otorgados - DiasUsados;
+        return Math.Min(disponibles, 30); // Solo se pueden usar 30 como máximo
+    }
 }

@@ -8,6 +8,11 @@ namespace Dominio.Modelos.Abstracciones
 {
     public interface ILicenciasRepo: IRepositorio<Licencias>
     {
+        // especificas porque no nesecito las del crud 
+        //Task<IEnumerable<Licencias>> ObtenerLicenciasRemunerablesAsync();
+
         
+
+
     }
 }

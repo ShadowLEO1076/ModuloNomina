@@ -16,7 +16,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             _context = context;
         }
-
+   
         public async Task<IEnumerable<VacacionesAprovadasGestionDTO>> ResumenDiasAprovadosDiasUsadosAsync(string cedula)
         {
             // VOY A APROVECHAR EL DTO PARA USAR CAMPOS DE DIFERENTES TABLAS

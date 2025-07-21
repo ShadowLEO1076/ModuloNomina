@@ -126,6 +126,7 @@ namespace ModuloNominaWebAPI.Controllers
             }
 
         }
+       
     }
 }
     
