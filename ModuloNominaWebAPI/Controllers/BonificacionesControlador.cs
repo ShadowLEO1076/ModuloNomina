@@ -16,8 +16,6 @@ namespace ModuloNominaWebAPI.Controllers
             _serv = serv;
         }
         
-        //[HttpGet("ObtenerTodosAsync")]
-       // public async Task<IActionResult> ObtenerTodosAync([FromBody])
 
         //se necesita hacerlo post para poder traer los datos. Pues la lógica es postear dto, recibir datos.
         [HttpPost("ObtenerBonificacionesPorCedulaMesYAnio")]
