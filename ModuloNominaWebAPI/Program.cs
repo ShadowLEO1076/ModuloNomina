@@ -10,10 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+    });
+
+
+
+// porque tengo un error en la line de arriba que dice que no se puede encontrar el tipo NominaDBContext
 
 // voy hacer tres cosas
 
@@ -25,18 +34,14 @@ builder.Services.AddSwaggerGen();
 
 // 1. leer la cadena de conexion del appsettings.json y guardarla en una variable de entorno
 //var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection");
-//var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection"); // ("ConnectionMateo") es la de mateo1
-var connectionDB = builder.Configuration.GetConnectionString("ConnectionMateo");
+var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection"); // ("ConnectionMateo") es la de mateo
 // 2. crear el DbContext global con la cadena de conexion
 builder.Services.AddDbContext<NominaDBContext>(options =>
     options.UseSqlServer(connectionDB), ServiceLifetime.Scoped);
 // 3. configurar los servicios para que esten disponibles
-builder.Services.AddScoped<IAsistenciasRepo,AsistenciasRepositorioIMPL>();
-builder.Services.AddScoped<IAsistenciasServicio, AsistenciasServicioIMPL>();
 
-builder.Services.AddScoped<IBonificacionesRepo, BonificacionesRepositorioIMPL>();
-builder.Services.AddScoped<IBonificacionesServicio, BonificacionesServicioIMPL>();
-builder.Services.AddScoped<IEmpleadosServicio, EmpleadosServicioIMPL>();
+
+
 
 
 builder.Services.AddScoped<ISolicitudVacacionesServicio, SolicitudVacacionesServicioIMPL>();
@@ -51,6 +56,13 @@ builder.Services.AddScoped<IEmpleadosServicio, EmpleadosServicioIMPL>();
 
 // puestos 
 builder.Services.AddScoped<IPuestosServicio, PuestosServicioIMPL>();
+
+
+
+
+
+builder.Services.AddScoped<IEmpleadosVacacionesTotalesServicio, EmpleadosVacacionesTotalesServicioIMPL>();
+
 
 
 

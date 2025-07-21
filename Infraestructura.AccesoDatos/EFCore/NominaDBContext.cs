@@ -55,9 +55,9 @@ public partial class NominaDBContext : DbContext
         //optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True");
         => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated  Security=True;Encrypt=True");
    */
-=======
-        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True;Encrypt=True");*/
->>>>>>> b21c18f976a1a96643dbd1ec730ad682cb8ba5fa
+
+      // => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True;Encrypt=True");*/
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

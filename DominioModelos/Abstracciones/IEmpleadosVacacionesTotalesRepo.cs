@@ -8,5 +8,6 @@ namespace Dominio.Modelos.Abstracciones
 {
     public interface IEmpleadosVacacionesTotalesRepo : IRepositorio<EmpleadosVacacionesTotales>
     {
+        Task<IEnumerable<EmpleadosVacacionesTotales>> ObtenerConEmpleadoAsync();
     }
 }
