@@ -24,6 +24,8 @@ namespace Aplicacion.DTO.DTOs
 
         public decimal SalarioContra { get; set; }
 
+        public int? HorasJornadasContra { get; set; }
+
         public string EstadoContra { get; set; }
 
         public string JornadaContra { get; set; }

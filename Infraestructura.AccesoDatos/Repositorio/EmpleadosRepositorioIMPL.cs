@@ -50,6 +50,9 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         SalarioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
                       .Select(c => c.Salario).FirstOrDefault(),
 
+                        HorasJornadasContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                      .Select(c => c.HorasJornada).FirstOrDefault(),
+
                         JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
                       .Select(c => c.Tipo.Jornada).FirstOrDefault()
                     }).SingleOrDefaultAsync();

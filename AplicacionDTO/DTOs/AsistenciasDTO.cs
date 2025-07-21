@@ -8,5 +8,12 @@ namespace Aplicacion.DTO.DTOs
 {
     public class AsistenciasDTO
     {
+
+        public DateOnly Fecha { get; set; }
+
+        public TimeOnly? HoraEntrada { get; set; }
+
+        public TimeOnly? HoraSalida { get; set; }
+
     }
 }

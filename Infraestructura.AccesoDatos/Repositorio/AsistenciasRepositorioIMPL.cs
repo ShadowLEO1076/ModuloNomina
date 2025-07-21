@@ -1,19 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Aplicacion.DTO.DTOs;
 using Dominio.Modelos.Abstracciones;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructura.AccesoDatos.Repositorio
 {
     public class AsistenciasRepositorioIMPL : RepositorioImpl<Asistencias>, IAsistenciasRepo
     {
-        private readonly NominaDBContext _dbContext;
+        private readonly NominaDBContext _context;
         public AsistenciasRepositorioIMPL(NominaDBContext context) : base(context)
         {
-            _dbContext = context;
+            _context = context;
         }
+
+        public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                var busq =
+                    _context.Asistencias.Include(a => a.Empleado)
+                    .Where(a => (a.Fecha.Month == busquedaDTO.mes) && (a.Fecha.Year == busquedaDTO.anio) && (a.Empleado.Cedula == busquedaDTO.CedulaEmpleado))
+                    .GroupBy(g => new
+                    {
+                        NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
+                        Cedula = g.Empleado.Cedula
+                    })
+                    .Select(a => new AsistenciasEmpleadoDTO
+                    {
+
+                        NombreCompleto = a.Key.NombresCompletos,
+                        Cedula = a.Key.Cedula,
+
+                        Asistencias = a.Select(g => new AsistenciasDTO
+                        {
+                            Fecha = g.Fecha,
+                            HoraEntrada = g.HoraEntrada,
+                            HoraSalida = g.HoraSalida,
+                        }).ToList()
+                    }).ToListAsync();
+
+                return await busq;
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception($"Error - AsistenciasRepoImpl : No se pudo hallar las asistencias del empleado con cedula {busquedaDTO.CedulaEmpleado}. {ex.Message}"); 
+            }
+            throw new NotImplementedException();
+        }
+
 
         public Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula)
         {
@@ -24,5 +63,5 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             throw new NotImplementedException();
         }
-    }
+    }  
 }
