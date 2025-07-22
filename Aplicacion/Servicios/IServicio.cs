@@ -21,9 +21,10 @@ namespace Aplicacion.Servicios
         [OperationContract]
         Task ActualizarAsync(T entidad);
         [OperationContract]
-        Task EliminarAsync(int id);
-        
-        
+        Task<bool> EliminarAsync(int id);
+
+
+
     }
-   
+
 }

@@ -96,7 +96,7 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error al actualizar el puesto: {ex.Message}");
             }
         }
-        [HttpDelete("EliminarPuesto/{id}")] //para eliminar un puesto por ID 
+        [HttpDelete("EliminarPuesto/{id}")]
         public async Task<IActionResult> EliminarPuesto(int id)
         {
             try
@@ -106,6 +106,7 @@ namespace ModuloNominaWebAPI.Controllers
                 {
                     return NotFound($"Puesto con ID {id} no encontrado.");
                 }
+
                 await _servicio.EliminarAsync(id);
                 return Ok($"Puesto con ID {id} eliminado correctamente.");
             }
@@ -113,7 +114,6 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 return StatusCode(500, $"Error al eliminar el puesto: {ex.Message}");
             }
-
         }
 
     }

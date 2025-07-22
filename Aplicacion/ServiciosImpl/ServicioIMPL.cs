@@ -59,13 +59,18 @@ namespace Aplicacion.ServiciosImpl
             catch (Exception ex) { throw new Exception("Error - Service: el dato no se pudo actualizar: " + ex.Message); }
         }
 
-        public async Task EliminarAsync(int id)
+        public async Task<bool> EliminarAsync(int id)
         {
             try
             {
                 await _repository.EliminarAsync(id);
+                return true;
             }
-            catch (Exception ex) { throw new Exception("Error - Service: el dato no se pudo eliminar: " + ex.Message); }
+            catch (Exception ex)
+            {
+                // Aquí podrías validar si la excepción viene por restricción de clave foránea y devolver false si quieres
+                return false;
+            }
         }
 
         public async Task<bool> ExisteAsync(int id)
