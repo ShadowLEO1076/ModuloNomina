@@ -39,6 +39,8 @@ var connectionDB = builder.Configuration.GetConnectionString("ConnectionMateo");
 builder.Services.AddDbContext<NominaDBContext>(options =>
     options.UseSqlServer(connectionDB), ServiceLifetime.Scoped);
 // 3. configurar los servicios para que esten disponibles
+builder.Services.AddScoped<IInasistenciasRepo, InasistenciasRepositorioIMPL>();
+builder.Services.AddScoped<IInasistenciasServicio, InasistenciasServicioIMPL>();
 
 builder.Services.AddScoped<INominasRepo, NominasRepositorioIMPL>();
 builder.Services.AddScoped<INominasServicio, NominasServicioIMPL>();

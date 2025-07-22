@@ -10,9 +10,24 @@ namespace ModuloNominaWebAPI.Controllers
     public class AsistenciasControlador : ControllerBase
     {
         private readonly IAsistenciasServicio _serv;
-        public AsistenciasControlador(IAsistenciasServicio serv) 
+        public AsistenciasControlador(IAsistenciasServicio serv)
         {
             _serv = serv;
+        }
+
+        [HttpGet("BuscarPorCedulaAsync")]
+        public async Task<IActionResult> BuscarPorCedulaAsync([FromQuery] string cedula)
+        {
+            try
+            {
+                var busq = await _serv.BuscarPorCedulaAsync(cedula);
+
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
+            }
         }
 
         [HttpPost("ObtenerAsistenciasEmpleadoPorCedulaMesAnio")]
@@ -27,7 +42,7 @@ namespace ModuloNominaWebAPI.Controllers
                     mes = busquedaDTO.mes
                 };
                 
-                var busq = await _serv.ObtenerAsistenciasPorCedulaMesAnio(busquedaDTO);
+                var busq = await _serv.ObtenerAsistenciasPorCedulaMesAnio(dto);
 
                 return Ok(busq);
             }
@@ -102,6 +117,5 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
             }
         }
-
     }
 }

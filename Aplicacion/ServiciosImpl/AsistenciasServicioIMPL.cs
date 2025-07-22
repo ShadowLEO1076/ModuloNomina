@@ -22,6 +22,18 @@ namespace Aplicacion.ServiciosImpl
             _db = db;
         }
 
+        public async Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula)
+        {
+            try
+            {
+                return await _repo.BuscarPorCedulaAsync(cedula);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - AsistenciasServicioImpl : no se pudo hallar los datos. {ex.Message}");
+            }
+        }
+
         public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try

@@ -70,5 +70,32 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - EmpleadosControlador : no se pudo listar los elementos. {ex.Message}");
             }
         }
+        [HttpPut("ActualizarEmpleado")]
+        public async Task<IActionResult> ActualizarEmpleado([FromBody] Empleados empleado)
+        {
+
+            try
+            {
+                await _serv.ActualizarAsync(empleado);
+                return Ok(empleado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al actualizar el empleado: {ex.Message}");
+            }
+        }
+        [HttpDelete("EliminarEmpleado/{id}")]
+        public async Task<IActionResult> EliminarEmpleado(int id)
+        {
+            try
+            {
+                await _serv.EliminarAsync(id);
+                return Ok("Empleado eliminado");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al eliminar el empleado: {ex.Message}");
+            }
+        }
     }
 }

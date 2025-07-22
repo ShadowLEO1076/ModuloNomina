@@ -10,7 +10,7 @@ namespace Dominio.Modelos.Abstracciones
 {
     public interface IInasistenciasRepo: IRepositorio<Inasistencias>
     {
-        Task<List<AsistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
-        Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula);
+        Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
+        Task<IEnumerable<Inasistencias>> BuscarPorCedulaAsync(string cedula);
     }
 }

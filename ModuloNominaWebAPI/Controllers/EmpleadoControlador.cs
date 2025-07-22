@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ModuloNominaWebAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+//   [ApiController] -> Se usar EmpledosControlador
+//   [Route("api/[controller]")]
     public class EmpleadoControlador : ControllerBase
     {
         private IEmpleadosServicio _servicio;
@@ -88,13 +88,6 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 return StatusCode(500, $"Error al eliminar el empleado: {ex.Message}");
             }
-
         }
-        
-       
-      
-        
-
-
     }
 }

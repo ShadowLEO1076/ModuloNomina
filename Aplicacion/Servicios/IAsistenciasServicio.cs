@@ -14,5 +14,8 @@ namespace Aplicacion.Servicios
     {
         [OperationContract]
         Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
+
+        [OperationContract]
+        Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula);
     }
 }

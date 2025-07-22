@@ -1,0 +1,75 @@
+﻿using Aplicacion.DTO.DTOs;
+using Aplicacion.Servicios;
+using Infraestructura.AccesoDatos;
+using Microsoft.AspNetCore.Mvc;
+using System.ServiceModel;
+
+namespace ModuloNominaWebAPI.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class InasistenciasControlador : ControllerBase
+    {
+        private readonly IInasistenciasServicio _serv;
+
+        public InasistenciasControlador(IInasistenciasServicio serv)
+        {
+            _serv = serv;
+        }
+        [HttpPost("ObtenerInasistenciasPorCedulaMesAnio")]
+        public async Task<IActionResult> ObtenerInasistenciasPorCedulaMesAnio([FromBody] BusquedaDTO busquedaDTO)
+        { 
+            try 
+            {
+                BusquedaDTO dto = busquedaDTO;
+
+                var busq = await _serv.ObtenerInasistenciasPorCedulaMesAnio(dto);
+                return Ok(busq);
+            }
+            catch(Exception ex) 
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+
+        [HttpGet("BuscarPorCedulaAsync")]
+        public async Task<IActionResult> BuscarPorCedulaAsync([FromQuery]string cedula)
+        {
+            try 
+            {
+                var busq = await _serv.BuscarPorCedulaAsync(cedula);
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+        [HttpGet("ObtenerTodosAsync")]
+        public async Task<IActionResult> BuscarTodosAsync()
+        {
+            try
+            {
+                var busq = await _serv.ObtenerTodosAsync();
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+        [HttpPost("AgregarAsync")]
+        public async Task<IActionResult> AgregarAsync([FromBody] Inasistencias inasistencia)
+        {
+            try 
+            {
+                await _serv.AgregarAsync(inasistencia);
+                return Ok($"Se añadió el dato {inasistencia} correctaemnte.");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+    }
+}
