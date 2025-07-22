@@ -71,5 +71,32 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
             }
         }
+        [HttpPut("ActualizarAsync")]
+        public async Task<IActionResult> ActualizarAsync([FromBody] Inasistencias inasistencia)
+        {
+            try
+            {
+                await _serv.ActualizarAsync(inasistencia);
+                return Ok($"Se actualizó el dato {inasistencia} correctaemnte.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+        [HttpDelete("EliminarAsync")]
+        public async Task<IActionResult> EliminarAsync(int id) 
+        {
+            try
+            {
+                var busq = _serv.ObtenerPorIdAsync(id);
+                await _serv.EliminarAsync(id);
+                return Ok($"Se eliminó la inasistencia con {id} con éxito.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
     }
 }
