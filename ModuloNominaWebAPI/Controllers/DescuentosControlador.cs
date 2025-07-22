@@ -74,7 +74,7 @@ namespace ModuloNominaWebAPI.Controllers
             }
 
         }
-        [HttpDelete("EliminarAsync")]
+        [HttpDelete("EliminarAsync/{id}")]
         public async Task<IActionResult> EliminarAsync(int id)
         {
             try

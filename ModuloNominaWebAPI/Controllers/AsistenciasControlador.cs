@@ -15,8 +15,8 @@ namespace ModuloNominaWebAPI.Controllers
             _serv = serv;
         }
 
-        [HttpGet("BuscarPorCedulaAsync")]
-        public async Task<IActionResult> BuscarPorCedulaAsync([FromQuery] string cedula)
+        [HttpGet("BuscarPorCedulaAsync/{cedula}")]
+        public async Task<IActionResult> BuscarPorCedulaAsync string cedula)
         {
             try
             {
@@ -97,8 +97,8 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
-        [HttpDelete("EliminarAsync")]
-        public async Task<IActionResult> EliminarAsync([FromQuery] int id)
+        [HttpDelete("EliminarAsync/{id}")]
+        public async Task<IActionResult> EliminarAsync(int id)
         {
             try
             {

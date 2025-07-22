@@ -71,14 +71,13 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - NominasControlador : {ex.Message}");
             }
         }
-        [HttpDelete("EliminarAsync")]
+        [HttpDelete("EliminarAsync/{id}")]
         public async Task<IActionResult> EliminarAsync(int id)
         {
             try
             {
-                var nomina = await  _serv.ObtenerPorIdAsync(id);
-                await _serv.ActualizarAsync(nomina);
-                return Ok("Se actualizó correctamente la nomina.");
+                await _serv.EliminarAsync(id);
+                return Ok("Se eliminó correctamente la nomina.");
             }
             catch (Exception ex)
             {

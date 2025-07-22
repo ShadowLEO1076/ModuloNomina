@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ModuloNominaWebAPI.Controllers
 {
-//   [ApiController] -> Se usar EmpledosControlador
-//   [Route("api/[controller]")]
+   [ApiController] 
+   [Route("api/[controller]")]
     public class EmpleadoControlador : ControllerBase
     {
         private IEmpleadosServicio _servicio;

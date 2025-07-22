@@ -57,8 +57,8 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
-        [HttpPost("ObtenerEmpleadoPorCedula")]
-        public async Task<IActionResult> ObtenerEmpleadoPorCedula([FromQuery] string cedula)
+        [HttpPost("ObtenerEmpleadoPorCedula/{cedula}")]
+        public async Task<IActionResult> ObtenerEmpleadoPorCedula( string cedula)
         {
             try
             {

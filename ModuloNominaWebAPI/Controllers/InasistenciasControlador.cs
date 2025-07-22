@@ -32,8 +32,8 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
-        [HttpGet("BuscarPorCedulaAsync")]
-        public async Task<IActionResult> BuscarPorCedulaAsync([FromQuery]string cedula)
+        [HttpGet("BuscarPorCedulaAsync/{cedula}")]
+        public async Task<IActionResult> BuscarPorCedulaAsync(string cedula)
         {
             try 
             {
@@ -84,7 +84,7 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
             }
         }
-        [HttpDelete("EliminarAsync")]
+        [HttpDelete("EliminarAsync/{id}")]
         public async Task<IActionResult> EliminarAsync(int id) 
         {
             try
