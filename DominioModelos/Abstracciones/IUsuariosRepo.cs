@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Infraestructura.AccesoDatos;
+
+namespace Dominio.Modelos.Abstracciones
+{
+    public interface IUsuariosRepo : IRepositorio<Usuarios>
+    {
+        Task<Usuarios> ObtenerPorCedulaYContraseñaAsync(string cedula, byte[] contraseña);
+    }
+}
