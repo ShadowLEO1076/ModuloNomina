@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.DTO.DTOs;
 using Dominio.Modelos.Abstracciones;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.EntityFrameworkCore;
 namespace Infraestructura.AccesoDatos.Repositorio
 {
@@ -16,9 +17,19 @@ namespace Infraestructura.AccesoDatos.Repositorio
             this._context = context;
         }
 
-        public Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula)
+        public async Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula)
         {
-            throw new NotImplementedException();
+            try 
+            {
+                var busq =
+                    await _context.Empleados.Where(e => e.Cedula == cedula).FirstOrDefaultAsync();
+
+                return busq;
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception($"Error - EmpleadosRepoImp : {ex.Message}");
+            }
         }
 
 
@@ -49,6 +60,9 @@ namespace Infraestructura.AccesoDatos.Repositorio
 
                         SalarioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
                       .Select(c => c.Salario).FirstOrDefault(),
+
+                        HorasJornadasContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                      .Select(c => c.HorasJornada).FirstOrDefault(),
 
                         JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
                       .Select(c => c.Tipo.Jornada).FirstOrDefault()

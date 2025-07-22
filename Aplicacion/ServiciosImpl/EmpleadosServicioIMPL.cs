@@ -21,9 +21,18 @@ namespace Aplicacion.ServiciosImpl
             _context = context;
             _repo = new EmpleadosRepositorioIMPL(context);
         }
-        public Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula)
+        public async Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _repo.ObtenerEmpleadoPorCedulaAsync(cedula);
+            }
+            catch (Exception ex)
+            {
+                {
+                    throw new Exception($"Error - EmpleadosServicioImpl : no se pudo hallar al empleado con la cédula {cedula}. {ex.Message}");
+                }
+            }
         }
 
         public async Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula)

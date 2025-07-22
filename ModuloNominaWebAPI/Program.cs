@@ -34,13 +34,25 @@ builder.Services.AddControllers()
 
 // 1. leer la cadena de conexion del appsettings.json y guardarla en una variable de entorno
 //var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection"); // ("ConnectionMateo") es la de mateo
+var connectionDB = builder.Configuration.GetConnectionString("ConnectionMateo"); // ("ConnectionMateo") es la de mateo
 // 2. crear el DbContext global con la cadena de conexion
 builder.Services.AddDbContext<NominaDBContext>(options =>
     options.UseSqlServer(connectionDB), ServiceLifetime.Scoped);
 // 3. configurar los servicios para que esten disponibles
+builder.Services.AddScoped<IInasistenciasRepo, InasistenciasRepositorioIMPL>();
+builder.Services.AddScoped<IInasistenciasServicio, InasistenciasServicioIMPL>();
 
+builder.Services.AddScoped<INominasRepo, NominasRepositorioIMPL>();
+builder.Services.AddScoped<INominasServicio, NominasServicioIMPL>();
 
+builder.Services.AddScoped<IDescuentosRepo, DescuentosRepositorioIMPL>();
+builder.Services.AddScoped<IDescuentosServicio, DescuentosServicioIMPL>();
+
+builder.Services.AddScoped<IAsistenciasRepo, AsistenciasRepositorioIMPL>();
+builder.Services.AddScoped<IAsistenciasServicio,AsistenciasServicioIMPL>();
+
+builder.Services.AddScoped<IBonificacionesRepo, BonificacionesRepositorioIMPL>();
+builder.Services.AddScoped<IBonificacionesServicio, BonificacionesServicioIMPL>();
 
 
 

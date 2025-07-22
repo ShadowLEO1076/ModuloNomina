@@ -12,16 +12,16 @@ namespace Aplicacion.Servicios
     [ServiceContract]
     public interface IEmpleadosServicio: IServicio<Empleados>
     {
-        [OperationContract] // este ObtenerEmpleadoDTOPorCedulaAsync
+
+        [OperationContract]
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
 
-
-
-
-
-
-
-
+        [OperationContract]
+        public Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
+        /*
+        [OperationContract] // este ObtenerEmpleadoDTOPorCedulaAsync
+        Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
+        */
     }
    
 }

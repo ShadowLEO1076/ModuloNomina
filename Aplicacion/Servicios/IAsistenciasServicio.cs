@@ -1,14 +1,21 @@
-﻿using System;
+﻿using Aplicacion.DTO.DTOs;
+using Infraestructura.AccesoDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using Infraestructura.AccesoDatos;
 
 namespace Aplicacion.Servicios
 {
+    [ServiceContract]
     public interface IAsistenciasServicio : IServicio<Asistencias>
     {
+        [OperationContract]
+        Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
+
+        [OperationContract]
+        Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula);
     }
 }

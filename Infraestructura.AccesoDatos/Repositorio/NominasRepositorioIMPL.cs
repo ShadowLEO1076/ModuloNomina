@@ -9,8 +9,10 @@ namespace Infraestructura.AccesoDatos.Repositorio
 {
     public class NominasRepositorioIMPL : RepositorioImpl<Nominas>, INominasRepo
     {
+        private readonly NominaDBContext _context;
         public NominasRepositorioIMPL(NominaDBContext context) : base(context)
         {
+            _context = context;
         }
     }
 }

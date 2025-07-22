@@ -11,20 +11,12 @@ namespace Infraestructura.AccesoDatos.Repositorio
 {
     public class AprobacionVacacionesRepocitorioIMPL : RepositorioImpl<AprobacionVacaciones>, IAprobacionVacacionesRepo
     {
-      /*  private readonly NominaDBContext _context;
+        private readonly NominaDBContext _context;
         public AprobacionVacacionesRepocitorioIMPL(NominaDBContext context) : base(context)
         {
             _context = context;
         }
-        */
-        private readonly NominaDBContext _context;
-
-        public AprobacionVacacionesRepocitorioIMPL(NominaDBContext context) : base(context)
-        {
-            this._context = context;
-
-        }
-
+   
         public async Task<IEnumerable<VacacionesAprovadasGestionDTO>> ResumenDiasAprovadosDiasUsadosAsync(string cedula)
         {
             // VOY A APROVECHAR EL DTO PARA USAR CAMPOS DE DIFERENTES TABLAS

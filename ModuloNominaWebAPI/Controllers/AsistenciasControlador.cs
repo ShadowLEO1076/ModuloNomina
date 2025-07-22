@@ -1,4 +1,5 @@
-﻿using Aplicacion.Servicios;
+﻿using Aplicacion.DTO.DTOs;
+using Aplicacion.Servicios;
 using Infraestructura.AccesoDatos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,47 @@ namespace ModuloNominaWebAPI.Controllers
     public class AsistenciasControlador : ControllerBase
     {
         private readonly IAsistenciasServicio _serv;
-        public AsistenciasControlador(IAsistenciasServicio serv) 
+        public AsistenciasControlador(IAsistenciasServicio serv)
         {
             _serv = serv;
         }
 
+        [HttpGet("BuscarPorCedulaAsync/{cedula}")]
+        public async Task<IActionResult> BuscarPorCedulaAsync string cedula)
+        {
+            try
+            {
+                var busq = await _serv.BuscarPorCedulaAsync(cedula);
+
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
+            }
+        }
+
+        [HttpPost("ObtenerAsistenciasEmpleadoPorCedulaMesAnio")]
+        public async Task<IActionResult> ObtenerAsistenciasEmpleadoPorCedulaMesAnio([FromBody] BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                var dto = new BusquedaDTO
+                {
+                    CedulaEmpleado = busquedaDTO.CedulaEmpleado,
+                    anio = busquedaDTO.anio,
+                    mes = busquedaDTO.mes
+                };
+                
+                var busq = await _serv.ObtenerAsistenciasPorCedulaMesAnio(dto);
+
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
+            }
+        }
         [HttpGet("ObtenerTodosAsync")]
         public async Task<IActionResult> ObtenerTodosAsync()
         {
@@ -60,8 +97,8 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
-        [HttpDelete("EliminarAsync")]
-        public async Task<IActionResult> EliminarAsync([FromQuery] int id)
+        [HttpDelete("EliminarAsync/{id}")]
+        public async Task<IActionResult> EliminarAsync(int id)
         {
             try
             {
@@ -80,6 +117,5 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
             }
         }
-
     }
 }
