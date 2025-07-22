@@ -40,13 +40,17 @@ builder.Services.AddDbContext<NominaDBContext>(options =>
     options.UseSqlServer(connectionDB), ServiceLifetime.Scoped);
 // 3. configurar los servicios para que esten disponibles
 
+builder.Services.AddScoped<INominasRepo, NominasRepositorioIMPL>();
+builder.Services.AddScoped<INominasServicio, NominasServicioIMPL>();
+
 builder.Services.AddScoped<IDescuentosRepo, DescuentosRepositorioIMPL>();
 builder.Services.AddScoped<IDescuentosServicio, DescuentosServicioIMPL>();
 
 builder.Services.AddScoped<IAsistenciasRepo, AsistenciasRepositorioIMPL>();
 builder.Services.AddScoped<IAsistenciasServicio,AsistenciasServicioIMPL>();
 
-
+builder.Services.AddScoped<IBonificacionesRepo, BonificacionesRepositorioIMPL>();
+builder.Services.AddScoped<IBonificacionesServicio, BonificacionesServicioIMPL>();
 
 
 

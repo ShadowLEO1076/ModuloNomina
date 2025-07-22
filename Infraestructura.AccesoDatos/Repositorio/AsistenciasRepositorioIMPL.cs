@@ -54,8 +54,20 @@ namespace Infraestructura.AccesoDatos.Repositorio
         }
 
 
-        public Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula)
+        public async Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula)
         {
+            try
+            {
+                var busq =
+                    _context.Asistencias.Include(a => a.Empleado)
+                    .Where(a => (a.Empleado.Cedula == cedula)).ToListAsync();
+
+                return await busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - AsistenciasRepoImpl : No se pudo hallar las asistencias del empleado con cedula {cedula}. {ex.Message}");
+            }
             throw new NotImplementedException();
         }
 

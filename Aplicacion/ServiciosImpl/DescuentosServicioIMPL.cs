@@ -33,5 +33,20 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception($"Error - DescuentosServicioImpl : {ex.Message}"); 
             }
         }
+
+        public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<DescuentosEmpleadoDTO> lista)
+        {
+            decimal totalValor = 0;
+
+            foreach (DescuentosEmpleadoDTO empleado in lista)
+            {
+                foreach (DescuentosDTO desc in empleado.descuentos)
+                {
+                    totalValor = desc.Monto + totalValor;
+                }
+            }
+
+            return totalValor;
+        }
     }
 }

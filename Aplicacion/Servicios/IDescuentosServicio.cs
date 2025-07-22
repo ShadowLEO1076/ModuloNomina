@@ -15,5 +15,8 @@ namespace Aplicacion.Servicios
     {
         [OperationContract]
         Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busqueda);
+        [OperationContract]
+        public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<DescuentosEmpleadoDTO> lista);
+
     }
 }

@@ -15,6 +15,9 @@ namespace Aplicacion.Servicios
 
         [OperationContract]
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
+
+        [OperationContract]
+        public Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
         /*
         [OperationContract] // este ObtenerEmpleadoDTOPorCedulaAsync
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);

@@ -22,6 +22,22 @@ namespace Aplicacion.ServiciosImpl
             _dbContext = dbContext;
         }
 
+        public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<BonificacionesEmpleadoDTO> lista)
+        {
+            decimal totalValor = 0;
+
+            foreach (BonificacionesEmpleadoDTO empleado in lista)
+            {
+                foreach (BonificacionesDTO boni in empleado.bonificaciones)
+                {
+                    totalValor = boni.Monto + totalValor;
+                }
+            }
+
+            return totalValor;
+        }
+        
+
         public async Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos)
         {
             try
