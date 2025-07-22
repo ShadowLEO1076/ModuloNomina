@@ -24,7 +24,7 @@ namespace ModuloNominaWebAPI.Controllers
                 var resultado = await _serv.ObtenerTodosAsync();
                 return Ok(resultado);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return StatusCode(500, $"Error - EmpleadosControlador : no se pudo listar los elementos. {ex.Message}");
             }
@@ -47,7 +47,7 @@ namespace ModuloNominaWebAPI.Controllers
         public async Task<IActionResult> ActualizarAsync([FromBody] Empleados empleado)
         {
             try
-            {   
+            {
                 await _serv.ActualizarAsync(empleado);
                 return Ok();
             }
@@ -57,8 +57,8 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
-        [HttpPost("ObtenerEmpleadoPorCedula/{cedula}")]
-        public async Task<IActionResult> ObtenerEmpleadoPorCedula( string cedula)
+        [HttpGet("ObtenerEmpleadoDTOPorCedula/{cedula}")]
+        public async Task<IActionResult> ObtenerEmpleadoDTOPorCedula(string cedula)
         {
             try
             {
@@ -76,7 +76,8 @@ namespace ModuloNominaWebAPI.Controllers
 
             try
             {
-                await _serv.ActualizarAsync(empleado);
+                Empleados emple = empleado;
+                await _serv.ActualizarAsync(emple);
                 return Ok(empleado);
             }
             catch (Exception ex)
@@ -95,6 +96,19 @@ namespace ModuloNominaWebAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error al eliminar el empleado: {ex.Message}");
+            }
+        }
+     [HttpGet("ObtenerEmpleadoPorCedula/{cedula}")]
+        public async Task<IActionResult> ObtenerEmpleadoorCedula(string cedula)
+        {
+            try
+            {
+                var resultado = await _serv.ObtenerEmpleadoPorCedulaAsync(cedula);
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - EmpleadosControlador : no se pudo listar los elementos. {ex.Message}");
             }
         }
     }
