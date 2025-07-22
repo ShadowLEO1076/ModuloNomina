@@ -70,6 +70,17 @@ builder.Services.AddScoped<IEmpleadosServicio, EmpleadosServicioIMPL>();
 builder.Services.AddScoped<IPuestosServicio, PuestosServicioIMPL>();
 
 
+// para usuarios:
+builder.Services.AddScoped<IUsuariosServicio, UsuariosServicioIMPL>();
+
+// la que me falta para que funcione el controlador de usuario
+builder.Services.AddScoped<IUsuariosRepo, UsuariosRepositorioIMPL>();
+
+// En Program.cs de ModuloNominaWebAPI
+builder.Services.AddScoped<IUsuariosRepo, UsuariosRepositorioIMPL>();
+builder.Services.AddScoped<IUsuariosServicio, UsuariosServicioIMPL>();
+
+
 
 
 
