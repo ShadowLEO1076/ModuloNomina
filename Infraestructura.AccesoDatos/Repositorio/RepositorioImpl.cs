@@ -24,12 +24,16 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 _dbSet.Update(entidad);
                 await _context.SaveChangesAsync();
             }
+            catch (DbUpdateException dbEx)
+            {
+                throw new Exception("Error de actualización en la base de datos.", dbEx);
+            }
             catch (Exception ex)
             {
-                // Manejo de excepciones, logging, etc.
-                throw new NotImplementedException("ERROR AL ACTUALIZAR", ex);
+                throw new Exception("Error general al actualizar la entidad.", ex);
             }
         }
+
 
         public async Task AgregarAsync(T entidad)
         {
@@ -61,7 +65,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             catch (Exception ex)
             {
                 // Manejo de excepciones, logging, etc.
-                throw new NotImplementedException("ERROR AL ELIMINAR", ex);
+                throw new Exception("ERROR AL ELIMINAR", ex);
             }
         }
 
