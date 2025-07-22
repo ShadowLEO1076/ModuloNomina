@@ -82,19 +82,14 @@ namespace ModuloNominaWebAPI.Controllers
         [HttpPut("ActualizarPuesto/{id}")]
         public async Task<IActionResult> ActualizarPuesto(int id, [FromBody] Puestos puesto)
         {
-            if (puesto == null || id != puesto.IdPuesto)
+            if (puesto == null || puesto.IdPuesto != id)
             {
-                return BadRequest("El puesto no puede ser nulo y el ID debe coincidir.");
+                return BadRequest("Los datos del puesto son inválidos.");
             }
             try
             {
-                var puestoExistente = await _servicio.ObtenerPorIdAsync(id);
-                if (puestoExistente == null)
-                {
-                    return NotFound($"Puesto con ID {id} no encontrado.");
-                }
                 await _servicio.ActualizarAsync(puesto);
-                return NoContent();
+                return NoContent(); // 204 No Content
             }
             catch (Exception ex)
             {
