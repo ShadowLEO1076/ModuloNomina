@@ -34,7 +34,7 @@ builder.Services.AddControllers()
 
 // 1. leer la cadena de conexion del appsettings.json y guardarla en una variable de entorno
 //var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionDB = builder.Configuration.GetConnectionString("DefaultConnection"); // ("ConnectionMateo") es la de mateo
+var connectionDB = builder.Configuration.GetConnectionString("ConnectionMateo"); // ("ConnectionMateo") es la de mateo
 // 2. crear el DbContext global con la cadena de conexion
 builder.Services.AddDbContext<NominaDBContext>(options =>
     options.UseSqlServer(connectionDB), ServiceLifetime.Scoped);

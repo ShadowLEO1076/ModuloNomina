@@ -33,7 +33,7 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
 
-        [HttpPost("AgregarAsyn")]
+        [HttpPost("AgregarAsync")]
         public async Task<IActionResult> AgregarAsync([FromBody] Descuentos descuentos)
         {
             try
@@ -59,19 +59,34 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - BonificacionesControlador : {ex.Message}");
             }
         }
-        /*
+        
         [HttpPut("ActualizarAsyn")]
         public async Task<IActionResult> ActualizarAsync([FromBody] Descuentos descuento)
         {
             try
             {
-
+                await _serv.ActualizarAsync(descuento);
+                return Ok(descuento);
             }
             catch
             {
-                return StatusCode(500, $"Error - BnificacionesControlador")
+                return StatusCode(500, $"Error - BnificacionesControlador");
             }
 
-        }*/
+        }
+        [HttpDelete("EliminarAsync")]
+        public async Task<IActionResult> EliminarAsync(int id)
+        {
+            try
+            {
+                var busq = _serv.EliminarAsync(id);
+                return Ok(busq);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Error - DescuentosControlador : {ex.Message}");
+            }
+        }
+
     }
 }
