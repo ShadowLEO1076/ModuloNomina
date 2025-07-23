@@ -15,7 +15,33 @@ namespace ModuloNominaWebAPI.Controllers
         {
             _serv = serv;
         }
+        [HttpGet("ObtenerTodosInactivosAsync")]
+        public async Task<IActionResult> ObtenerTodosInactivosAsync()
+        {
+            try
+            {
+                var resultado = await _serv.ObtenerTodosInactivosAsync();
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - EmpleadosControlador : no se pudo listar los elementos. {ex.Message}");
+            }
+        }
 
+        [HttpGet("ObtenerTodosActivosAsync")]
+        public async Task<IActionResult> ObtenerTodosActivosAsyinc()
+        {
+            try
+            {
+                var resultado = await _serv.ObtenerTodosActivosAsync();
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - EmpleadosControlador : no se pudo listar los elementos. {ex.Message}");
+            }
+        }
         [HttpGet("ObtenerTodosAsync")]
         public async Task<IActionResult> ObtenerTodosAsync()
         {

@@ -81,7 +81,39 @@ namespace Infraestructura.AccesoDatos.Repositorio
 
         }
 
-        
+        public async Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync()
+        {
+            try
+            {
+                var busq =
+
+                   await _context.Empleados.Where(e => e.Estado == true).ToListAsync();
+
+                return busq;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al conseguir los datos: {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync()
+        {
+            try
+            {
+                var busq =
+
+                   await _context.Empleados.Where(e => e.Estado == false).ToListAsync();
+
+                return busq;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al conseguir los datos: {ex.Message}");
+            }
+        }
     }
 }
 /* --> método de Guille.
