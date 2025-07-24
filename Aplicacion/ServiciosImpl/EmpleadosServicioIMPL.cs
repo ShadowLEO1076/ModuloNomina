@@ -49,6 +49,32 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
-       
+        public async Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync()
+        {
+            try
+            {
+                return await _repo.ObtenerTodosActivosAsync();
+            }
+            catch (Exception ex)
+            {
+                {
+                    throw new Exception($"Error - EmpleadosServicioImpl : no se puedieron hallar los datos. {ex.Message}");
+                }
+            }
+        }
+
+        public async Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync()
+        {
+            try
+            {
+                return await _repo.ObtenerTodosInactivosAsync();
+            }
+            catch (Exception ex)
+            {
+                {
+                    throw new Exception($"Error - EmpleadosServicioImpl : no se puedieron hallar los datos. {ex.Message}");
+                }
+            }
+        }
     }
 }
