@@ -2,6 +2,7 @@
 using Aplicacion.Servicios;
 using Infraestructura.AccesoDatos;
 using Microsoft.AspNetCore.Mvc;
+using System.ServiceModel;
 
 namespace ModuloNominaWebAPI.Controllers
 {
@@ -16,6 +17,37 @@ namespace ModuloNominaWebAPI.Controllers
             _serv = serv;
         }
 
+        [HttpPost("ObtenerNominaPorEmpleadoMesAnioAsync")]
+        public async Task<IActionResult> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto) 
+        {
+            try
+            {
+                BusquedaDTO datos = dto;
+                var respuesta = await _serv.ObtenerNominaPorEmpleadoMesAnioAsync(datos);
+
+                return Ok(respuesta);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - NominasControlador : {ex.Message}");
+            }
+        }
+
+        [HttpGet("ObtenerTodosActivosAsync")]
+        public async Task<IActionResult> ObtenerTodosActivosAsync() 
+        {
+            try
+            {
+                
+                var bus = await _serv.ObtenerTodosActivosAsync();
+
+                return Ok(bus);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - NominasControlador : {ex.Message}");
+            }
+        }
         [HttpPost("InsertarNominaAuto")]
         public async Task<IActionResult> InsertarNominaAuto([FromBody] BusquedaDTO busqueda)
         {
