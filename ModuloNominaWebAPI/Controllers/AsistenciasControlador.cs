@@ -16,11 +16,7 @@ namespace ModuloNominaWebAPI.Controllers
         }
 
         [HttpGet("BuscarPorCedulaAsync/{cedula}")]
-<<<<<<< HEAD
         public async Task<IActionResult> BuscarPorCedulaAsync (string cedula)
-=======
-        public async Task<IActionResult> BuscarPorCedulaAsync(string cedula)
->>>>>>> c1d4a769a9fec811fa6322592c9728759d9db8be
         {
             try
             {

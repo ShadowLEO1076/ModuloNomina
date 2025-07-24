@@ -25,18 +25,18 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 var busq =
                     _context.Nominas.Include(n => n.Empleado)
                     .ThenInclude(e => e.Contratos).
-                    Where(n => (n.Empleado.Estado == true) && (n.Empleado.Cedula == dto.CedulaEmpleado) && (n.Mes == dto.mes) && (n.Anio == dto.anio))
+                    Where(n => (n.Empleado.Estado == true) && (n.Empleado.Cedula == dto.CedulaEmpleado) && (n.Mes == dto.mes) && (n.Anio == dto.anio) && (n.FechaEmision.Month == dto.mes) && (n.FechaEmision.Year == dto.anio))
                     .Select(n => new NominasDTO
                     {
                         IdNomina = n.IdNomina,
                         IdEmpleado = n.EmpleadoId,
+                        Descuentos = n.Descuentos,
                         NombresApellidos = n.Empleado.Nombres + " " + n.Empleado.Apellidos,
                         Cedula = n.Empleado.Cedula,
                         Bonificaciones = n.Bonificaciones,
-                        Descuentos = n.Descuentos,
+                        FechaEmision = n.FechaEmision,
                         Mes = n.Mes,
                         Anio = n.Anio,
-
                         Salario = n.SalarioBase,
 
                         HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
@@ -74,7 +74,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         Descuentos = n.Descuentos,
                         Mes = n.Mes,
                         Anio = n.Anio,
-
+                        FechaEmision = n.FechaEmision,
                         Salario = n.SalarioBase,
 
                         HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
