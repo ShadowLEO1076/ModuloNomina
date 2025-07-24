@@ -16,12 +16,11 @@ namespace ModuloNominaWebAPI.Controllers
         }
 
         [HttpGet("BuscarPorCedulaAsync/{cedula}")]
-        public async Task<IActionResult> BuscarPorCedulaAsync string cedula)
+        public async Task<IActionResult> BuscarPorCedulaAsync (string cedula)
         {
             try
             {
                 var busq = await _serv.BuscarPorCedulaAsync(cedula);
-
                 return Ok(busq);
             }
             catch (Exception ex)
@@ -29,7 +28,7 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
             }
         }
-
+    
         [HttpPost("ObtenerAsistenciasEmpleadoPorCedulaMesAnio")]
         public async Task<IActionResult> ObtenerAsistenciasEmpleadoPorCedulaMesAnio([FromBody] BusquedaDTO busquedaDTO)
         {

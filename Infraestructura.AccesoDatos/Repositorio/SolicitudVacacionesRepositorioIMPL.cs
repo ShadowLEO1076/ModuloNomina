@@ -27,11 +27,15 @@ namespace Infraestructura.AccesoDatos.Repositorio
                     .Select(sv => new SolicitudVacacionDTO
                     {
                         IdSolicitud = sv.IdSolicitud,
-                        Cedula = sv.Empleado.Cedula,
+                        IdEmpleado = sv.EmpleadoId,
                         NombreCompleto = sv.Empleado.Nombres + " " + sv.Empleado.Apellidos,
-                        FechaInicio = sv.FechaInicio.ToDateTime(TimeOnly.MinValue),
-                        FechaFin = sv.FechaFin.ToDateTime(TimeOnly.MinValue),
-                        Estado = sv.Estado
+                        Cedula = sv.Empleado.Cedula, 
+                        FechaInicio = sv.FechaInicio,
+                        // arreglado de esta forma :
+                        FechaFin = sv.FechaFin,
+                        DiasSolicitados = sv.DiasSolicitados,
+                        Estado = sv.Estado,
+                        FechaCreacion = sv.FechaCreacion
                     })
                     .ToListAsync();
             }
@@ -51,11 +55,15 @@ namespace Infraestructura.AccesoDatos.Repositorio
                     .Select(sv => new SolicitudVacacionDTO
                     {
                         IdSolicitud = sv.IdSolicitud,
-                        Cedula = sv.Empleado.Cedula,
+                        IdEmpleado = sv.EmpleadoId,
                         NombreCompleto = sv.Empleado.Nombres + " " + sv.Empleado.Apellidos,
-                        FechaInicio = sv.FechaInicio.ToDateTime(TimeOnly.MinValue),
-                        FechaFin = sv.FechaFin.ToDateTime(TimeOnly.MinValue),
-                        Estado = sv.Estado
+                        Cedula = sv.Empleado.Cedula,
+                        FechaInicio = sv.FechaInicio, // ultima modificacion
+                        FechaFin = sv.FechaFin, // ultima modificacion
+                        DiasSolicitados = sv.DiasSolicitados,
+                        Estado = sv.Estado,
+                        FechaCreacion = sv.FechaCreacion
+
                     })
                     .ToListAsync();
 
