@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.DTO.DTOs
 {
-    public class UsuarioDTO
+    public class UsuarioRespuestaDTO
     {
         public string Cedula { get; set; }
         public string Rol { get; set; }

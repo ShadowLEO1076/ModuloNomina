@@ -8,6 +8,6 @@ namespace Aplicacion.Servicios
     public interface IUsuariosServicio
     {
         [OperationContract]
-        Task<UsuarioDTO> LoginAsync(LoginDTO loginDto);
+        Task<UsuarioRespuestaDTO> LoginAsync(LoginDTO loginDto);
     }
 }

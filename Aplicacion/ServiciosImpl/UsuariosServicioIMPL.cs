@@ -18,14 +18,14 @@ namespace Aplicacion.ServiciosImpl
             _repo = repo;
         }
 
-        public async Task<UsuarioDTO> LoginAsync(LoginDTO loginDto)
+        public async Task<UsuarioRespuestaDTO> LoginAsync(LoginDTO loginDto)
         {
             byte[] hash = HashPassword(loginDto.Contraseña);
             var usuario = await _repo.ObtenerPorCedulaYContraseñaAsync(loginDto.Cedula, hash);
 
             return usuario == null
                 ? null
-                : new UsuarioDTO
+                : new UsuarioRespuestaDTO
                 {
                     Cedula = usuario.Cedula,
                     Rol = usuario.Rol,

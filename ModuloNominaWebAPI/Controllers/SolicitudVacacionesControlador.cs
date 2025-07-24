@@ -1,4 +1,5 @@
-﻿using Aplicacion.Servicios;
+﻿using Aplicacion.DTO.DTOs;
+using Aplicacion.Servicios;
 using Infraestructura.AccesoDatos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -90,9 +91,6 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error al actualizar la solicitud de vacaciones: {ex.Message}");
             }
         }
-
-
-        [HttpDelete("{id}")]
 
         [HttpGet("ObtenerResumenSolicitudes")]
         public async Task<IActionResult> ObtenerResumenSolicitudes()
