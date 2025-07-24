@@ -12,6 +12,10 @@ namespace Dominio.Modelos.Abstracciones
     {
         Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula); // --> método de Guille
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
+        Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync();
+
+        Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync();
+
         //Task<List<EmpleadoVacacionesDTO>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO
 
         //Task<List<EmpleadoVacaciones>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO

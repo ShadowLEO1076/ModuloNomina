@@ -10,7 +10,7 @@ using Infraestructura.AccesoDatos;
 namespace Aplicacion.Servicios
 {
     [ServiceContract]
-    public interface IEmpleadosServicio: IServicio<Empleados>
+    public interface IEmpleadosServicio : IServicio<Empleados>
     {
 
         [OperationContract]
@@ -18,6 +18,10 @@ namespace Aplicacion.Servicios
 
         [OperationContract]
         public Task<Empleados> ObtenerEmpleadoPorCedulaAsync(string cedula);
+        [OperationContract]
+        Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync();
+        [OperationContract]
+        Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync();
         /*
         [OperationContract] // este ObtenerEmpleadoDTOPorCedulaAsync
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
