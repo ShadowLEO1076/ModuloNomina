@@ -18,4 +18,6 @@ public partial class Usuarios
     public string Rol { get; set; }
 
     public DateTime? FechaRegistro { get; set; }
+
+    public bool? Estado { get; set; }
 }

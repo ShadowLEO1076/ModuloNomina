@@ -84,7 +84,6 @@ builder.Services.AddScoped<IUsuariosServicio, UsuariosServicioIMPL>();
 
 
 
-builder.Services.AddScoped<IEmpleadosVacacionesTotalesServicio, EmpleadosVacacionesTotalesServicioIMPL>();
 
 
 

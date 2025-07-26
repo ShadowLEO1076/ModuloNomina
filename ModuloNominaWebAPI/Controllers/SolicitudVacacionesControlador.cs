@@ -64,6 +64,7 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 await _servicio.AgregarAsync(solicitud);
                 return CreatedAtAction(nameof(BuscarPorId), new { id = solicitud.IdSolicitud }, solicitud);
+                return Ok(solicitud);
 
 
             }
@@ -80,11 +81,12 @@ namespace ModuloNominaWebAPI.Controllers
             if (solicitud == null)
             {
                 return BadRequest("La solicitud de vacaciones no puede ser nula.");
+
             }
             try
             {
                 await _servicio.ActualizarAsync(solicitud);
-                return NoContent(); // 204 No Content
+                return Ok(solicitud);
             }
             catch (Exception ex)
             {

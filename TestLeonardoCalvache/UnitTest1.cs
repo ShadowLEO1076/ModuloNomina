@@ -54,8 +54,8 @@ namespace TestLeonardoCalvache  // no funccionsionó este test esta por revisar e
 
             await _puestosServ.AddAsync(puestoPrueba);
             //Assert.Pass();
-        }*/
-
+        }
+        */
         [TearDown]
         public void Terminar()
         {

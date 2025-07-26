@@ -3,6 +3,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Infraestructura.AccesoDatos;
 
@@ -23,6 +24,11 @@ public partial class Nominas
     public decimal Descuentos { get; set; }
 
     public DateOnly FechaEmision { get; set; }
+<<<<<<< HEAD
+=======
+
+    public bool? Estado { get; set; }
+>>>>>>> 38fd4c0964f95e1de6b720f61748a98a7aed1308
     [JsonIgnore]
     public virtual Empleados Empleado { get; set; }
 }

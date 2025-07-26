@@ -31,8 +31,6 @@ public partial class NominaDBContext : DbContext
 
     public virtual DbSet<Empleados> Empleados { get; set; }
 
-    public virtual DbSet<EmpleadosVacacionesTotales> EmpleadosVacacionesTotales { get; set; }
-
     public virtual DbSet<Inasistencias> Inasistencias { get; set; }
 
     public virtual DbSet<Licencias> Licencias { get; set; }
@@ -49,11 +47,7 @@ public partial class NominaDBContext : DbContext
 
    /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-NCNTGBP\\MIPRIMERSQL2024;Initial Catalog=NominaPisip;Integrated Security=True;TrustServerCertificate=True;"); 
-        //optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True");
-        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated  Security=True;Encrypt=True");
-   */
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True;Encrypt=True");*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -180,19 +174,6 @@ public partial class NominaDBContext : DbContext
                 .HasConstraintName("FK_Empleados_Puestos");
         });
 
-        modelBuilder.Entity<EmpleadosVacacionesTotales>(entity =>
-        {
-            entity.HasKey(e => e.EmpleadoId).HasName("PK__Empleado__958BE91035511385");
-
-            entity.Property(e => e.EmpleadoId).ValueGeneratedNever();
-            entity.Property(e => e.DiasOtorgados).HasDefaultValue(15);
-
-            entity.HasOne(d => d.Empleado).WithOne(p => p.EmpleadosVacacionesTotales)
-                .HasForeignKey<EmpleadosVacacionesTotales>(d => d.EmpleadoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_VacTotales_Empleados");
-        });
-
         modelBuilder.Entity<Inasistencias>(entity =>
         {
             entity.HasKey(e => e.IdInasistencia).HasName("PK__Inasiste__72A13AB0C738443C");
@@ -283,7 +264,7 @@ public partial class NominaDBContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.Contraseña)
                 .IsRequired()
-                .HasMaxLength(64);
+                .HasMaxLength(32);
             entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
             entity.Property(e => e.Nombre)
                 .IsRequired()

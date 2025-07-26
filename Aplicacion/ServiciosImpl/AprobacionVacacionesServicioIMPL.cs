@@ -22,16 +22,6 @@ namespace Aplicacion.ServiciosImpl
             _repo = new AprobacionVacacionesRepocitorioIMPL(context);
         }
 
-        public async Task<IEnumerable<VacacionesAprovadasGestionDTO>> ResumenDiasAprovadosDiasUsadosAsync(string cedula)
-        {
-            try
-            {
-                return await _repo.ResumenDiasAprovadosDiasUsadosAsync(cedula);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el resumen de vacaciones aprobadas", ex);
-            }
-        }
+       
     }
 }
