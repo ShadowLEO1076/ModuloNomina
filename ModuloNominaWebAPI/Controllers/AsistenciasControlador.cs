@@ -87,7 +87,7 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 await _serv.AgregarAsync(asistencia);
-                return Ok($"Se añadió correctamente las asistencia.");
+                return Ok(asistencia);
             }
             catch (Exception ex)
             {

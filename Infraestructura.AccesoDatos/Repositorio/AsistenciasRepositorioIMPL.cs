@@ -100,7 +100,18 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             throw new NotImplementedException();
         }
-
-      
+        
+        public async Task<Asistencias> BuscarPorIdYFecha(int idEmpleado, DateOnly fechaAsis)
+        {
+            throw new NotImplementedException();
+            /*
+            try 
+            { 
+                var busq = await _context.Asistencias.Where(a => (a.EmpleadoId = idEmpleado) && )        
+            }
+            catch (Exception ex) { throw new Exception($"Error - AsistenciaRepoImpl : no se pudo encontrar el dato. {ex.Message}"); }
+            */
+        }
+        
     }  
 }
