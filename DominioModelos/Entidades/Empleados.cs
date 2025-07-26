@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Infraestructura.AccesoDatos;
 
@@ -32,20 +33,20 @@ public partial class Empleados
     public DateTime FechaCreacion { get; set; }
 
     public DateTime? FechaModificacion { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<Asistencias> Asistencias { get; set; } = new List<Asistencias>();
-
+    [JsonIgnore]
     public virtual ICollection<Bonificaciones> Bonificaciones { get; set; } = new List<Bonificaciones>();
-
+    [JsonIgnore]
     public virtual ICollection<Contratos> Contratos { get; set; } = new List<Contratos>();
-
+    [JsonIgnore]
     public virtual ICollection<Descuentos> Descuentos { get; set; } = new List<Descuentos>();
-
+    [JsonIgnore]
     public virtual ICollection<Inasistencias> Inasistencias { get; set; } = new List<Inasistencias>();
-
+    [JsonIgnore]
     public virtual ICollection<Nominas> Nominas { get; set; } = new List<Nominas>();
-
+    [JsonIgnore]
     public virtual Puestos Puesto { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<SolicitudVacaciones> SolicitudVacaciones { get; set; } = new List<SolicitudVacaciones>();
 }

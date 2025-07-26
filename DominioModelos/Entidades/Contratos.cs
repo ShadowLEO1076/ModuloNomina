@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Infraestructura.AccesoDatos;
 
@@ -26,8 +27,8 @@ public partial class Contratos
     public DateTime? FechaModificacion { get; set; }
 
     public int? HorasJornada { get; set; }
-
+    [JsonIgnore]
     public virtual Empleados Empleado { get; set; }
-
+    [JsonIgnore]
     public virtual ContratosTipo Tipo { get; set; }
 }

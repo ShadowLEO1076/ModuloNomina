@@ -15,25 +15,6 @@ namespace ModuloNominaWebAPI.Controllers
             _servicio = servicio;
         }
 
-        [HttpGet]
-        [Route("ResumenDiasAprovadosDiasUsados/{cedula}")]
-        public async Task<IActionResult> ResumenDiasAprovadosDiasUsados(string cedula)
-        {
-            try
-            {
-                var resumen = await _servicio.ResumenDiasAprovadosDiasUsadosAsync(cedula);
-                if (resumen == null || !resumen.Any())
-                {
-                    return NotFound($"No se encontraron aprobaciones de vacaciones para la cédula {cedula}.");
-                }
-                return Ok(resumen);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error al obtener el resumen de días aprobados y usados: {ex.Message}");
-            }
-
-        }
         [HttpGet("ListarAprobacionesVacaciones")]
         public async Task<IActionResult> ListarAprobacionesVacaciones()
         {
