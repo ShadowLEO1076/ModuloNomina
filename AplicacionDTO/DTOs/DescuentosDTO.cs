@@ -8,6 +8,12 @@ namespace Aplicacion.DTO.DTOs
 {
     public class DescuentosDTO
     {
+        public int IdDescuento { get; set; }
+
+        public string NombreCompleto { get; set; }
+
+        public string Cedula { get; set; }
+
         public string Tipo { get; set; }
 
         public string Descripcion { get; set; }
