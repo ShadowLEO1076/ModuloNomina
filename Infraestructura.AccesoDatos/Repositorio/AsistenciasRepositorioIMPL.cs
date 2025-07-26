@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -70,10 +71,36 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
             throw new NotImplementedException();
         }
+        public async Task<IEnumerable<AsistenciasFormDTO>> ObtenerTodasActivasAsistenciasFormDTO()
+        {
+            try
+            {
+                //se debe traer SOLO los datos de los empleados activos.
+                var busq = _context.Asistencias.Include(a => a.Empleado)
+                    .Where(a => a.Empleado.Estado == true).Select(a => new AsistenciasFormDTO
+                    {
+                        IdAsistencia = a.IdAsistencia,
+                        EmpleadoId = a.EmpleadoId,
+                        NombresApellidos = a.Empleado.Nombres + " " + a.Empleado.Apellidos,
+                        Cedula = a.Empleado.Cedula,
+                        Fecha = a.Fecha,
+                        HoraEntrada = a.HoraEntrada,
+                        HoraSalida = a.HoraSalida
+                    }).ToListAsync();
+
+                    return await busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - AsistenmciasRepoImpl : No se pudo hallar las asistencias solicitadas. {ex.Message}");
+            }
+        }
 
         public Task<IEnumerable<Asistencias>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin)
         {
             throw new NotImplementedException();
         }
+
+      
     }  
 }

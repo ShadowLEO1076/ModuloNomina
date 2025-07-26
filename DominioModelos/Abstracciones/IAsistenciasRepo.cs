@@ -11,7 +11,10 @@ namespace Dominio.Modelos.Abstracciones
 {
     public interface IAsistenciasRepo : IRepositorio<Asistencias>
     {
+        //usado para cálculos complejos
         Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
+        //el  métodos bnusca el DTO de todos los empleados activos, asegurando así que no veamos datos no deseados.
+        Task<IEnumerable<AsistenciasFormDTO>> ObtenerTodasActivasAsistenciasFormDTO();
         Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula); // Método para buscar asistencias por cédula
         Task<IEnumerable<Asistencias>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin); // Método para buscar asistencias por rango de fechas
     }

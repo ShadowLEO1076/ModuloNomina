@@ -6,13 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 namespace ModuloNominaWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/ [controller]")]
+    [Route("api/[controller]")]
     public class AsistenciasControlador : ControllerBase
     {
         private readonly IAsistenciasServicio _serv;
         public AsistenciasControlador(IAsistenciasServicio serv)
         {
             _serv = serv;
+        }
+
+        [HttpGet("ObtenerTodasActivasAsistenciasFormDTO")]
+        public async Task<IActionResult> ObtenerTodasActivasAsistenciasFormDTO()
+        {
+            try
+            {
+                var busq = await _serv.ObtenerTodasActivasAsistenciasFormDTO();
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
+            }
         }
 
         [HttpGet("BuscarPorCedulaAsync/{cedula}")]

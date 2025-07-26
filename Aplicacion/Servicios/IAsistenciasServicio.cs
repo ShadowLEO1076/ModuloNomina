@@ -17,5 +17,9 @@ namespace Aplicacion.Servicios
 
         [OperationContract]
         Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula);
+
+        [OperationContract]
+        //el  métodos bnusca el DTO de todos los empleados activos, asegurando así que no veamos datos no deseados.
+        Task<IEnumerable<AsistenciasFormDTO>> ObtenerTodasActivasAsistenciasFormDTO();
     }
 }

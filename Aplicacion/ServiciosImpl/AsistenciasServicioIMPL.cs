@@ -45,5 +45,18 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception($"Error - AsistenciasServicioImpl : no se pudo hallar los datos. {ex.Message}");
             }
         }
+
+        public async Task<IEnumerable<AsistenciasFormDTO>> ObtenerTodasActivasAsistenciasFormDTO()
+        {
+            try 
+            { 
+                var busq = _repo.ObtenerTodasActivasAsistenciasFormDTO();
+                return await busq;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Error - AsistenciasServiceImple : no se pudieron hallar los datos necesarios");
+            }
+        }
     }
 }
