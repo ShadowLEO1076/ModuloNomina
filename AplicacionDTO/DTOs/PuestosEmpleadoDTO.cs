@@ -18,8 +18,9 @@ namespace Aplicacion.DTO.DTOs
         public string NombrePuesto { get; set; } // Nombre del puesto
 
         // DATOS TIPO PUESTO
+        public string Salario { get; set; }
 
-  
+
 
     }
 }

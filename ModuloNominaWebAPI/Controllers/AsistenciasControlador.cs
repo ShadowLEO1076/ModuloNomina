@@ -30,6 +30,7 @@ namespace ModuloNominaWebAPI.Controllers
         }
 
         [HttpGet("BuscarPorCedulaAsync/{cedula}")]
+
         public async Task<IActionResult> BuscarPorCedulaAsync (string cedula)
         {
             try
