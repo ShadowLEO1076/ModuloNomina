@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.DTO.DTOs;
@@ -47,6 +48,18 @@ namespace Aplicacion.ServiciosImpl
             catch (Exception ex)
             {
                 throw new Exception($"Error - BonificacionesServicioImpl : no se puede hallar los datos con cédula {datos.CedulaEmpleado}. {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<BonificacionesFormDTO>> ObtenerTodasActivasBonificacionesFormDTO()
+        {
+            try 
+            {
+                return await _serv.ObtenerTodasActivasBonificacionesFormDTO();
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception($"Error - BonificacionesServiceImpl : no se  puede hallar los datos. {ex.Message}");
             }
         }
     }

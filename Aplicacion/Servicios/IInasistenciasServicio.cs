@@ -17,5 +17,10 @@ namespace Aplicacion.Servicios
         Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
         [OperationContract]
         Task<IEnumerable<Inasistencias>> BuscarPorCedulaAsync(string cedula);
+        [OperationContract]
+        Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO();
+
+        [OperationContract]
+        Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
     }
 }

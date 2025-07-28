@@ -21,5 +21,8 @@ namespace Aplicacion.Servicios
         [OperationContract]
         //el  métodos bnusca el DTO de todos los empleados activos, asegurando así que no veamos datos no deseados.
         Task<IEnumerable<AsistenciasFormDTO>> ObtenerTodasActivasAsistenciasFormDTO();
+
+        [OperationContract]
+        Task<Asistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
     }
 }

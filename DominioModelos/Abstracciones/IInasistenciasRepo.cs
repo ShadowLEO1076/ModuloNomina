@@ -12,5 +12,9 @@ namespace Dominio.Modelos.Abstracciones
     {
         Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
         Task<IEnumerable<Inasistencias>> BuscarPorCedulaAsync(string cedula);
+
+        Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO();
+
+        Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
     }
 }

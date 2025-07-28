@@ -34,6 +34,17 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
+        public async Task<Asistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato)
+        {
+            try
+            {
+                return await _repo.BuscarPorIdYFecha(dato);
+            }
+            catch (Exception ex) {
+                throw new Exception($"Error - AsistenciaRepoImpl : nos se hallo el dato solicitado.{ex.Message}");
+            }
+        }
+
         public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try

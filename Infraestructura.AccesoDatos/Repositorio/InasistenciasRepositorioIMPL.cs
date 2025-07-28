@@ -33,6 +33,19 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
         }
 
+        public async Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato)
+        {
+            try
+            {
+                var busq = await _context.Inasistencias.Where(i => (i.EmpleadoId == dato.idEmpleado) && (i.Fecha == dato.fechaVerificacion) && i.Estado == true)
+                    .FirstOrDefaultAsync();
+
+                return busq;
+            }
+            catch (Exception ex) { throw new Exception($"Error - AsistenciaRepoImpl : no se pudo encontrar el dato. {ex.Message}"); }
+
+        }
+
         public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try
@@ -64,6 +77,33 @@ namespace Infraestructura.AccesoDatos.Repositorio
             catch (Exception ex)
             {
                 throw new Exception($"Error - InasistenciasRepositorioImpl : {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO()
+        {
+            try
+            {
+                //se debe traer SOLO los datos de los empleados activos. Y de ahí solo las asistencias activas
+                var busq = _context.Inasistencias.Include(i => i.Empleado).Include(i => i.Licencia)
+                    .Where(i => i.Empleado.Estado == true && i.Estado == true).Select(i => new InasistenciasFormDTO
+                    {
+                        IdInasistencias = i.IdInasistencia,
+                        EmpleadoId = i.EmpleadoId,
+                        NombresApellidos = i.Empleado.Nombres + " " + i.Empleado.Apellidos,
+                        Cedula = i.Empleado.Cedula,
+                        Fecha = i.Fecha,
+                        Estado = i.Estado,
+                        LicenciaId = i.LicenciaId,
+                        NombreLicencia = i.Licencia.Nombre,
+                        Remunerable = i.Licencia.Remunerable 
+                    }).ToListAsync();
+
+                return await busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - AsistenmciasRepoImpl : No se pudo hallar las asistencias solicitadas. {ex.Message}");
             }
         }
     }

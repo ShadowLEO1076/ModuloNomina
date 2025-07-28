@@ -18,6 +18,6 @@ namespace Dominio.Modelos.Abstracciones
         Task<IEnumerable<Asistencias>> BuscarPorCedulaAsync(string cedula); // Método para buscar asistencias por cédula
         Task<IEnumerable<Asistencias>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin); // Método para buscar asistencias por rango de fechas
         //método para buscar si ya existe una asistencia solo usando la ID del empleado y la fecha de la asistencia
-        Task<Asistencias> BuscarPorIdYFecha(int idEmpleado, DateOnly fechaAsis);
+        Task<Asistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
     }
 }

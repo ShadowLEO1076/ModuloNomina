@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Aplicacion.DTO.DTOs;
 using Dominio.Modelos.Abstracciones;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace Infraestructura.AccesoDatos.Repositorio
 {
@@ -75,9 +76,9 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             try
             {
-                //se debe traer SOLO los datos de los empleados activos.
+                //se debe traer SOLO los datos de los empleados activos. Y de ahí solo las asistencias activas
                 var busq = _context.Asistencias.Include(a => a.Empleado)
-                    .Where(a => a.Empleado.Estado == true).Select(a => new AsistenciasFormDTO
+                    .Where(a => a.Empleado.Estado == true && a.Estado == true).Select(a => new AsistenciasFormDTO
                     {
                         IdAsistencia = a.IdAsistencia,
                         EmpleadoId = a.EmpleadoId,
@@ -101,16 +102,19 @@ namespace Infraestructura.AccesoDatos.Repositorio
             throw new NotImplementedException();
         }
         
-        public async Task<Asistencias> BuscarPorIdYFecha(int idEmpleado, DateOnly fechaAsis)
+        public async Task<Asistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato)
         {
-            throw new NotImplementedException();
-            /*
+            
+            // traer solo si el estado de la asistencia es activo, caso contrario, se puede ingresar
             try 
             { 
-                var busq = await _context.Asistencias.Where(a => (a.EmpleadoId = idEmpleado) && )        
+                var busq = await _context.Asistencias.Where(a => (a.EmpleadoId == dato.idEmpleado) && (a.Fecha == dato.fechaVerificacion) && a.Estado == true)
+                    .FirstOrDefaultAsync();
+
+                return busq;
             }
             catch (Exception ex) { throw new Exception($"Error - AsistenciaRepoImpl : no se pudo encontrar el dato. {ex.Message}"); }
-            */
+            
         }
         
     }  

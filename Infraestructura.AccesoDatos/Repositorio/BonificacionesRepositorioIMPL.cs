@@ -24,7 +24,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 var busqueda = await
                     _context.Bonificaciones.Include(b => b.Empleado)
-                    .Where(b => b.Empleado.Cedula == datos.CedulaEmpleado && b.Fecha.Month == datos.mes && b.Fecha.Year == datos.anio)
+                    .Where(b => b.Empleado.Cedula == datos.CedulaEmpleado && b.Fecha.Month == datos.mes && b.Fecha.Year == datos.anio && b.Estado == true)
                     .GroupBy(b => new
                     {
                         NombreCompleto = b.Empleado.Nombres + " " + b.Empleado.Apellidos,
@@ -47,6 +47,31 @@ namespace Infraestructura.AccesoDatos.Repositorio
             catch (Exception ex) 
             {
                 throw new Exception($"Error - BonificacionesRepoImpl : no se pudo hallar los datos con cédula {datos.CedulaEmpleado}. {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<BonificacionesFormDTO>> ObtenerTodasActivasBonificacionesFormDTO()
+        {
+            try
+            {
+                var busq = _context.Bonificaciones.Include(b => b.Empleado)
+                    .Where(b => b.Empleado.Estado == true && b.Estado == true).Select(b => new BonificacionesFormDTO
+                    {
+                        IdBonificaciones = b.IdBonificacion,
+                        EmpleadoId = b.EmpleadoId,
+                        NombresApellidos = b.Empleado.Nombres + " " + b.Empleado.Apellidos,
+                        Cedula = b.Empleado.Cedula,
+                        Descripcion = b.Descripcion,
+                        Fecha = b.Fecha,
+                        Monto = b.Monto,
+                        Tipo = b.Tipo
+                    }).ToListAsync();
+
+                return await busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - BonificacionesRepoImpl : no se puede hallar los datos. {ex.Message}");
             }
         }
 

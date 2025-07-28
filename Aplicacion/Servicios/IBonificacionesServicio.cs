@@ -17,7 +17,10 @@ namespace Aplicacion.Servicios
 
         [OperationContract]
         public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<BonificacionesEmpleadoDTO> lista);
-      
+
+        [OperationContract]
+        Task<IEnumerable<BonificacionesFormDTO>> ObtenerTodasActivasBonificacionesFormDTO();
+
 
         // Aquí puedes definir métodos específicos para el servicio de bonificaciones
         // Por ejemplo:

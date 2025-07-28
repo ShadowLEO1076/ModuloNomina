@@ -14,6 +14,7 @@ namespace Dominio.Modelos.Abstracciones
     public interface IBonificacionesRepo : IRepositorio<Bonificaciones>
     {
         // Método para obtener bonificaciones de empleados por año y mes
+        Task<IEnumerable<BonificacionesFormDTO>> ObtenerTodasActivasBonificacionesFormDTO();
         Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos);
         Task<IEnumerable<Bonificaciones>> ObtenerBonificacionesPorAnioMesAsync(int anio, int mes);
         Task<IEnumerable<Bonificaciones>> BuscarPorEmpleadoAsync(string cedula);// Método para buscar bonificaciones por empleado
