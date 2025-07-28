@@ -22,5 +22,12 @@ namespace Aplicacion.Servicios
         
         [OperationContract]
         Task<bool> ActualizarEstadoContratoAsync(int idContrato, string nuevoEstado);
+        [OperationContract]
+        Task<int> FinalizarContratosVencidosAsync();
+        [OperationContract]
+        Task ActualizarContratoAsync(ContratoDTO contrato);
+
+
+
     }
 }

@@ -44,12 +44,16 @@ namespace Infraestructura.AccesoDatos.Repositorio
                     .Select(c => new ContratoDTO
                     {
                         IdContrato = c.IdContrato,
+                        EmpleadoId = c.EmpleadoId,
                         CedulaEmpleado = c.Empleado.Cedula,
                         NombreCompletoEmpleado = c.Empleado.Nombres + " " + c.Empleado.Apellidos,
                         TipoContrato = c.Tipo.Nombre,
                         DescripcionTipoContrato = c.Tipo.Jornada,
-                        FechaInicio = c.FechaInicio.ToDateTime(TimeOnly.MinValue),
-                        FechaFin = c.FechaFin.HasValue ? c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) : DateTime.MinValue,
+                        FechaInicio = c.FechaInicio,
+                        FechaFin = c.FechaFin,
+                        FechaCreacion = c.FechaCreacion,
+                        FechaModificacion = c.FechaCreacion,
+                        HorasJornada = c.HorasJornada,
                         Salario = c.Salario,
                         Estado = c.Estado
                     })
@@ -77,10 +81,10 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         NombreCompletoEmpleado = $"{c.Empleado.Nombres} {c.Empleado.Apellidos}",
                         TipoContrato = c.Tipo.Nombre,
                         DescripcionTipoContrato = c.Tipo.Jornada,
-                        FechaInicio = c.FechaInicio.ToDateTime(TimeOnly.MinValue),
-                        FechaFin = c.FechaFin.HasValue ? c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) : DateTime.MinValue,
+                        FechaInicio = c.FechaInicio,
+                        //FechaFin = c.FechaFin.HasValue ? c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) : DateTime.MinValue,
                         Salario = c.Salario,
-                        Estado = c.FechaFin.HasValue && c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) < DateTime.Today   ?  "Vencido" : "Vigente"
+                        //Estado = c.FechaFin.HasValue && c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) < DateTime.Today   ?  "Vencido" : "Vigente"
                     })
                     .ToListAsync();   
             }
@@ -90,25 +94,41 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
         }
 
-        public async Task<List<ContratoDTO>> ObtenerContratosVigentesAsync(DateTime fecha)
+        
+        // 🚨 NUEVO: Trae contratos vencidos (FechaFin < hoy y no están finalizados)
+        public async Task<List<Contratos>> ObtenerContratosVencidosAsync(DateTime fecha)
         {
             try
             {
                 return await _context.Contratos
-                    
-                    .Where(c => c.FechaFin == null || c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) >= fecha)
-                    .Include(c => c.Empleado)
-                    .Include(c => c.Tipo)
-                    .Select(c => new ContratoDTO
-                    {
-                        // Mapeo similar
-                    })
+                    .Where(c => c.FechaFin.HasValue &&
+                                c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) < fecha &&
+                                c.Estado != "Finalizado")
                     .ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al obtener contratos vigentes para fecha {fecha}", ex);
+                throw new Exception("Error al obtener contratos vencidos", ex);
+            }
+        }
+
+        // 🛠️ NUEVO: Actualiza un contrato (usado para marcar como finalizado)
+        public async Task ActualizarContratoAsync(Contratos contrato)
+        {
+            try
+            {
+                _context.Contratos.Update(contrato);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar contrato", ex);
             }
         }
     }
 }
+
+
+
+        
+   

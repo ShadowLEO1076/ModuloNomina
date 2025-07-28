@@ -1,4 +1,5 @@
-﻿using Aplicacion.Servicios;
+﻿using Aplicacion.DTO.DTOs;
+using Aplicacion.Servicios;
 using Infraestructura.AccesoDatos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -150,9 +151,48 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 return StatusCode(500, $"Error al obtener contratos por empleado: {ex.Message}");
             }
-        } 
+        }
 
-
+        /*[HttpGet("ObtnerContratosActivos")]
+        public async Task<IActionResult> ObtenerContratosActivos([FromQuery] DateTime? fecha = null)
+        {
+            try
+            {
+                var fechaFiltro = fecha ?? DateTime.Today;
+                var contratos = await _servicio.ObtenerContratosVigentesAsync(fechaFiltro);
+                return Ok(contratos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al obtener contratos Activos: {ex.Message}");
+            }
+        }*/
+        [HttpPut("FinalizarContratosVencidos")]
+        public async Task<IActionResult> FinalizarContratosVencidos()
+        {
+            try
+            {
+                var cantidad = await _servicio.FinalizarContratosVencidosAsync();
+                return Ok(new { mensaje = $"Se actualizaron {cantidad} contratos a 'Finalizado'." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al finalizar contratos: {ex.Message}");
+            }
+        }
+        [HttpPut("ActualizarContrato")]
+        public async Task<IActionResult> ActualizarContrato([FromBody] ContratoDTO contrato)
+        {
+            try
+            {
+                await _servicio.ActualizarContratoAsync(contrato);
+                return Ok("Contrato actualizado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al actualizar contrato: {ex.Message}");
+            }
+        }
 
 
     }

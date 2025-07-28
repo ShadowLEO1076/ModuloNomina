@@ -14,9 +14,14 @@ namespace Aplicacion.DTO.DTOs
         public string NombreCompletoEmpleado { get; set; }
         public string TipoContrato { get; set; }
         public string DescripcionTipoContrato { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
+        public DateOnly? FechaInicio { get; set; }
+        public DateOnly? FechaFin { get; set; }
         public decimal Salario { get; set; }
+        public DateTime FechaCreacion { get; set; }
+
+        public DateTime FechaModificacion { get; set; }
+        public int? HorasJornada { get; set; }
         public string Estado { get; set; }
+       
     }
 }
