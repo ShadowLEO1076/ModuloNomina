@@ -96,7 +96,7 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 await _serv.ActualizarAsync(nomina);
-                return Ok("Se actualizó correctamente la nomina.");
+                return Ok(nomina);
             }
             catch (Exception ex) 
             {

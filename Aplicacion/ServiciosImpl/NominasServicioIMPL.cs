@@ -52,7 +52,8 @@ namespace Aplicacion.ServiciosImpl
                     Descuentos = calcDesc,
                     FechaEmision = DateOnly.FromDateTime(DateTime.Today),
                     Mes = (byte)datos.mes,
-                    SalarioBase = empleContr.SalarioContra
+                    SalarioBase = empleContr.SalarioContra,
+                    Estado = true
                 };
 
                 await _repo.AgregarAsync(nomi);

@@ -25,7 +25,8 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 var busq =
                     _context.Nominas.Include(n => n.Empleado)
                     .ThenInclude(e => e.Contratos).
-                    Where(n => (n.Empleado.Estado == true) && (n.Empleado.Cedula == dto.CedulaEmpleado) && (n.Mes == dto.mes) && (n.Anio == dto.anio) && (n.FechaEmision.Month == dto.mes) && (n.FechaEmision.Year == dto.anio))
+                    Where(n => (n.Empleado.Estado == true) && (n.Empleado.Cedula == dto.CedulaEmpleado) && (n.Mes == dto.mes) && (n.Anio == dto.anio) && (n.FechaEmision.Month == dto.mes) 
+                    && (n.FechaEmision.Year == dto.anio) && (n.Estado == true))
                     .Select(n => new NominasDTO
                     {
                         IdNomina = n.IdNomina,
@@ -63,7 +64,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
 
                 var busq = await
                     _context.Nominas.Include(n => n.Empleado)
-                    .ThenInclude(e => e.Contratos).Where(n => n.Empleado.Estado == true)
+                    .ThenInclude(e => e.Contratos).Where(n => n.Empleado.Estado == true && (n.Estado == true))
                     .Select(n => new NominasDTO
                     {
                         IdNomina = n.IdNomina,

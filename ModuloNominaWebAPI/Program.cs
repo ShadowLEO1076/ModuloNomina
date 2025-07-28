@@ -54,7 +54,8 @@ builder.Services.AddScoped<IAsistenciasServicio,AsistenciasServicioIMPL>();
 builder.Services.AddScoped<IBonificacionesRepo, BonificacionesRepositorioIMPL>();
 builder.Services.AddScoped<IBonificacionesServicio, BonificacionesServicioIMPL>();
 
-
+builder.Services.AddScoped<ILicenciasRepo, LicenciasRepositorioIMPL>();
+builder.Services.AddScoped<ILicenciasServicio, LicenciasServicioIMPL>();
 
 builder.Services.AddScoped<ISolicitudVacacionesServicio, SolicitudVacacionesServicioIMPL>();
 

@@ -11,8 +11,5 @@ namespace Dominio.Modelos.Abstracciones
         // especificas porque no nesecito las del crud 
         //Task<IEnumerable<Licencias>> ObtenerLicenciasRemunerablesAsync();
 
-        
-
-
     }
 }
