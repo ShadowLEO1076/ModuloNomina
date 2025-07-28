@@ -57,6 +57,8 @@ builder.Services.AddScoped<IBonificacionesServicio, BonificacionesServicioIMPL>(
 
 
 builder.Services.AddScoped<ISolicitudVacacionesServicio, SolicitudVacacionesServicioIMPL>();
+
+
 builder.Services.AddScoped<IContratosServicio, ContratosServicioIMPL>();
 
 // contratotipo
@@ -79,6 +81,9 @@ builder.Services.AddScoped<IUsuariosRepo, UsuariosRepositorioIMPL>();
 // En Program.cs de ModuloNominaWebAPI
 builder.Services.AddScoped<IUsuariosRepo, UsuariosRepositorioIMPL>();
 builder.Services.AddScoped<IUsuariosServicio, UsuariosServicioIMPL>();
+// para contratos
+
+
 
 
 

@@ -82,5 +82,44 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception("Error al obtener contratos por empleado", ex);
             }
         }
+
+        public async Task<int> FinalizarContratosVencidosAsync()
+        {
+            var fechaActual = DateTime.Now;
+
+            var contratosVencidos = await _repo.ObtenerContratosVencidosAsync(fechaActual);
+
+            foreach (var contrato in contratosVencidos)
+            {
+                contrato.Estado = "Finalizado";
+                contrato.FechaModificacion = DateTime.Now; // si usas esto
+                await _repo.ActualizarAsync(contrato);
+            }
+
+            return contratosVencidos.Count;
+        }
+
+        public async Task ActualizarContratoAsync(ContratoDTO contratoDto)
+        {
+            // Obtener el contrato actual desde la base de datos
+            var contrato = await _repo.ObtenerPorIdAsync(contratoDto.IdContrato);
+
+            if (contrato == null)
+                throw new Exception($"No se encontró el contrato con ID {contratoDto.IdContrato}");
+
+            // Actualizar las propiedades del contrato
+            contrato.EmpleadoId = contratoDto.EmpleadoId;
+            contrato.TipoId = contratoDto.IdContrato;
+            contrato.FechaInicio = contratoDto.FechaInicio ?? DateOnly.MinValue;
+            contrato.FechaFin = contratoDto.FechaFin;
+            contrato.Salario = contratoDto.Salario;
+            contrato.HorasJornada = contratoDto.HorasJornada;
+            contrato.Estado = contratoDto.Estado;
+            contrato.FechaModificacion = DateTime.Now;
+
+            // Guardar cambios
+            await _repo.ActualizarAsync(contrato);
+        }
+
     }
 }
