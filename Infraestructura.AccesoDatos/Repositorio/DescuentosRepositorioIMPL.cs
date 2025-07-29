@@ -22,7 +22,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 var busq = await
                     _context.Descuentos.Include(d => d.Empleado)
-                    .Where(d => (d.Fecha.Month == busquedaDTO.mes) && (d.Fecha.Year == busquedaDTO.anio) && (d.Empleado.Cedula == busquedaDTO.CedulaEmpleado))
+                    .Where(d => (d.Fecha.Month == busquedaDTO.mes) && (d.Fecha.Year == busquedaDTO.anio) && (d.Empleado.Cedula == busquedaDTO.CedulaEmpleado) && (d.Estado == true))
                     .GroupBy(g => new
                     {
                         NombreCompleto = g.Empleado.Nombres + " " + g.Empleado.Apellidos,

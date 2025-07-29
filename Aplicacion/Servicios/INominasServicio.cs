@@ -15,5 +15,9 @@ namespace Aplicacion.Servicios
     {
         [OperationContract]
         public Task IngresarNomionaAutomático(BusquedaDTO datos);
+        [OperationContract]
+        Task<NominasDTO> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto);
+        [OperationContract]
+        Task<List<NominasDTO>> ObtenerTodosActivosAsync();
     }
 }

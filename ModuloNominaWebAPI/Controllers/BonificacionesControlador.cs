@@ -15,8 +15,20 @@ namespace ModuloNominaWebAPI.Controllers
         {
             _serv = serv;
         }
-        
 
+        [HttpGet("ObtenerTodasActivasBonificacionesFormDTO")]
+        public async Task<IActionResult> ObtenerTodasActivasBonificacionesFormDTO()
+        {
+            try 
+            {
+                var busq = await _serv.ObtenerTodasActivasBonificacionesFormDTO();
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - BonificaionesControlador : {ex.Message}");
+            }
+        }
         //se necesita hacerlo post para poder traer los datos. Pues la lógica es postear dto, recibir datos.
         [HttpPost("ObtenerBonificacionesPorCedulaMesYAnio")]
         public async Task<IActionResult> ObtenerBonificacionesPorCedulaMesYAnio([FromBody] BusquedaDTO datos)

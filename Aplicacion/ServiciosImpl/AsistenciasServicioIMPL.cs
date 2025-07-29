@@ -34,6 +34,17 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
+        public async Task<Asistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato)
+        {
+            try
+            {
+                return await _repo.BuscarPorIdYFecha(dato);
+            }
+            catch (Exception ex) {
+                throw new Exception($"Error - AsistenciaRepoImpl : nos se hallo el dato solicitado.{ex.Message}");
+            }
+        }
+
         public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try
@@ -43,6 +54,19 @@ namespace Aplicacion.ServiciosImpl
             catch (Exception ex) 
             {
                 throw new Exception($"Error - AsistenciasServicioImpl : no se pudo hallar los datos. {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<AsistenciasFormDTO>> ObtenerTodasActivasAsistenciasFormDTO()
+        {
+            try 
+            { 
+                var busq = _repo.ObtenerTodasActivasAsistenciasFormDTO();
+                return await busq;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Error - AsistenciasServiceImple : no se pudieron hallar los datos necesarios");
             }
         }
     }

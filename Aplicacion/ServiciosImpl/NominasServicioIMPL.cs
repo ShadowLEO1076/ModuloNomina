@@ -52,7 +52,8 @@ namespace Aplicacion.ServiciosImpl
                     Descuentos = calcDesc,
                     FechaEmision = DateOnly.FromDateTime(DateTime.Today),
                     Mes = (byte)datos.mes,
-                    SalarioBase = empleContr.SalarioContra
+                    SalarioBase = empleContr.SalarioContra,
+                    Estado = true
                 };
 
                 await _repo.AgregarAsync(nomi);
@@ -60,6 +61,49 @@ namespace Aplicacion.ServiciosImpl
             catch (Exception ex) 
             {
                 throw new Exception($"Error - NominaServicioImp : {ex.Message}");
+            }
+        }
+
+        public async Task<NominasDTO> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto)
+        {
+            try 
+            { 
+                var busq = await _repo.ObtenerNominaPorEmpleadoMesAnioAsync(dto);             
+
+                return busq;
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception($"Error - NominasServicioImpl : no se pudo hallar datos. {ex.Message}");
+            }
+        }
+
+        public async Task<List<NominasDTO>> ObtenerTodosActivosAsync()
+        {
+           
+            try 
+            {
+
+                int diasIess = 30; //días que el IESS usa para dividir de manera máxima los días de trabajo
+                int horasIess = 240; //horas usadas por el IEES para contabilizar el pago adecuado 
+
+
+                var busq = await _repo.ObtenerTodosActivosAsync();
+
+                foreach(NominasDTO dato in busq) 
+                {
+                    var horasJornada = dato.HorasJornada ?? 0;
+                    var bonificaciones = dato.Bonificaciones;
+                    var descuentos = dato.Descuentos;
+
+                    dato.SalarioNeto = ((dato.Salario / horasIess) * (horasJornada * diasIess) + bonificaciones - descuentos);
+                }
+
+                return busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - NominasServicioImpl : no se pudo hallar datos. {ex.Message}");
             }
         }
     }

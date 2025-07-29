@@ -57,9 +57,9 @@ namespace TestMateo
 
             //await _empleServ.AgregarAsync(empleados2);
 
-            var emplDTO = await _empleServ.ObtenerEmpleadoDTOPorCedulaAsync(empleados);
+            //var emplDTO = await _empleServ.ObtenerEmpleadoDTOPorCedulaAsync(empleados);
 
-            Console.WriteLine(emplDTO.ToString());
+            //Console.WriteLine(emplDTO.ToString());
 
             Assert.Pass();
         }

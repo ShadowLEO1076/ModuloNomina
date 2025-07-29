@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ModuloNominaWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/ [controller]")]
+    [Route("api/[controller]")]
     public class AsistenciasControlador : ControllerBase
     {
         private readonly IAsistenciasServicio _serv;
@@ -15,12 +15,37 @@ namespace ModuloNominaWebAPI.Controllers
             _serv = serv;
         }
 
+        [HttpPost("BuscarPorIdYFechaAsync")]
+        public async Task<IActionResult> BuscarPorIdYFechaAsync([FromBody] VerificarAsisInasisDTO dato)
+        {
+            try
+            {
+                var busq = await _serv.BuscarPorIdYFecha(dato);
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"AsistenciaControlador : {ex.Message}");
+            }
+        }
+
+        [HttpGet("ObtenerTodasActivasAsistenciasFormDTO")]
+        public async Task<IActionResult> ObtenerTodasActivasAsistenciasFormDTO()
+        {
+            try
+            {
+                var busq = await _serv.ObtenerTodasActivasAsistenciasFormDTO();
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
+            }
+        }
+
         [HttpGet("BuscarPorCedulaAsync/{cedula}")]
 
-        //public async Task<IActionResult> BuscarPorCedulaAsync (string cedula)
-
         public async Task<IActionResult> BuscarPorCedulaAsync(string cedula)
-
         {
             try
             {
@@ -76,7 +101,7 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 await _serv.AgregarAsync(asistencia);
-                return Ok($"Se añadió correctamente las asistencia.");
+                return Ok(asistencia);
             }
             catch (Exception ex)
             {
@@ -91,7 +116,7 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 await _serv.ActualizarAsync(asistencia);
-                return Ok($"Se actualizó correctamente la asistencia.");
+                return Ok(asistencia);
             }
             catch (Exception ex)
             {

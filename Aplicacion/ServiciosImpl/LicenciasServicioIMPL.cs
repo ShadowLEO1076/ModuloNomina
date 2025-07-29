@@ -12,8 +12,12 @@ namespace Aplicacion.ServiciosImpl
 {
     public class LicenciasServicioIMPL : ServicioIMPL<Licencias>, ILicenciasServicio
     {
-        public LicenciasServicioIMPL(NominaDBContext context) : base(context)
+        private readonly ILicenciasRepo _repo;
+        private readonly NominaDBContext _context;
+        public LicenciasServicioIMPL(ILicenciasRepo repo,NominaDBContext context) : base(context)
         {
+            _repo = repo;
+            _context = context;
         }
     }
 }

@@ -16,6 +16,35 @@ namespace ModuloNominaWebAPI.Controllers
         {
             _serv = serv;
         }
+
+        [HttpPost("BuscarPorIdYFechaAsync")]
+        public async Task<IActionResult> BuscarPorIdYFechaAsync([FromBody] VerificarAsisInasisDTO dato)
+        {
+            try
+            {
+                var busq = await _serv.BuscarPorIdYFecha(dato);
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"AsistenciaControlador : {ex.Message}");
+            }
+        }
+
+        [HttpGet("ObtenerTodasActivasInasistenciasFormDTO")]
+        public async Task<IActionResult> ObtenerTodasActivasInasistenciasFormDTO()
+        {
+            try
+            {
+                var busq = await _serv.ObtenerTodasActivasInasistenciasFormDTO();
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+
         [HttpPost("ObtenerInasistenciasPorCedulaMesAnio")]
         public async Task<IActionResult> ObtenerInasistenciasPorCedulaMesAnio([FromBody] BusquedaDTO busquedaDTO)
         { 

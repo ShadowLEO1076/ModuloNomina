@@ -38,11 +38,35 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
+        public async Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato)
+        {
+            try
+            {
+                return await _repo.BuscarPorIdYFecha(dato);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - InasistenciasServicioImpl : {ex.Message}");
+            }
+        }
+
         public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try
             {
                 return await _repo.ObtenerInasistenciasPorCedulaMesAnio(busquedaDTO);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - InasistenciasServicioImpl : {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO()
+        {
+            try
+            {
+                return await _repo.ObtenerTodasActivasInasistenciasFormDTO();
             }
             catch (Exception ex)
             {
