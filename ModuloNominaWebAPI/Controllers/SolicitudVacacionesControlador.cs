@@ -99,8 +99,8 @@ namespace ModuloNominaWebAPI.Controllers
         {
             try
             {
-                var solicitudes = await _servicio.ObtenerResumenSolicitudesAsync();
-                return Ok(solicitudes);
+                var solicitudesa = await _servicio.ObtenerResumenSolicitudesAsync();
+                return Ok(solicitudesa);
             }
             catch (Exception ex)
             {
