@@ -15,6 +15,21 @@ namespace ModuloNominaWebAPI.Controllers
         {
             _serv = serv;
         }
+
+        [HttpGet("VerificarCorreoElectronico/{correo}")]
+        public async Task<IActionResult> VerificarCorreoElectronico(string correo)
+        {
+            try {
+
+                bool existe = await _serv.VerificarCorreoElectronico(correo);
+               
+                return Ok(existe);
+            }
+            catch(Exception ex) 
+            {
+                return StatusCode(500, $"Error - EmpleadosControlador : no se puede verificar el correo. {ex.Message}");
+            }        
+        }
         [HttpGet("ObtenerTodosInactivosAsync")]
         public async Task<IActionResult> ObtenerTodosInactivosAsync()
         {

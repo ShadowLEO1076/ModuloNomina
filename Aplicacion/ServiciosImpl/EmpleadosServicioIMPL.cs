@@ -76,5 +76,19 @@ namespace Aplicacion.ServiciosImpl
                 }
             }
         }
+
+        public async Task<bool> VerificarCorreoElectronico(string correo)
+        {
+            try
+            {
+                return await _repo.VerificarCorreoElectronico(correo);
+            }
+            catch (Exception ex)
+            {
+                {
+                    throw new Exception($"Error - EmpleadosServicioImpl : no se puede verificar el correo. {ex.Message}");
+                }
+            }
+        }
     }
 }
