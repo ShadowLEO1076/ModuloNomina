@@ -40,7 +40,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         Anio = n.Anio,
                         Salario = n.SalarioBase,
 
-                        HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                                     .OrderByDescending(c => c.FechaInicio)
                                     .Select(c => c.HorasJornada).FirstOrDefault(),
 
@@ -78,7 +78,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         FechaEmision = n.FechaEmision,
                         Salario = n.SalarioBase,
 
-                        HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                                     .OrderByDescending(c => c.FechaInicio)
                                     .Select(c => c.HorasJornada).FirstOrDefault(),
 

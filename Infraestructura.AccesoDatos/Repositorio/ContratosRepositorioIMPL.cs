@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Aplicacion.DTO.DTOs;
+using Dominio.Modelos.Abstracciones;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Aplicacion.DTO.DTOs;
-using Dominio.Modelos.Abstracciones;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructura.AccesoDatos.Repositorio
 {
@@ -123,6 +124,23 @@ namespace Infraestructura.AccesoDatos.Repositorio
             catch (Exception ex)
             {
                 throw new Exception("Error al actualizar contrato", ex);
+            }
+        }
+
+        public async Task<Contratos> ObtenerContratoActivoPorCedulaAsync(string cedula)
+        {
+            try
+            {
+                var hoy = DateOnly.FromDateTime(DateTime.Today);
+
+                var busq = await _context.Contratos.Include(e => e.Empleado).Where(c => 
+                (c.Empleado.Cedula == cedula) && (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy)).FirstOrDefaultAsync();
+
+                return busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - ContratosRepoImpl : {ex.Message}");
             }
         }
     }

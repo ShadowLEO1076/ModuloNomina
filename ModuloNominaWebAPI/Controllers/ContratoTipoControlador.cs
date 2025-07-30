@@ -14,6 +14,8 @@ namespace ModuloNominaWebAPI.Controllers
         {
             _servicio = servicio;
         }
+
+       
         [HttpGet("ListarTiposContratos")]
         public async Task<IActionResult> ListarTiposContratos()
         {

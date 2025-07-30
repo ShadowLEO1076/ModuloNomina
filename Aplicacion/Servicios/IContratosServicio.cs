@@ -27,6 +27,9 @@ namespace Aplicacion.Servicios
         [OperationContract]
         Task ActualizarContratoAsync(ContratoDTO contrato);
 
+        [OperationContract]
+        Task<Contratos> ObtenerContratoActivoPorCedulaAsync(string cedula);
+
 
 
     }

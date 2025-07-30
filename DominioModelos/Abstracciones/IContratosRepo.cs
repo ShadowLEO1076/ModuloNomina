@@ -16,6 +16,8 @@ namespace Dominio.Modelos.Abstracciones
         Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateOnly fechaInicio, DateOnly fechaFin); // Método para buscar contratos por rango de fechas
         Task<List<Contratos>> ObtenerContratosVencidosAsync(DateTime fecha);
         Task ActualizarContratoAsync(Contratos contrato);
+        //para buscar el contrato activo de una persona por cédula
+        Task<Contratos> ObtenerContratoActivoPorCedulaAsync(string cedula);
 
     }
 }
