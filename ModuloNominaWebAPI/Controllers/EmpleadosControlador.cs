@@ -62,7 +62,7 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 await _serv.AgregarAsync(empleado);
-                return Ok();
+                return Ok(empleado);
             }
             catch (Exception ex)
             {

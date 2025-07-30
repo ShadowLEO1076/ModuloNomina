@@ -93,7 +93,7 @@ namespace ModuloNominaWebAPI.Controllers
             try 
             {
                 await _serv.AgregarAsync(inasistencia);
-                return Ok($"Se añadió el dato {inasistencia} correctaemnte.");
+                return Ok(inasistencia);
             }
             catch(Exception ex)
             {
@@ -106,7 +106,7 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 await _serv.ActualizarAsync(inasistencia);
-                return Ok($"Se actualizó el dato {inasistencia} correctaemnte.");
+                return Ok(inasistencia);
             }
             catch (Exception ex)
             {
@@ -120,7 +120,7 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 var busq = _serv.ObtenerPorIdAsync(id);
                 await _serv.EliminarAsync(id);
-                return Ok($"Se eliminó la inasistencia con {id} con éxito.");
+                return Ok(id);
             }
             catch (Exception ex)
             {

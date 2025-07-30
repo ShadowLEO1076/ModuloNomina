@@ -49,22 +49,22 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         FechaIngresoEmple = e.FechaIngreso,
                         EstadoEmple = e.Estado,
 
-                        FechaInicioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        FechaInicioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && ( c.FechaFin == null ||c.FechaFin >= hoy))
                       .Select(c => c.FechaInicio).FirstOrDefault(),
 
-                        FechaFinContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        FechaFinContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                       .Select(c => c.FechaFin).FirstOrDefault(),
 
-                        EstadoContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        EstadoContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                       .Select(c => c.Estado).FirstOrDefault(),
 
-                        SalarioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        SalarioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                       .Select(c => c.Salario).FirstOrDefault(),
 
-                        HorasJornadasContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        HorasJornadasContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                       .Select(c => c.HorasJornada).FirstOrDefault(),
 
-                        JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                        JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
                       .Select(c => c.Tipo.Jornada).FirstOrDefault()
                     }).SingleOrDefaultAsync();
 
