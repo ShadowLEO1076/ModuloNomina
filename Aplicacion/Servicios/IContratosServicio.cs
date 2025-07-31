@@ -26,8 +26,7 @@ namespace Aplicacion.Servicios
         Task<int> FinalizarContratosVencidosAsync();
         [OperationContract]
         Task ActualizarContratoAsync(ContratoDTO contrato);
-
-
-
+        Task AgregarAsync(ContratosHistorico contratosHistorico);
+        Task ActualizarAsync(ContratosHistorico contratosHistorico);
     }
 }

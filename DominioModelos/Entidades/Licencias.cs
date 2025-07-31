@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Infraestructura.AccesoDatos;
 
@@ -13,6 +12,6 @@ public partial class Licencias
     public string Nombre { get; set; }
 
     public bool Remunerable { get; set; }
-    [JsonIgnore]
+
     public virtual ICollection<Inasistencias> Inasistencias { get; set; } = new List<Inasistencias>();
 }

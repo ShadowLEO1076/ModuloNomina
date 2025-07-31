@@ -121,5 +121,14 @@ namespace Aplicacion.ServiciosImpl
             await _repo.ActualizarAsync(contrato);
         }
 
+        public Task AgregarAsync(ContratosHistorico contratosHistorico)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ActualizarAsync(ContratosHistorico contratosHistorico)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

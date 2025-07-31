@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Infraestructura.AccesoDatos;
 
@@ -19,6 +18,6 @@ public partial class Asistencias
     public TimeOnly? HoraSalida { get; set; }
 
     public bool? Estado { get; set; }
-    [JsonIgnore]
+
     public virtual Empleados Empleado { get; set; }
 }

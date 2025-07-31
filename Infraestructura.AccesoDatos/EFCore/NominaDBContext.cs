@@ -25,6 +25,8 @@ public partial class NominaDBContext : DbContext
 
     public virtual DbSet<Contratos> Contratos { get; set; }
 
+    public virtual DbSet<ContratosHistorico> ContratosHistorico { get; set; }
+
     public virtual DbSet<ContratosTipo> ContratosTipo { get; set; }
 
     public virtual DbSet<Descuentos> Descuentos { get; set; }
@@ -110,6 +112,20 @@ public partial class NominaDBContext : DbContext
                 .HasForeignKey(d => d.TipoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Contratos_ContratosTipo");
+        });
+
+        modelBuilder.Entity<ContratosHistorico>(entity =>
+        {
+            entity.HasKey(e => e.IdHistorico).HasName("PK__Contrato__9CC7EBF3ED1F060A");
+
+            entity.Property(e => e.Estado)
+                .IsRequired()
+                .HasMaxLength(20);
+            entity.Property(e => e.FechaRegistro).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.Salario).HasColumnType("decimal(12, 2)");
+            entity.Property(e => e.UsuarioCambio)
+                .IsRequired()
+                .HasMaxLength(100);
         });
 
         modelBuilder.Entity<ContratosTipo>(entity =>
