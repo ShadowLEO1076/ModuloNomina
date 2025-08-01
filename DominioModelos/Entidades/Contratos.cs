@@ -15,7 +15,9 @@ public partial class Contratos
 
     public DateOnly FechaInicio { get; set; }
 
-    public DateOnly? FechaFin { get; set; }
+    public TimeOnly? JornadaHoraInicio { get; set; }
+
+    public TimeOnly? JornadaHoraFin { get; set; }
 
     public decimal Salario { get; set; }
 
@@ -24,8 +26,6 @@ public partial class Contratos
     public DateTime FechaCreacion { get; set; }
 
     public DateTime? FechaModificacion { get; set; }
-
-    public int? HorasJornada { get; set; }
 
     public virtual Empleados Empleado { get; set; }
 

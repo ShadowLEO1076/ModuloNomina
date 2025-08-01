@@ -47,17 +47,7 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
-        public Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin)
-        {
-            try
-            {
-                return _repo.BuscarPorFechaAsync(DateOnly.FromDateTime(fechaInicio), DateOnly.FromDateTime(fechaFin));
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al buscar contratos por fecha", ex);
-            }
-        }
+       
 
         public Task<List<ContratoDTO>> ObtenerContratosCompletosAsync()
         {
@@ -87,7 +77,7 @@ namespace Aplicacion.ServiciosImpl
         {
             var fechaActual = DateTime.Now;
 
-            var contratosVencidos = await _repo.ObtenerContratosVencidosAsync(fechaActual);
+            var contratosVencidos = await _repo.ObtenerContratosVencidosAsync();
 
             foreach (var contrato in contratosVencidos)
             {
@@ -111,10 +101,13 @@ namespace Aplicacion.ServiciosImpl
             contrato.EmpleadoId = contratoDto.EmpleadoId;
             contrato.TipoId = contratoDto.IdContrato;
             contrato.FechaInicio = contratoDto.FechaInicio ?? DateOnly.MinValue;
-            contrato.FechaFin = contratoDto.FechaFin;
+            contrato.JornadaHoraInicio = contratoDto.JornadaHoraInicio;// modificacion 
+            contrato.JornadaHoraFin = contratoDto.JornadaHoraFin;// modificacion 
+           // contrato.FechaFin = contratoDto.FechaFin;
             contrato.Salario = contratoDto.Salario;
-            contrato.HorasJornada = contratoDto.HorasJornada;
+           // contrato.HorasJornada = contratoDto.HorasJornada;
             contrato.Estado = contratoDto.Estado;
+            contrato.FechaCreacion = contratoDto.FechaCreacion;
             contrato.FechaModificacion = DateTime.Now;
 
             // Guardar cambios
@@ -127,6 +120,11 @@ namespace Aplicacion.ServiciosImpl
         }
 
         public Task ActualizarAsync(ContratosHistorico contratosHistorico)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin)
         {
             throw new NotImplementedException();
         }

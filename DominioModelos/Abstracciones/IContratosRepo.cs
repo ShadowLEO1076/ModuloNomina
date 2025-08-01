@@ -13,8 +13,8 @@ namespace Dominio.Modelos.Abstracciones
         Task<List<ContratoDTO>> ObtenerContratosCompletosAsync(); // Método para obtener todos los contratos con detalles completos
         Task<List<ContratoDTO>> ObtenerContratosPorEmpleadoAsync(string cedula); // Método para obtener contratos por empleado usando su cédula
         //Task<List<ContratoDTO>> ObtenerContratosVigentesAsync(DateTime fecha); // Método para obtener contratos vigentes en una fecha específica
-        Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateOnly fechaInicio, DateOnly fechaFin); // Método para buscar contratos por rango de fechas
-        Task<List<Contratos>> ObtenerContratosVencidosAsync(DateTime fecha);
+       // Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateOnly fechaInicio); // Método para buscar contratos por rango de fechas
+        Task<List<Contratos>> ObtenerContratosVencidosAsync();
         Task ActualizarContratoAsync(Contratos contrato);
 
     }
