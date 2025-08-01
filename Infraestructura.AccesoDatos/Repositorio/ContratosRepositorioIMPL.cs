@@ -19,21 +19,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             this._context = context;
         }
 
-        public async Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateOnly fechaInicio, DateOnly fechaFin)
-        {
-            try
-            {
-                return await _context.Contratos
-                    .Where(c => c.FechaInicio >= fechaInicio && (c.FechaFin == null || c.FechaFin <= fechaFin))
-                    .ToListAsync();
-                // va a listar todos los contratos que tengan una fecha de inicio dentro del rango especificado
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al buscar contratos por fecha", ex);
-            }
-            
-        }
+      
 
         public async Task<List<ContratoDTO>> ObtenerContratosCompletosAsync()
         {
@@ -51,10 +37,10 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         TipoContrato = c.Tipo.Nombre,
                         DescripcionTipoContrato = c.Tipo.Jornada,
                         FechaInicio = c.FechaInicio,
-                        FechaFin = c.FechaFin,
+                        JornadaHoraInicio = c.JornadaHoraInicio,
+                        JornadaHoraFin = c.JornadaHoraFin,
                         FechaCreacion = c.FechaCreacion,
                         FechaModificacion = c.FechaCreacion,
-                        HorasJornada = c.HorasJornada,
                         Salario = c.Salario,
                         Estado = c.Estado
                     })
@@ -97,14 +83,13 @@ namespace Infraestructura.AccesoDatos.Repositorio
 
         
         // 🚨 NUEVO: Trae contratos vencidos (FechaFin < hoy y no están finalizados)
-        public async Task<List<Contratos>> ObtenerContratosVencidosAsync(DateTime fecha)
+        public async Task<List<Contratos>> ObtenerContratosVencidosAsync()
         {
             try
             {
                 return await _context.Contratos
-                    .Where(c => c.FechaFin.HasValue &&
-                                c.FechaFin.Value.ToDateTime(TimeOnly.MinValue) < fecha &&
-                                c.Estado != "Finalizado")
+                    .Where(c => c.Estado != "Finalizado")
+
                     .ToListAsync();
             }
             catch (Exception ex)

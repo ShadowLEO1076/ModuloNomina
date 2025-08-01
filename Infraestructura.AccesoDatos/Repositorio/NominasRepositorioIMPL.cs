@@ -40,9 +40,13 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         Anio = n.Anio,
                         Salario = n.SalarioBase,
 
+<<<<<<< HEAD
                         HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
+=======
+                       /* HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy)) comento esto mateo ya no existe horas jornada en contratos 
+>>>>>>> 8de767e5d937da0a3f533cca47fb653326af5bb2
                                     .OrderByDescending(c => c.FechaInicio)
-                                    .Select(c => c.HorasJornada).FirstOrDefault(),
+                                    .Select(c => c.HorasJornada).FirstOrDefault(),*/
 
                         SalarioNeto = (n.SalarioBase) + n.Bonificaciones - n.Descuentos
                     }).FirstOrDefaultAsync();
@@ -78,9 +82,13 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         FechaEmision = n.FechaEmision,
                         Salario = n.SalarioBase,
 
+<<<<<<< HEAD
                         HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
+=======
+                        /*HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+>>>>>>> 8de767e5d937da0a3f533cca47fb653326af5bb2
                                     .OrderByDescending(c => c.FechaInicio)
-                                    .Select(c => c.HorasJornada).FirstOrDefault(),
+                                    .Select(c => c.HorasJornada).FirstOrDefault(),*/   //Ya no existe horas jornada 
 
                         SalarioNeto = n.SalarioBase + n.Bonificaciones - n.Descuentos
                     }).ToListAsync();

@@ -28,10 +28,11 @@ namespace Aplicacion.DTO.DTOs
 
         public DateTime? FechaModificacion { get; set; }
 
-        public int HorasJornada { get; set; }
-
         public string UsuarioCambio { get; set; }
 
         public DateTime? FechaRegistro { get; set; }
+        public TimeOnly? JornadaHoraInicio { get; set; }
+
+        public TimeOnly? JornadaHoraFin { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             try
             {
                 var empleadoBusq =
-                    await _context.Empleados.Where(e => e.Cedula == cedula)
+                    await _context.Empleados.Where(e => e.Cedula == cedula)  // cambie aqui Mateo porque tenia fecha fin y eso ya no existe te dejo para revision no borre nada cambie fecha fin por estado y comente lo otro
                     .Select(e => new EmpleadoContratoDTO
                     {
                         NombresEmple = e.Nombres,
@@ -49,22 +49,23 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         FechaIngresoEmple = e.FechaIngreso,
                         EstadoEmple = e.Estado,
 
-                        FechaInicioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && ( c.FechaFin == null ||c.FechaFin >= hoy))
+                        FechaInicioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.Estado == "Vigente"))
                       .Select(c => c.FechaInicio).FirstOrDefault(),
 
-                        FechaFinContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
-                      .Select(c => c.FechaFin).FirstOrDefault(),
+                       /* FechaFinContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.Estado == "Vigente"))
+                      .Select(c => c.FechaFin).FirstOrDefault(),*/
 
-                        EstadoContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
+                        EstadoContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.Estado == "Vigente"))
                       .Select(c => c.Estado).FirstOrDefault(),
 
-                        SalarioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
+                        SalarioContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.Estado == "Vigente"))
                       .Select(c => c.Salario).FirstOrDefault(),
 
-                        HorasJornadasContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
-                      .Select(c => c.HorasJornada).FirstOrDefault(),
+                       /* HorasJornadasContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
+                      .Select(c => c.HorasJornada).FirstOrDefault(),*/
 
-                        JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy))
+                        JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.Estado == "Vigente"))
+
                       .Select(c => c.Tipo.Jornada).FirstOrDefault()
                     }).SingleOrDefaultAsync();
 
@@ -130,29 +131,3 @@ namespace Infraestructura.AccesoDatos.Repositorio
         }
     }
 }
-/* --> método de Guille.
-            public async Task<List<EmpleadoVacacionesDTO>> ObtenerResumenVacacionesAsync() // Método para obtener un resumen de vacaciones de los empleados LEONARDO
-            {
-                try
-                {
-                    // Consulta para obtener el resumen de vacaciones de los empleados
-                    var resumenVacaciones = await _context.Empleados
-                        .Include(e => e.EmpleadosVacacionesTotales)
-                        .Select(e => new EmpleadoVacacionesDTO
-                        {
-                            IdEmpleado = e.IdEmpleado,
-                            NombresCompletos = e.Nombres + " " + e.Apellidos,
-                            TotalVacaciones = e.EmpleadosVacacionesTotales.DiasOtorgados,
-                            VacacionesDisponibles = e.EmpleadosVacacionesTotales.DiasUsados
-                        })
-                        .ToListAsync();
-                    return resumenVacaciones;
-
-                }
-                catch (Exception ex)
-                {
-                    // Manejo de excepciones, logging, etc.
-                    throw new NotImplementedException("ERROR AL OBTENER RESUMEN DE VACACIONES", ex);
-                }
-
-            }*/
