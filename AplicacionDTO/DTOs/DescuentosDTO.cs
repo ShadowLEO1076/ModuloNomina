@@ -21,5 +21,7 @@ namespace Aplicacion.DTO.DTOs
         public decimal Monto { get; set; }
 
         public DateOnly Fecha { get; set; }
+
+        public bool? Estado { get; set; }
     }
 }

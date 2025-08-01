@@ -32,6 +32,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[ContratosHistorico]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[ContratosTipo]",
          "ObjectType": 0
       },

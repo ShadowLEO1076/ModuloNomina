@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 namespace Infraestructura.AccesoDatos;
 
-public partial class Contratos
+public partial class ContratosHistorico
 {
-    public int IdContrato { get; set; }
+    public int IdHistorico { get; set; }
+
+    public int IdContratoOriginal { get; set; }
 
     public int EmpleadoId { get; set; }
 
@@ -25,9 +27,9 @@ public partial class Contratos
 
     public DateTime? FechaModificacion { get; set; }
 
-    public int? HorasJornada { get; set; }
+    public int HorasJornada { get; set; }
 
-    public virtual Empleados Empleado { get; set; }
+    public string UsuarioCambio { get; set; }
 
-    public virtual ContratosTipo Tipo { get; set; }
+    public DateTime? FechaRegistro { get; set; }
 }
