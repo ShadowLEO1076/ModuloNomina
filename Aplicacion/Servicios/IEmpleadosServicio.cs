@@ -22,10 +22,13 @@ namespace Aplicacion.Servicios
         Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync();
         [OperationContract]
         Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync();
+        [OperationContract]
+        Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync(); // nueva 
+
         /*
         [OperationContract] // este ObtenerEmpleadoDTOPorCedulaAsync
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
         */
     }
-   
+
 }

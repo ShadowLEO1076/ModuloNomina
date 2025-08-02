@@ -84,7 +84,7 @@ builder.Services.AddScoped<IUsuariosRepo, UsuariosRepositorioIMPL>();
 builder.Services.AddScoped<IUsuariosServicio, UsuariosServicioIMPL>();
 // para contratos
 builder.Services.AddScoped<IContratosHistoricoServicio, ContratosHistoricoServicioIMPL>();
-
+// ppara empleado con salario listar:
 
 
 

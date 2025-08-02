@@ -1,7 +1,9 @@
-﻿using Aplicacion.Servicios;
+﻿using Aplicacion.DTO.DTOs;
+using Aplicacion.Servicios;
 using Castle.Components.DictionaryAdapter.Xml;
 using Infraestructura.AccesoDatos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ModuloNominaWebAPI.Controllers
 {
@@ -137,5 +139,15 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - EmpleadosControlador : no se pudo listar los elementos. {ex.Message}");
             }
         }
+        [HttpGet("ListarEmpleadosConSalario")]
+        public async Task<IActionResult> ListarEmpleadosConSalario()
+        {
+            var empleados = await _serv.ListarEmpleadosConSalarioAsync();
+            return Ok(empleados);
+        }
+
+
+
     }
+
 }

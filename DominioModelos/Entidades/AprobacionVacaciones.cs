@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Infraestructura.AccesoDatos;
 
@@ -14,6 +15,6 @@ public partial class AprobacionVacaciones
     public DateTime FechaAprobacion { get; set; }
 
     public string UsuarioAprobador { get; set; }
-
+    [JsonIgnore]
     public virtual SolicitudVacaciones Solicitud { get; set; }
 }

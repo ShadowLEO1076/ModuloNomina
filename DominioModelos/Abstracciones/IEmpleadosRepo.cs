@@ -15,6 +15,7 @@ namespace Dominio.Modelos.Abstracciones
         Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync();
 
         Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync();
+        Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync(); // nueva 
 
         //Task<List<EmpleadoVacacionesDTO>> ObtenerResumenVacacionesAsync(); // Método para obtener un resumen de vacaciones de los empleados LEONARDO
 

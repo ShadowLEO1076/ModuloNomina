@@ -76,5 +76,20 @@ namespace Aplicacion.ServiciosImpl
                 }
             }
         }
+
+        public async Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync()
+        {
+            try
+            {
+                return await _repo.ListarEmpleadosConSalarioAsync();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - EmpleadosServicioImpl : no se puedieron hallar los datos. {ex.Message}");
+            }
+
+
+        }
     }
 }
