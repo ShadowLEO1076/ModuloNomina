@@ -119,7 +119,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 var hoy = DateOnly.FromDateTime(DateTime.Today);
 
                 var busq = await _context.Contratos.Include(e => e.Empleado).Where(c => 
-                (c.Empleado.Cedula == cedula) && (c.FechaInicio <= hoy) && (c.FechaFin == null || c.FechaFin >= hoy)).FirstOrDefaultAsync();
+                (c.Empleado.Cedula == cedula) && (c.FechaInicio <= hoy)).FirstOrDefaultAsync();
 
                 return busq;
             }
