@@ -93,8 +93,10 @@ namespace Aplicacion.ServiciosImpl
                 foreach(NominasDTO dato in busq) 
                 {
                     var horasJornada = dato.HorasJornada ?? 0;
+                    //REDUNDANTE, CAMBIAR
                     var bonificaciones = dato.Bonificaciones;
                     var descuentos = dato.Descuentos;
+                    //ACABA LA REDUNDANCIA
 
                     dato.SalarioNeto = ((dato.Salario / horasIess) * (horasJornada * diasIess) + bonificaciones - descuentos);
                 }

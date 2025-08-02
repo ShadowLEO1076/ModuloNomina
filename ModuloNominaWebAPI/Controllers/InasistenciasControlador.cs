@@ -23,6 +23,10 @@ namespace ModuloNominaWebAPI.Controllers
             try
             {
                 var busq = await _serv.BuscarPorIdYFecha(dato);
+                if(busq == null) 
+                {
+                  return  Ok(null);
+                }
                 return Ok(busq);
             }
             catch (Exception ex)
