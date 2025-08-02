@@ -23,12 +23,17 @@ namespace Aplicacion.Servicios
         [OperationContract]
         Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync();
         [OperationContract]
+
         Task<bool> VerificarCorreoElectronico(string correo);
+        [OperationContract]
+        Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync(); // nueva 
+
+
 
         /*
         [OperationContract] // este ObtenerEmpleadoDTOPorCedulaAsync
         Task<EmpleadoContratoDTO> ObtenerEmpleadoDTOPorCedulaAsync(string cedula);
         */
     }
-   
+
 }

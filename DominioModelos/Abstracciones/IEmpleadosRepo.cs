@@ -15,6 +15,7 @@ namespace Dominio.Modelos.Abstracciones
         Task<IEnumerable<Empleados>> ObtenerTodosActivosAsync();
 
         Task<IEnumerable<Empleados>> ObtenerTodosInactivosAsync();
+        Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync(); // nueva 
 
         Task<bool> VerificarCorreoElectronico(string correo);
 

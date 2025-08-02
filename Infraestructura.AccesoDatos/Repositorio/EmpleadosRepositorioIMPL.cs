@@ -129,5 +129,19 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 throw new Exception($"Error - EmpleadosRepoImpl : {ex.Message}");
             }
         }
+        public async Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync()
+        {
+            return await _context.Empleados
+                .Include(e => e.Puesto)
+                .Select(e => new EmpleadoConSalarioDTO
+                {
+                    IdEmpleado = e.IdEmpleado,
+                    NombreCompleto = e.Nombres + " " + e.Apellidos,
+                    PuestoId = e.PuestoId,
+                    NombrePuesto = e.Puesto.Nombre,
+                    SalarioBase = e.Puesto.SalarioBase
+                })
+                .ToListAsync();
+        }
     }
 }
