@@ -8,7 +8,6 @@ namespace Aplicacion.DTO.DTOs
 {
     public class BusquedaDTO
     {
-        public string CedulaEmpleado { get; set; }
 
         public int mes {  get; set; }
 

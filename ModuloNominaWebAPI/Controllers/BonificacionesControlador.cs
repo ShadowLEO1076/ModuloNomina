@@ -37,7 +37,7 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 BusquedaDTO busq = new BusquedaDTO
                 {
-                    CedulaEmpleado = datos.CedulaEmpleado,
+                    //CedulaEmpleado = datos.CedulaEmpleado,
                     mes = datos.mes,
                     anio = datos.anio
                 };

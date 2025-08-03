@@ -62,6 +62,17 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
+        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                return await _repo.ObtenerInasistenciasPorMesAnio(busquedaDTO);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - InasistenciasServicioImpl : {ex.Message}");
+            }
+        }
         public async Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO()
         {
             try
@@ -73,5 +84,6 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception($"Error - InasistenciasServicioImpl : {ex.Message}");
             }
         }
+
     }
 }

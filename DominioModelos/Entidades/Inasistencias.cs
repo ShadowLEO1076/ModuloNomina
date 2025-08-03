@@ -16,8 +16,6 @@ public partial class Inasistencias
 
     public DateOnly Fecha { get; set; }
 
-    public int DiasContados { get; set; }
-
     public bool? Estado { get; set; }
     [JsonIgnore]
     public virtual Empleados Empleado { get; set; }
