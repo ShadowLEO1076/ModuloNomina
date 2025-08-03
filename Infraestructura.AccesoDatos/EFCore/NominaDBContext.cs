@@ -47,7 +47,7 @@ public partial class NominaDBContext : DbContext
 
     public virtual DbSet<Usuarios> Usuarios { get; set; }
 
- /*   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+   /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True;Encrypt=True");*/
 
@@ -70,7 +70,9 @@ public partial class NominaDBContext : DbContext
         {
             entity.HasKey(e => e.IdAsistencia).HasName("PK__Asistenc__3956DEE616ABC635");
 
+            entity.Property(e => e.HoaFinAlmuerzo).HasPrecision(0);
             entity.Property(e => e.HoraEntrada).HasPrecision(0);
+            entity.Property(e => e.HoraInicioAlmuerzo).HasPrecision(0);
             entity.Property(e => e.HoraSalida).HasPrecision(0);
 
             entity.HasOne(d => d.Empleado).WithMany(p => p.Asistencias)

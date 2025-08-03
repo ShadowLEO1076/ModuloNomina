@@ -22,5 +22,7 @@ namespace Aplicacion.Servicios
 
         [OperationContract]
         Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
+        [OperationContract]
+        Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO);
     }
 }

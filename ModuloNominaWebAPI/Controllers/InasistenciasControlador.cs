@@ -131,6 +131,20 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
             }
         }
+        [HttpPost("ObtenerInasistenciasPorMesAnio")]
+        public async Task<IActionResult> ObtenerInasistenciasPorMesAnio([FromBody] BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                var resultado = await _serv.ObtenerInasistenciasPorMesAnio(busquedaDTO);
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
+            }
+        }
+
 
     }
 }

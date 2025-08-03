@@ -26,7 +26,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 var busq =
                     _context.Asistencias.Include(a => a.Empleado)
-                    .Where(a => (a.Fecha.Month == busquedaDTO.mes) && (a.Fecha.Year == busquedaDTO.anio) && (a.Empleado.Cedula == busquedaDTO.CedulaEmpleado))
+                    .Where(a => (a.Fecha.Month == busquedaDTO.mes) && (a.Fecha.Year == busquedaDTO.anio))
                     .GroupBy(g => new
                     {
                         NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
@@ -50,7 +50,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
             catch (Exception ex) 
             { 
-                throw new Exception($"Error - AsistenciasRepoImpl : No se pudo hallar las asistencias del empleado con cedula {busquedaDTO.CedulaEmpleado}. {ex.Message}"); 
+                throw new Exception($"Error - AsistenciasRepoImpl : No se pudo hallar las asistencias del empleado con cedula"); 
             }
             throw new NotImplementedException();
         }

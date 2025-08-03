@@ -16,5 +16,7 @@ namespace Dominio.Modelos.Abstracciones
         Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO();
 
         Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
+
+        Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO);
     }
 }

@@ -46,13 +46,13 @@ namespace Infraestructura.AccesoDatos.Repositorio
 
         }
 
-        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
+        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO) // esta no 
         {
             try
             {
                 var busq =
                      _context.Inasistencias.Include(i => i.Empleado).Include(i=> i.Licencia)
-                     .Where(i => (i.Fecha.Month == busquedaDTO.mes) && (i.Fecha.Year == busquedaDTO.anio) && (i.Empleado.Cedula == busquedaDTO.CedulaEmpleado))
+                     .Where(i => (i.Fecha.Month == busquedaDTO.mes) && (i.Fecha.Year == busquedaDTO.anio))
                      .GroupBy(g => new
                      {
                          NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
@@ -67,7 +67,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                          inasistencias = i.Select(g => new InasistenciasDTO
                          {
                              Fecha = g.Fecha,
-                             DiasContados = g.DiasContados,
+                             //DiasContados = g.DiasContados,
                              Remunerable = g.Licencia.Remunerable,
                          }).ToList()
                      }).ToListAsync();
@@ -104,6 +104,40 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 throw new Exception($"Error - AsistenmciasRepoImpl : No se pudo hallar las asistencias solicitadas. {ex.Message}");
             }
+
         }
+        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                var resultado =
+                     _context.Inasistencias.Include(i => i.Empleado).Include(i => i.Licencia)
+                     .Where(i => i.Fecha.Month == busquedaDTO.mes && i.Fecha.Year == busquedaDTO.anio)
+                     .GroupBy(g => new
+                     {
+                         NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
+                         Cedula = g.Empleado.Cedula
+                     })
+                     .Select(i => new InasistenciasEmpleadoDTO
+                     {
+                         NombresCompletos = i.Key.NombresCompletos,
+                         CedulaEmpleado = i.Key.Cedula,
+                         inasistencias = i.Select(g => new InasistenciasDTO
+                         {
+                             Fecha = g.Fecha,
+                             Remunerable = g.Licencia.Remunerable,
+                         }).ToList()
+                     }).ToListAsync();
+
+                return await resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - InasistenciasRepositorioImpl : {ex.Message}");
+            }
+        }
+
+     
+        
     }
 }

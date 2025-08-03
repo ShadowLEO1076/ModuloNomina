@@ -36,8 +36,8 @@ namespace Aplicacion.ServiciosImpl
             try 
             {
                 
-                var empleado = await empl.ObtenerEmpleadoPorCedulaAsync(datos.CedulaEmpleado);
-                var empleContr = await empl.ObtenerEmpleadoDTOPorCedulaAsync(datos.CedulaEmpleado);
+                //var empleado = await empl.ObtenerEmpleadoPorCedulaAsync(datos.CedulaEmpleado);
+              // var empleContr = await empl.ObtenerEmpleadoDTOPorCedulaAsync(datos.CedulaEmpleado);
                 var bonificaciones = await boni.ObtenerBonificacionesPorCedulaMesYAnio(datos);
                 var descuentos = await desc.ObtenerDescuentosEmpleadoPorCedulaMesAnio(datos);
 
@@ -46,13 +46,13 @@ namespace Aplicacion.ServiciosImpl
 
                 var nomi = new Nominas
                 {
-                    EmpleadoId = empleado.IdEmpleado,
+//EmpleadoId = empleado.IdEmpleado,
                     Anio = (short)datos.anio,
                     Bonificaciones = calcBoni,
                     Descuentos = calcDesc,
                     FechaEmision = DateOnly.FromDateTime(DateTime.Today),
                     Mes = (byte)datos.mes,
-                    SalarioBase = empleContr.SalarioContra,
+                   // SalarioBase = empleContr.SalarioContra,
                     Estado = true
                 };
 

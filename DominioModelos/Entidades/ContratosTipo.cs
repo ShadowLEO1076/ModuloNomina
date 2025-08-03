@@ -14,8 +14,7 @@ public partial class ContratosTipo
 
     public string Nombre { get; set; }
 
-    public int? HorasJornada { get; set; } //?
-
+    public int? HorasJornada { get; set; }
     [JsonIgnore]
     public virtual ICollection<Contratos> Contratos { get; set; } = new List<Contratos>();
 }

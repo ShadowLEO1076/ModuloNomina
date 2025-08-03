@@ -69,7 +69,7 @@ namespace ModuloNominaWebAPI.Controllers
             {
                 var dto = new BusquedaDTO
                 {
-                    CedulaEmpleado = busquedaDTO.CedulaEmpleado,
+                   // CedulaEmpleado = busquedaDTO.CedulaEmpleado,
                     anio = busquedaDTO.anio,
                     mes = busquedaDTO.mes
                 };

@@ -47,7 +47,7 @@ namespace Aplicacion.ServiciosImpl
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error - BonificacionesServicioImpl : no se puede hallar los datos con cédula {datos.CedulaEmpleado}. {ex.Message}");
+                throw new Exception($"Error - BonificacionesServicioImpl : no se puede hallar los datos con cédula");
             }
         }
 
