@@ -25,7 +25,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 var hoy = DateOnly.FromDateTime(DateTime.Today);
                 var busq =
                     _context.Nominas.Include(n => n.Empleado)
-                    .ThenInclude(e => e.Contratos).
+                    .ThenInclude(e => e.Contratos).ThenInclude(e=> e.Tipo).
                     Where(n => (n.Empleado.Estado == true) &&  (n.Mes == dto.mes) && (n.Anio == dto.anio) && (n.FechaEmision.Month == dto.mes) 
                     && (n.FechaEmision.Year == dto.anio) && (n.Estado == true))
                     .Select(n => new NominasDTO
@@ -41,13 +41,12 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         Mes = n.Mes,
                         Anio = n.Anio,
                         Salario = n.SalarioBase,
-
-
-                       /* HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy)) comento esto mateo ya no existe horas jornada en contratos 
-
-                                    .OrderByDescending(c => c.FechaInicio)
-                                    .Select(c => c.HorasJornada).FirstOrDefault(),*/
-
+                        HorasJornada = n.Empleado.Contratos
+                         .Where(c => c.Estado == "Vigente")
+                         .OrderByDescending(c => c.FechaInicio)
+                         .Select(c => c.Tipo.HorasJornada)
+                         .FirstOrDefault(),
+           
                         SalarioNeto = (n.SalarioBase) + n.Bonificaciones - n.Descuentos
                     }).FirstOrDefaultAsync();
 

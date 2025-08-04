@@ -20,7 +20,7 @@ namespace Aplicacion.DTO.DTOs
         public decimal Salario { get; set; }
         public int? HorasJornada { get; set; } //necesario para calcular mi salario hora
 
-        public TimeOnly HorasLaboradas { get; set; }    
+        public TimeSpan HorasLaboradas { get; set; }    
 
         public decimal Bonificaciones { get; set; }
 
