@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Infraestructura.AccesoDatos;
+namespace Infraestructura.AccesoDatos; 
 
 public partial class Usuarios
 {

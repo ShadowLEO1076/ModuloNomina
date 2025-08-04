@@ -68,6 +68,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[SaldoVacaciones]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[SolicitudVacaciones]",
          "ObjectType": 0
       },

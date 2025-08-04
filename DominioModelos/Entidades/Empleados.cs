@@ -48,5 +48,7 @@ public partial class Empleados
     [JsonIgnore]
     public virtual Puestos Puesto { get; set; }
     [JsonIgnore]
+    public virtual ICollection<SaldoVacaciones> SaldoVacaciones { get; set; } = new List<SaldoVacaciones>();
+    [JsonIgnore]
     public virtual ICollection<SolicitudVacaciones> SolicitudVacaciones { get; set; } = new List<SolicitudVacaciones>();
 }

@@ -43,14 +43,16 @@ public partial class NominaDBContext : DbContext
 
     public virtual DbSet<Puestos> Puestos { get; set; }
 
+    public virtual DbSet<SaldoVacaciones> SaldoVacaciones { get; set; }
+
     public virtual DbSet<SolicitudVacaciones> SolicitudVacaciones { get; set; }
 
     public virtual DbSet<Usuarios> Usuarios { get; set; }
 
    /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True;Encrypt=True");*/
-
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\leo;Initial Catalog=ModuloNomina;Integrated Security=True;Encrypt=True");
+   */
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AprobacionVacaciones>(entity =>
@@ -261,6 +263,19 @@ public partial class NominaDBContext : DbContext
                 .IsRequired()
                 .HasMaxLength(100);
             entity.Property(e => e.SalarioBase).HasColumnType("decimal(12, 2)");
+        });
+
+        modelBuilder.Entity<SaldoVacaciones>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__SaldoVac__3214EC079057DA21");
+
+            entity.Property(e => e.DiasAcumulados).HasColumnType("decimal(5, 2)");
+            entity.Property(e => e.DiasUsadosAnioActual).HasColumnType("decimal(5, 2)");
+
+            entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.SaldoVacaciones)
+                .HasForeignKey(d => d.IdEmpleado)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SaldoVacaciones_Empleados");
         });
 
         modelBuilder.Entity<SolicitudVacaciones>(entity =>

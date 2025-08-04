@@ -168,5 +168,6 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - AsistenciasControlador : {ex.Message}");
             }
         }
+
     }
 }
