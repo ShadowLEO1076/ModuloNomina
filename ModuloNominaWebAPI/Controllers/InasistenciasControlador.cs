@@ -17,6 +17,24 @@ namespace ModuloNominaWebAPI.Controllers
             _serv = serv;
         }
 
+        [HttpPost("ObtenerInasistenciasRemuneradasPorCedulaMesAnio")]
+        public async Task<IActionResult> ObtenerInasistenciasRemuneradasPorCedulaMesAnio([FromBody] NominasBusquedaDTO dato)
+        {
+            try
+            {
+                var busq = await _serv.ObtenerInasistenciasRemuneradasPorCedulaMesAnio(dato);
+                if (busq == null)
+                {
+                    return Ok(null);
+                }
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"AsistenciaControlador : {ex.Message}");
+            }
+        }
+
         [HttpPost("BuscarPorIdYFechaAsync")]
         public async Task<IActionResult> BuscarPorIdYFechaAsync([FromBody] VerificarAsisInasisDTO dato)
         {

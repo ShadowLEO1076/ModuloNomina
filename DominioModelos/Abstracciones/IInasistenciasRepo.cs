@@ -19,7 +19,7 @@ namespace Dominio.Modelos.Abstracciones
 
         Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO);
 
-        public Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(NominasBusquedaDTO busquedaDTO);
+        public Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasRemuneradasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO);
         //Task<List<DescuentoPorInasistenciaDTO>> CalcularDescuentosPorInasistencias(BusquedaDTO busquedaDTO);
     }
 }

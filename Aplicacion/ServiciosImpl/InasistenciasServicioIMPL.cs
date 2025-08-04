@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Aplicacion.DTO.DTOs;
+using Aplicacion.Servicios;
+using Dominio.Modelos.Abstracciones;
+using Infraestructura.AccesoDatos;
+using Infraestructura.AccesoDatos.Repositorio;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using Aplicacion.DTO.DTOs;
-using Aplicacion.Servicios;
-using Dominio.Modelos.Abstracciones;
-using Infraestructura.AccesoDatos;
-using Infraestructura.AccesoDatos.Repositorio;
 
 namespace Aplicacion.ServiciosImpl
 {
@@ -93,6 +94,9 @@ namespace Aplicacion.ServiciosImpl
 
             return descuentos;
         }
+
+        
+
         public async Task<List<DescuentoPorInasistenciaDTO>> CalcularYGuardarDescuentos(BusquedaDTO busquedaDTO)
         {
             // Reutiliza este método Mate que solo calcula
@@ -150,6 +154,43 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception($"Error - InasistenciasServicioImpl : {ex.Message}");
             }
         }
+
+        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasRemuneradasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                return await _repo.ObtenerInasistenciasRemuneradasPorCedulaMesAnio(busquedaDTO);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - InasistenciasServicioImpl : {ex.Message}");
+            }
+        }
+
+        public TimeSpan CalcularHorasInasistenciasRemuneradas(List<InasistenciasEmpleadoDTO> lista)
+        {
+
+            TimeSpan total = TimeSpan.Zero;
+
+            foreach (InasistenciasEmpleadoDTO inasistecnia in lista)
+            {
+                foreach (InasistenciasDTO inasis in inasistecnia.inasistencias)
+                {
+                    if (inasis.JornadaLaboral.HasValue)
+                    {
+                        var jornada = inasis.JornadaLaboral.Value;
+                        
+                        TimeSpan jornadaHoras = TimeSpan.FromHours(jornada);
+
+
+                        total += jornadaHoras;
+                    }
+                }
+
+            }
+            return total;
+        }
+
         public async Task<IEnumerable<InasistenciasFormDTO>> ObtenerTodasActivasInasistenciasFormDTO()
         {
             try

@@ -102,8 +102,12 @@ namespace Aplicacion.ServiciosImpl
                         {
                             descanso = asis.HoaFinAlmuerzo.Value - asis.HoraInicioAlmuerzo.Value;
                         }
+                        else
+                        {
+                            descanso = TimeSpan.FromHours(1);
+                        }
 
-                        total += jornada - descanso;
+                            total += jornada - descanso;
                     }
                 }
                 

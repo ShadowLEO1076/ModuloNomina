@@ -48,7 +48,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
         }
         //usado por MATEO
 
-        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(NominasBusquedaDTO busquedaDTO)
+        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasRemuneradasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO)
         {
             try
             {
@@ -58,11 +58,12 @@ namespace Infraestructura.AccesoDatos.Repositorio
                      .GroupBy(g => new
                      {
                          NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
-                         Cedula = g.Empleado.Cedula
+                         Cedula = g.Empleado.Cedula,
+                         Id = g.EmpleadoId
                      })
                      .Select(i => new InasistenciasEmpleadoDTO
                      {
-
+                         IdEmpleado = i.Key.Id,
                          NombresCompletos = i.Key.NombresCompletos,
                          CedulaEmpleado = i.Key.Cedula,
 
@@ -115,6 +116,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
 
         }
+
         public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO)
         {
             try
@@ -147,6 +149,12 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 throw new Exception($"Error - InasistenciasRepositorioImpl : {ex.Message}");
             }
+        }
+
+        //no usado, pues ahora existe ObtenerInasistenciasPorMesAnio
+        public Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }

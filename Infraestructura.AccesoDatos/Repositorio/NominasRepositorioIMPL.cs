@@ -43,10 +43,9 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         Salario = n.SalarioBase,
                         HorasJornada = n.Empleado.Contratos
                          .Where(c => c.Estado == "Vigente")
-                         .OrderByDescending(c => c.FechaInicio)
                          .Select(c => c.Tipo.HorasJornada)
                          .FirstOrDefault(),
-           
+
                         SalarioNeto = (n.SalarioBase) + n.Bonificaciones - n.Descuentos
                     }).FirstOrDefaultAsync();
 
@@ -121,11 +120,10 @@ public async Task<NominasDTO> ObtenerNominaPorEmpleadoMesAnioAsync()
                         FechaEmision = n.FechaEmision,
                         Salario = n.SalarioBase,
 
-
-                        /*HorasJornada = n.Empleado.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.FechaFin >= hoy))
-
-                                    .OrderByDescending(c => c.FechaInicio)
-                                    .Select(c => c.HorasJornada).FirstOrDefault(),*/   //Ya no existe horas jornada 
+                        HorasJornada = n.Empleado.Contratos
+                         .Where(c => c.Estado == "Vigente")
+                         .Select(c => c.Tipo.HorasJornada)
+                         .FirstOrDefault(),  //Ya no existe horas jornada 
 
                         SalarioNeto = n.SalarioBase + n.Bonificaciones - n.Descuentos
                     }).ToListAsync();
