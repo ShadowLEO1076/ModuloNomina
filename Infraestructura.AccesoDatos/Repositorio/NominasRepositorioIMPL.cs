@@ -30,6 +30,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                     && (n.FechaEmision.Year == dto.anio) && (n.Estado == true))
                     .Select(n => new NominasDTO
                     {
+
                         IdNomina = n.IdNomina,
                         IdEmpleado = n.EmpleadoId,
                         Descuentos = n.Descuentos,
