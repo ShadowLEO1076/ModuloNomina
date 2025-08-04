@@ -13,6 +13,13 @@ namespace Aplicacion.Servicios
     public interface IAsistenciasServicio : IServicio<Asistencias>
     {
         [OperationContract]
+        //MÉTODO DE MATEO, si necesitan, copiar y reutilizar
+        Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO);
+
+        [OperationContract]
+        public TimeSpan CalcularHorasTrabajadas(List<AsistenciasEmpleadoDTO> lista);
+
+        [OperationContract]
         Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
 
         [OperationContract]

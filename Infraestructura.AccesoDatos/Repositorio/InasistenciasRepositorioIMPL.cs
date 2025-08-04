@@ -46,30 +46,39 @@ namespace Infraestructura.AccesoDatos.Repositorio
             catch (Exception ex) { throw new Exception($"Error - AsistenciaRepoImpl : no se pudo encontrar el dato. {ex.Message}"); }
 
         }
+        //usado por MATEO
 
-        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO) // esta no 
+        public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasRemuneradasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO)
         {
             try
             {
                 var busq =
-                     _context.Inasistencias.Include(i => i.Empleado).Include(i=> i.Licencia)
-                     .Where(i => (i.Fecha.Month == busquedaDTO.mes) && (i.Fecha.Year == busquedaDTO.anio))
+                     _context.Inasistencias.Include(i => i.Empleado).ThenInclude(e => e.Contratos).Include(i=> i.Licencia)
+                     .Where(i => (i.Fecha.Month == busquedaDTO.Mes) && (i.Fecha.Year == busquedaDTO.Anio) && (i.Empleado.Cedula == busquedaDTO.CedulaEmpleado) && (i.Estado == true))
                      .GroupBy(g => new
                      {
                          NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
-                         Cedula = g.Empleado.Cedula
+                         Cedula = g.Empleado.Cedula,
+                         Id = g.EmpleadoId
                      })
                      .Select(i => new InasistenciasEmpleadoDTO
                      {
-
+                         IdEmpleado = i.Key.Id,
                          NombresCompletos = i.Key.NombresCompletos,
                          CedulaEmpleado = i.Key.Cedula,
 
                          inasistencias = i.Select(g => new InasistenciasDTO
                          {
                              Fecha = g.Fecha,
-                             //DiasContados = g.DiasContados,
+
+                             JornadaLaboral = g.Empleado.Contratos
+                                 .Where(c => c.Estado == "Vigente")
+                                 .OrderByDescending(c => c.FechaInicio)
+                                 .Select(c => c.Tipo.HorasJornada)
+                                 .FirstOrDefault(),
+
                              Remunerable = g.Licencia.Remunerable,
+
                          }).ToList()
                      }).ToListAsync();
 
@@ -107,6 +116,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
 
         }
+
         public async Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO)
         {
             try
@@ -141,12 +151,11 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
         }
 
-       
-
-       
+        //no usado, pues ahora existe ObtenerInasistenciasPorMesAnio
+        public Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
+        {
+            throw new NotImplementedException();
+        }
     }
-
-
-
 }
 

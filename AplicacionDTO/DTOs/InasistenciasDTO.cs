@@ -12,5 +12,8 @@ namespace Aplicacion.DTO.DTOs
 
         public DateOnly Fecha { get; set; }
 
+        //este dato lo necesito de Tipo Contrato
+        public int? JornadaLaboral {  get; set; }
+
     }
 }

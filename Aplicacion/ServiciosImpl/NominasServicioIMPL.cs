@@ -8,6 +8,7 @@ using Aplicacion.Servicios;
 using Dominio.Modelos.Abstracciones;
 using Infraestructura.AccesoDatos;
 using Infraestructura.AccesoDatos.Repositorio;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Aplicacion.ServiciosImpl
 {
@@ -19,16 +20,20 @@ namespace Aplicacion.ServiciosImpl
         IEmpleadosServicio empl;
         IBonificacionesServicio boni;
         IDescuentosServicio desc;
+        IAsistenciasServicio asis;
+        IInasistenciasServicio inasis;
 
         public NominasServicioIMPL(INominasRepo repo,
             NominaDBContext context, IEmpleadosServicio empl, 
-            IBonificacionesServicio boni, IDescuentosServicio desc) : base(context)
+            IBonificacionesServicio boni, IDescuentosServicio desc, IAsistenciasServicio asis, IInasistenciasServicio inasis) : base(context)
         {
             _repo = repo;
             _context = context;
             this.empl = empl;
             this.boni = boni;
             this.desc = desc;
+            this.asis = asis;
+            this.inasis = inasis;
         }
 
         public async Task IngresarNominasMesAutomatico(BusquedaDTO datos)
@@ -115,13 +120,30 @@ namespace Aplicacion.ServiciosImpl
 
                 foreach(NominasDTO dato in busq) 
                 {
-                    var horasJornada = dato.HorasJornada ?? 0;
-                    //REDUNDANTE, CAMBIAR
+                    var busqueda = new NominasBusquedaDTO
+                    {
+                        CedulaEmpleado = dato.Cedula,
+                        Anio = dato.Anio,
+                        Mes = dato.Mes,
+                    };
+
+                    var horasTrabajadas = await asis.ObtenerAsistenciasPorCedulaMesAnio(busqueda);
+                    var horasInasRemu = await inasis.ObtenerInasistenciasRemuneradasPorCedulaMesAnio(busqueda);
+
+                    var calcHorasTrabajadas = asis.CalcularHorasTrabajadas(horasTrabajadas);
+                    var calcHorasInasRemu = inasis.CalcularHorasInasistenciasRemuneradas(horasInasRemu);
+                    var salarioPorHora = dato.Salario / horasIess;
+                    //REDUNDANTE, pero util
                     var bonificaciones = dato.Bonificaciones;
                     var descuentos = dato.Descuentos;
+                    dato.HorasLaboradas = calcHorasTrabajadas + calcHorasInasRemu;
+                    //necesario para calculo por horas
+                    double HorasLaboradasDouble = dato.HorasLaboradas.TotalHours;
+                    decimal HorasLaboralesDecimal = (decimal)HorasLaboradasDouble;
+                    dato.SalarioHorasLaboradas = salarioPorHora * HorasLaboralesDecimal;
                     //ACABA LA REDUNDANCIA
 
-                    dato.SalarioNeto = ((dato.Salario / horasIess) * (horasJornada * diasIess) + bonificaciones - descuentos);
+                    dato.SalarioNeto = ((dato.SalarioHorasLaboradas + bonificaciones - descuentos));
                 }
 
                 return busq;

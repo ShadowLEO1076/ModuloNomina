@@ -14,6 +14,12 @@ namespace Aplicacion.Servicios
     public interface IInasistenciasServicio:IServicio<Inasistencias>
     {
         [OperationContract]
+        public Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasRemuneradasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO);
+
+        [OperationContract]
+        public TimeSpan CalcularHorasInasistenciasRemuneradas(List<InasistenciasEmpleadoDTO> lista);
+
+        [OperationContract]
         Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO);
         [OperationContract]
         Task<IEnumerable<Inasistencias>> BuscarPorCedulaAsync(string cedula);
