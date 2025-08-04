@@ -14,7 +14,7 @@ namespace Aplicacion.Servicios
     public interface IDescuentosServicio: IServicio<Descuentos>
     {
         [OperationContract]
-        Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busqueda);
+        Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(NominasBusquedaDTO busqueda);
         [OperationContract]
         public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<DescuentosEmpleadoDTO> lista);
 

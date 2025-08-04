@@ -31,13 +31,37 @@ namespace Aplicacion.ServiciosImpl
             this.desc = desc;
         }
 
-        public async Task IngresarNomionaAutomático(BusquedaDTO datos)
+        public async Task IngresarNominasMesAutomatico(BusquedaDTO datos)
+        {
+            try 
+            {
+                var empleados = await empl.ObtenerTodosActivosAsync();
+                foreach (var empleado in empleados) 
+                {
+                    NominasBusquedaDTO dato = new NominasBusquedaDTO
+                    {
+                        CedulaEmpleado = empleado.Cedula,
+                        Mes = datos.mes,
+                        Anio = datos.anio,
+                    };
+
+                    await IngresarNomionaAutomático(dato);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Error - NominaServicioImp.IngresarNominasMesAutomatico : {ex.Message}");
+            }
+        }
+
+
+        public async Task IngresarNomionaAutomático(NominasBusquedaDTO datos)
         {
             try 
             {
                 
-                //var empleado = await empl.ObtenerEmpleadoPorCedulaAsync(datos.CedulaEmpleado);
-              // var empleContr = await empl.ObtenerEmpleadoDTOPorCedulaAsync(datos.CedulaEmpleado);
+                var empleado = await empl.ObtenerEmpleadoPorCedulaAsync(datos.CedulaEmpleado);
+                var empleContr = await empl.ObtenerEmpleadoDTOPorCedulaAsync(datos.CedulaEmpleado);
                 var bonificaciones = await boni.ObtenerBonificacionesPorCedulaMesYAnio(datos);
                 var descuentos = await desc.ObtenerDescuentosEmpleadoPorCedulaMesAnio(datos);
 
@@ -46,13 +70,13 @@ namespace Aplicacion.ServiciosImpl
 
                 var nomi = new Nominas
                 {
-//EmpleadoId = empleado.IdEmpleado,
-                    Anio = (short)datos.anio,
+                    EmpleadoId = empleado.IdEmpleado,
+                    Anio = (short)datos.Anio,
                     Bonificaciones = calcBoni,
                     Descuentos = calcDesc,
                     FechaEmision = DateOnly.FromDateTime(DateTime.Today),
-                    Mes = (byte)datos.mes,
-                   // SalarioBase = empleContr.SalarioContra,
+                    Mes = (byte)datos.Mes,
+                    SalarioBase = empleContr.SalarioContra,
                     Estado = true
                 };
 
@@ -80,7 +104,6 @@ namespace Aplicacion.ServiciosImpl
 
         public async Task<List<NominasDTO>> ObtenerTodosActivosAsync()
         {
-           
             try 
             {
 
@@ -93,8 +116,10 @@ namespace Aplicacion.ServiciosImpl
                 foreach(NominasDTO dato in busq) 
                 {
                     var horasJornada = dato.HorasJornada ?? 0;
+                    //REDUNDANTE, CAMBIAR
                     var bonificaciones = dato.Bonificaciones;
                     var descuentos = dato.Descuentos;
+                    //ACABA LA REDUNDANCIA
 
                     dato.SalarioNeto = ((dato.Salario / horasIess) * (horasJornada * diasIess) + bonificaciones - descuentos);
                 }
@@ -106,5 +131,7 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception($"Error - NominasServicioImpl : no se pudo hallar datos. {ex.Message}");
             }
         }
+
+       
     }
 }

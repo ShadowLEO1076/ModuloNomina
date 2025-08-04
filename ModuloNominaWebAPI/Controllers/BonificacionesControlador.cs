@@ -31,15 +31,15 @@ namespace ModuloNominaWebAPI.Controllers
         }
         //se necesita hacerlo post para poder traer los datos. Pues la lógica es postear dto, recibir datos.
         [HttpPost("ObtenerBonificacionesPorCedulaMesYAnio")]
-        public async Task<IActionResult> ObtenerBonificacionesPorCedulaMesYAnio([FromBody] BusquedaDTO datos)
+        public async Task<IActionResult> ObtenerBonificacionesPorCedulaMesYAnio([FromBody] NominasBusquedaDTO datos)
         {
             try 
             {
-                BusquedaDTO busq = new BusquedaDTO
+                NominasBusquedaDTO busq = new NominasBusquedaDTO
                 {
-                    //CedulaEmpleado = datos.CedulaEmpleado,
-                    mes = datos.mes,
-                    anio = datos.anio
+                    CedulaEmpleado = datos.CedulaEmpleado,
+                    Mes = datos.Mes,
+                    Anio = datos.Anio
                 };
 
                 var busqSer = await _serv.ObtenerBonificacionesPorCedulaMesYAnio(busq);

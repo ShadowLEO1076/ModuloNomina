@@ -15,7 +15,7 @@ namespace Dominio.Modelos.Abstracciones
     {
         // Método para obtener bonificaciones de empleados por año y mes
         Task<IEnumerable<BonificacionesFormDTO>> ObtenerTodasActivasBonificacionesFormDTO();
-        Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos);
+        Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(NominasBusquedaDTO datos);
         Task<IEnumerable<Bonificaciones>> ObtenerBonificacionesPorAnioMesAsync(int anio, int mes);
         Task<IEnumerable<Bonificaciones>> BuscarPorEmpleadoAsync(string cedula);// Método para buscar bonificaciones por empleado
         Task<IEnumerable<Bonificaciones>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin); // Método para buscar bonificaciones por rango de fechas

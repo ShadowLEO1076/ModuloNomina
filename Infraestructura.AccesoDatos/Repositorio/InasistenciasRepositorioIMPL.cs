@@ -94,7 +94,6 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         NombresApellidos = i.Empleado.Nombres + " " + i.Empleado.Apellidos,
                         Cedula = i.Empleado.Cedula,
                         Fecha = i.Fecha,
-                        Estado = i.Estado,
                         LicenciaId = i.LicenciaId,
                         NombreLicencia = i.Licencia.Nombre,
                         Remunerable = i.Licencia.Remunerable 

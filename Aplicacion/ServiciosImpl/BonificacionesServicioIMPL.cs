@@ -39,7 +39,7 @@ namespace Aplicacion.ServiciosImpl
         }
         
 
-        public async Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos)
+        public async Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(NominasBusquedaDTO datos)
         {
             try
             {

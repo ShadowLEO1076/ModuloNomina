@@ -17,6 +17,23 @@ namespace ModuloNominaWebAPI.Controllers
             _serv = serv;
         }
 
+        [HttpPost("IngresarNominasMesAutomatico")]
+        public async Task<IActionResult> IngresarNominasMesAutomatico([FromBody] BusquedaDTO datos)
+        {
+            try
+            {
+                BusquedaDTO datosCopia = datos;
+                await _serv.IngresarNominasMesAutomatico(datos);
+
+                return Ok(datos);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error - NominasControlador : {ex.Message}");
+            }
+        }
+
         [HttpPost("ObtenerNominaPorEmpleadoMesAnioAsync")]
         public async Task<IActionResult> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto) 
         {
@@ -49,11 +66,11 @@ namespace ModuloNominaWebAPI.Controllers
             }
         }
         [HttpPost("InsertarNominaAuto")]
-        public async Task<IActionResult> InsertarNominaAuto([FromBody] BusquedaDTO busqueda)
+        public async Task<IActionResult> InsertarNominaAuto([FromBody] NominasBusquedaDTO busqueda)
         {
             try
             {
-                BusquedaDTO datos = busqueda;
+                NominasBusquedaDTO datos = busqueda;
                 await _serv.IngresarNomionaAutomático(datos);
 
                 return Ok(datos);

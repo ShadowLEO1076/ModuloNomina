@@ -114,6 +114,18 @@ namespace Aplicacion.ServiciosImpl
             await _repo.ActualizarAsync(contrato);
         }
 
+
+        public async Task<Contratos> ObtenerContratoActivoPorCedulaAsync(string cedula)
+        {
+            try
+            {
+                return await _repo.ObtenerContratoActivoPorCedulaAsync(cedula);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - ContratosServicioImpl : {ex.Message}");
+            }
+        }
         public Task AgregarAsync(ContratosHistorico contratosHistorico)
         {
             throw new NotImplementedException();
@@ -122,6 +134,7 @@ namespace Aplicacion.ServiciosImpl
         public Task ActualizarAsync(ContratosHistorico contratosHistorico)
         {
             throw new NotImplementedException();
+
         }
 
         public Task<IEnumerable<Contratos>> BuscarPorFechaAsync(DateTime fechaInicio, DateTime fechaFin)

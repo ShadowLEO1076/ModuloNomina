@@ -13,7 +13,6 @@ namespace Aplicacion.DTO.DTOs
         public string NombresApellidos { get; set; }
         public string Cedula { get; set; }
         public DateOnly Fecha { get; set; }
-        public bool? Estado { get; set; }
         public int LicenciaId { get; set; }
         public string NombreLicencia { get; set; }
         public bool Remunerable { get; set; }

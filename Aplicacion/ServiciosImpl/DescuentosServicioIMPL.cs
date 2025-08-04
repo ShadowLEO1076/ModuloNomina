@@ -26,7 +26,7 @@ namespace Aplicacion.ServiciosImpl
 
         }
 
-        public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busqueda)
+        public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(NominasBusquedaDTO busqueda)
         {
             try 
             {

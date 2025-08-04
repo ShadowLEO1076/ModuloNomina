@@ -17,6 +17,21 @@ namespace ModuloNominaWebAPI.Controllers
             _servicio = servicio;
         }
 
+        [HttpGet("ObtenerContratoActivoPorCedulaAsync/{cedula}")]
+        public async Task<IActionResult> ObtenerContratoActivoPorCedulaAsync(string cedula)
+        {
+            try
+            {
+                var contrato = await _servicio.ObtenerContratoActivoPorCedulaAsync(cedula);
+                return Ok(contrato);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al hallar el contrato: {ex.Message}");
+            }
+        }
+
+
         [HttpGet("ListarContratos")]
         public async Task<IActionResult> ListarContratos()
         {
@@ -30,8 +45,6 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error al listar los contratos: {ex.Message}");
             }
         }
-
-
 
 
         [HttpGet("BuscarPorId/{id}")] //-> Si ponemos un prefijo como SolicitudVacaciones/{id} no funciona

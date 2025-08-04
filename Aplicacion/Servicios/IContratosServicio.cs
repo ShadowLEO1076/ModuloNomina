@@ -26,7 +26,16 @@ namespace Aplicacion.Servicios
         Task<int> FinalizarContratosVencidosAsync();
         [OperationContract]
         Task ActualizarContratoAsync(ContratoDTO contrato);
+
+
+        [OperationContract]
+        Task<Contratos> ObtenerContratoActivoPorCedulaAsync(string cedula);
+
+
+
+
         Task AgregarAsync(ContratosHistorico contratosHistorico);
         Task ActualizarAsync(ContratosHistorico contratosHistorico);
+
     }
 }

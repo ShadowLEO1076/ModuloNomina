@@ -16,6 +16,9 @@ namespace Aplicacion.DTO.DTOs
         public DateOnly Fecha { get; set; }
 
         public TimeOnly? HoraEntrada { get; set; }
+        public TimeOnly? HoraInicioAlmuerzo { get; set; }
+
+        public TimeOnly? HoaFinAlmuerzo { get; set; }
 
         public TimeOnly? HoraSalida { get; set; }
     }

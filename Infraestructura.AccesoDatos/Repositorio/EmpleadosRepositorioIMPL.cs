@@ -65,6 +65,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                       .Select(c => c.HorasJornada).FirstOrDefault(),*/
 
                         JornadaContra = e.Contratos.Where(c => (c.FechaInicio <= hoy) && (c.Estado == "Vigente"))
+
                       .Select(c => c.Tipo.Jornada).FirstOrDefault()
                     }).SingleOrDefaultAsync();
 
@@ -111,7 +112,21 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al conseguir los datos: {ex.Message}");
+                throw new Exception($"Error - EmpleadosRepoImpl : al conseguir los datos: {ex.Message}");
+            }
+        }
+
+        public async Task<bool> VerificarCorreoElectronico(string correo)
+        {
+            try 
+            {
+                var busq = await _context.Empleados.AnyAsync(e => e.Correo == correo);
+
+                return busq;
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception($"Error - EmpleadosRepoImpl : {ex.Message}");
             }
         }
         public async Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync()

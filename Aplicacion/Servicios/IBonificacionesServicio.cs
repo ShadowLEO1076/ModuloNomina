@@ -13,7 +13,7 @@ namespace Aplicacion.Servicios
     public interface IBonificacionesServicio : IServicio<Bonificaciones>
     {
         [OperationContract]
-        Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos);
+        Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(NominasBusquedaDTO datos);
 
         [OperationContract]
         public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<BonificacionesEmpleadoDTO> lista);

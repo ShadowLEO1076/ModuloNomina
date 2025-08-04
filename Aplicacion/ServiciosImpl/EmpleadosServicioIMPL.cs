@@ -77,6 +77,20 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
+        public async Task<bool> VerificarCorreoElectronico(string correo)
+        {
+            try
+            {
+                return await _repo.VerificarCorreoElectronico(correo);
+            }
+            catch (Exception ex)
+            {
+                {
+                    throw new Exception($"Error - EmpleadosServicioImpl : no se puede verificar el correo. {ex.Message}");
+                }
+            }
+        }
+
         public async Task<List<EmpleadoConSalarioDTO>> ListarEmpleadosConSalarioAsync()
         {
             try
@@ -88,6 +102,7 @@ namespace Aplicacion.ServiciosImpl
             {
                 throw new Exception($"Error - EmpleadosServicioImpl : no se puedieron hallar los datos. {ex.Message}");
             }
+
 
 
         }

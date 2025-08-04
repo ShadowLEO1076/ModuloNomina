@@ -15,19 +15,5 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             _context = context;
         }
-
-        public async Task<IEnumerable<Licencias>> ObtenerLicenciasActivasAsync()
-        {
-            try 
-            {
-                var busq = await _context.Licencias.Where(l => l.Remunerable == true).ToListAsync();
-
-                return busq;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error - LicenciasRepositorioImpl : {ex.Message}");
-            }
-        }
     }
 }
