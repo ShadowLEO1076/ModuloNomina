@@ -19,16 +19,18 @@ namespace Aplicacion.ServiciosImpl
         IEmpleadosServicio empl;
         IBonificacionesServicio boni;
         IDescuentosServicio desc;
+        IAsistenciasServicio asis;
 
         public NominasServicioIMPL(INominasRepo repo,
             NominaDBContext context, IEmpleadosServicio empl, 
-            IBonificacionesServicio boni, IDescuentosServicio desc) : base(context)
+            IBonificacionesServicio boni, IDescuentosServicio desc, IAsistenciasServicio asis) : base(context)
         {
             _repo = repo;
             _context = context;
             this.empl = empl;
             this.boni = boni;
             this.desc = desc;
+            this.asis = asis;
         }
 
         public async Task IngresarNominasMesAutomatico(BusquedaDTO datos)

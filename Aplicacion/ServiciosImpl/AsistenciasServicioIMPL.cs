@@ -45,6 +45,7 @@ namespace Aplicacion.ServiciosImpl
             }
         }
 
+
         public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try
@@ -52,6 +53,18 @@ namespace Aplicacion.ServiciosImpl
                 return await _repo.ObtenerAsistenciasPorCedulaMesAnio(busquedaDTO);
             }
             catch (Exception ex) 
+            {
+                throw new Exception($"Error - AsistenciasServicioImpl : no se pudo hallar los datos. {ex.Message}");
+            }   
+        }
+
+        public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                return await _repo.ObtenerAsistenciasPorCedulaMesAnio(busquedaDTO);
+            }
+            catch (Exception ex)
             {
                 throw new Exception($"Error - AsistenciasServicioImpl : no se pudo hallar los datos. {ex.Message}");
             }
@@ -69,5 +82,34 @@ namespace Aplicacion.ServiciosImpl
                 throw new Exception($"Error - AsistenciasServiceImple : no se pudieron hallar los datos necesarios");
             }
         }
+
+
+        public TimeSpan CalcularHorasTrabajadas(List<AsistenciasEmpleadoDTO> lista)
+        {
+
+            TimeSpan total = TimeSpan.Zero;
+
+            foreach (AsistenciasEmpleadoDTO asistencia in lista)
+            {
+                foreach (AsistenciasDTO asis in asistencia.Asistencias)
+                {
+                    if (asis.HoraEntrada.HasValue && asis.HoraSalida.HasValue)
+                    {
+                        var jornada = asis.HoraSalida.Value - asis.HoraEntrada.Value;
+                        var descanso = TimeSpan.Zero;
+
+                        if (asis.HoraInicioAlmuerzo.HasValue && asis.HoaFinAlmuerzo.HasValue)
+                        {
+                            descanso = asis.HoaFinAlmuerzo.Value - asis.HoraInicioAlmuerzo.Value;
+                        }
+
+                        total += jornada - descanso;
+                    }
+                }
+                
+            }
+            return total;
+        }
+
     }
 }

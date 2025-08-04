@@ -20,6 +20,43 @@ namespace Infraestructura.AccesoDatos.Repositorio
             _context = context;
         }
 
+        public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                var busq =
+                    _context.Asistencias.Include(a => a.Empleado)
+                    .Where(a => (a.Fecha.Month == busquedaDTO.Mes) && (a.Fecha.Year == busquedaDTO.Anio) && (a.Estado == true) && (a.Empleado.Cedula == busquedaDTO.CedulaEmpleado))
+                    .GroupBy(g => new
+                    {
+                        NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
+                        Cedula = g.Empleado.Cedula
+                    })
+                    .Select(a => new AsistenciasEmpleadoDTO
+                    {
+
+                        NombreCompleto = a.Key.NombresCompletos,
+                        Cedula = a.Key.Cedula,
+
+                        Asistencias = a.Select(g => new AsistenciasDTO
+                        {
+                            Fecha = g.Fecha,
+                            HoraEntrada = g.HoraEntrada,
+                            HoraSalida = g.HoraSalida,
+                            HoraInicioAlmuerzo = g.HoraInicioAlmuerzo,
+                            HoaFinAlmuerzo = g.HoaFinAlmuerzo,
+                            Estado = g.Estado
+                        }).ToList()
+                    }).ToListAsync();
+
+                return await busq;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error - AsistenciasRepoImpl : No se pudo hallar las asistencias del empleado con cedula");
+            }
+            throw new NotImplementedException();
+        }
         public async Task<List<AsistenciasEmpleadoDTO>> ObtenerAsistenciasPorCedulaMesAnio(BusquedaDTO busquedaDTO)
         {
             try
@@ -118,6 +155,6 @@ namespace Infraestructura.AccesoDatos.Repositorio
             catch (Exception ex) { throw new Exception($"Error - AsistenciaRepoImpl : no se pudo encontrar el dato. {ex.Message}"); }
             
         }
-        
+
     }  
 }

@@ -18,7 +18,9 @@ namespace Aplicacion.DTO.DTOs
         public string Cedula { get; set; }
 
         public decimal Salario { get; set; }
-        public int? HorasJornada { get; set; } //cambiar por total horas laboradas
+        public int? HorasJornada { get; set; } //necesario para calcular mi salario hora
+
+        public TimeOnly HorasLaboradas { get; set; }    
 
         public decimal Bonificaciones { get; set; }
 
