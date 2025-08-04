@@ -86,6 +86,8 @@ namespace Infraestructura.AccesoDatos.Repositorio
                         Cedula = a.Empleado.Cedula,
                         Fecha = a.Fecha,
                         HoraEntrada = a.HoraEntrada,
+                        HoraInicioAlmuerzo = a.HoraInicioAlmuerzo,
+                        HoaFinAlmuerzo = a.HoaFinAlmuerzo,
                         HoraSalida = a.HoraSalida
                     }).ToListAsync();
 

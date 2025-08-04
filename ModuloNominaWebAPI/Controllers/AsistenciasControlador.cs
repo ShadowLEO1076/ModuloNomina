@@ -2,6 +2,7 @@
 using Aplicacion.Servicios;
 using Infraestructura.AccesoDatos;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ModuloNominaWebAPI.Controllers
 {
@@ -13,6 +14,24 @@ namespace ModuloNominaWebAPI.Controllers
         public AsistenciasControlador(IAsistenciasServicio serv)
         {
             _serv = serv;
+        }
+
+        [HttpGet("ObtenerPorIdAsync/{id}")]
+        public async Task<IActionResult> ObtenerPorIdAsync(int id)
+        {
+            try
+            {
+                var busq = await _serv.ObtenerPorIdAsync(id);
+                if (busq == null)
+                {
+                    return Ok(null);
+                }
+                return Ok(busq);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"AsistenciaControlador : {ex.Message}");
+            }
         }
 
         [HttpPost("BuscarPorIdYFechaAsync")]

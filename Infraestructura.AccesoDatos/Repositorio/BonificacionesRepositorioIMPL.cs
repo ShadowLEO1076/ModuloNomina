@@ -17,14 +17,14 @@ namespace Infraestructura.AccesoDatos.Repositorio
         {
             _context = context;
         }
-        /*
-        public async Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(BusquedaDTO datos)
+        
+        public async Task<List<BonificacionesEmpleadoDTO>> ObtenerBonificacionesPorCedulaMesYAnio(NominasBusquedaDTO datos)
         {
-            /*try 
+            try 
             {
                 var busqueda = await
                     _context.Bonificaciones.Include(b => b.Empleado)
-                    .Where(b => b.Empleado.Cedula == datos.CedulaEmpleado && b.Fecha.Month == datos.mes && b.Fecha.Year == datos.anio && b.Estado == true)
+                    .Where(b => b.Empleado.Cedula == datos.CedulaEmpleado && b.Fecha.Month == datos.Mes && b.Fecha.Year == datos.Anio && b.Estado == true)
                     .GroupBy(b => new
                     {
                         NombreCompleto = b.Empleado.Nombres + " " + b.Empleado.Apellidos,
@@ -48,7 +48,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             {
                 throw new Exception($"Error - BonificacionesRepoImpl : no se pudo hallar los datos con cédula {datos.CedulaEmpleado}. {ex.Message}");
             }
-        }*/
+        }
 
         public async Task<IEnumerable<BonificacionesFormDTO>> ObtenerTodasActivasBonificacionesFormDTO()
         {

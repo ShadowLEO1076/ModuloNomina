@@ -17,11 +17,11 @@ namespace ModuloNominaWebAPI.Controllers
         }
 
         [HttpPost("ObtenerDescuentosEmpleadoPorCedulaMesAnio")]
-        public async Task<IActionResult> ObtenerDescuentosEmpleadoPorCedulaMesAnio([FromBody] BusquedaDTO busqueda)
+        public async Task<IActionResult> ObtenerDescuentosEmpleadoPorCedulaMesAnio([FromBody] NominasBusquedaDTO busqueda)
         {
             try
             {
-                BusquedaDTO bus = busqueda;
+                NominasBusquedaDTO bus = busqueda;
 
                 var busqServ = await _serv.ObtenerDescuentosEmpleadoPorCedulaMesAnio(bus);
                 return Ok(busqServ);

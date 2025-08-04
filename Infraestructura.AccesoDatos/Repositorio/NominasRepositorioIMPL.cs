@@ -17,7 +17,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
             _context = context;
         }
 
-        public Task<NominasDTO> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto)
+        public async Task<NominasDTO> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto)
         {
 
             try
@@ -26,7 +26,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
                 var busq =
                     _context.Nominas.Include(n => n.Empleado)
                     .ThenInclude(e => e.Contratos).
-                    Where(n => (n.Empleado.Estado == true) &&  && (n.Mes == dto.mes) && (n.Anio == dto.anio) && (n.FechaEmision.Month == dto.mes) 
+                    Where(n => (n.Empleado.Estado == true) &&  (n.Mes == dto.mes) && (n.Anio == dto.anio) && (n.FechaEmision.Month == dto.mes) 
                     && (n.FechaEmision.Year == dto.anio) && (n.Estado == true))
                     .Select(n => new NominasDTO
                     {

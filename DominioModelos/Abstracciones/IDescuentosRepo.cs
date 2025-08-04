@@ -11,6 +11,6 @@ namespace Dominio.Modelos.Abstracciones
 {
     public interface IDescuentosRepo : IRepositorio<Descuentos>
     {
-        Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busqueda);
+        Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(NominasBusquedaDTO busqueda);
     }
 }

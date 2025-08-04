@@ -14,7 +14,9 @@ namespace Aplicacion.Servicios
     public interface INominasServicio :IServicio<Nominas>
     {
         [OperationContract]
-        public Task IngresarNomionaAutomático(BusquedaDTO datos);
+        public Task IngresarNominasMesAutomatico(BusquedaDTO datos);
+        [OperationContract]
+        public Task IngresarNomionaAutomático(NominasBusquedaDTO datos);
         [OperationContract]
         Task<NominasDTO> ObtenerNominaPorEmpleadoMesAnioAsync(BusquedaDTO dto);
         [OperationContract]

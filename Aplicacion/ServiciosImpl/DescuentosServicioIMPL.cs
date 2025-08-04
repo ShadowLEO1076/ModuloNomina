@@ -22,7 +22,7 @@ namespace Aplicacion.ServiciosImpl
             _repo = repo;
         }
 
-        public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busqueda)
+        public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(NominasBusquedaDTO busqueda)
         {
             try 
             {

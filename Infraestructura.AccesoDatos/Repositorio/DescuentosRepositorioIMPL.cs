@@ -16,13 +16,13 @@ namespace Infraestructura.AccesoDatos.Repositorio
             _context = context;
         }
 
-        public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busquedaDTO)
+        public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(NominasBusquedaDTO busquedaDTO)
         {
             try
             {
                 var busq = await
                     _context.Descuentos.Include(d => d.Empleado)
-                    .Where(d => (d.Fecha.Month == busquedaDTO.mes) && (d.Fecha.Year == busquedaDTO.anio) && (d.Estado == true))
+                    .Where(d => (d.Fecha.Month == busquedaDTO.Mes) && (d.Fecha.Year == busquedaDTO.Anio) && (d.Estado == true) && (busquedaDTO.CedulaEmpleado == d.Empleado.Cedula))
                     .GroupBy(g => new
                     {
                         NombreCompleto = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
