@@ -16,10 +16,14 @@ namespace Aplicacion.ServiciosImpl
         private readonly NominaDBContext _context;
         private readonly IDescuentosRepo _repo;
 
+
         public DescuentosServicioIMPL(NominaDBContext context, IDescuentosRepo repo) : base(context)
         {
             _context = context;
             _repo = repo;
+   
+
+
         }
 
         public async Task<List<DescuentosEmpleadoDTO>> ObtenerDescuentosEmpleadoPorCedulaMesAnio(BusquedaDTO busqueda)
@@ -48,5 +52,7 @@ namespace Aplicacion.ServiciosImpl
 
             return totalValor;
         }
+        
+
     }
 }

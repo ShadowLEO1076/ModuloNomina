@@ -19,6 +19,8 @@ namespace Dominio.Modelos.Abstracciones
         Task ActualizarAsync(T entidad);
         Task EliminarAsync(int id);
         Task<bool> ExisteAsync(int id); //opcional, si se necesita verificar la existencia de una entidad por ID
-     
+
+        Task AddRangeAsync(IEnumerable<T> entities);
+
     }
 }

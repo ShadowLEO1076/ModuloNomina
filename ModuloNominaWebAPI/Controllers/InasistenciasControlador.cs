@@ -11,7 +11,7 @@ namespace ModuloNominaWebAPI.Controllers
     public class InasistenciasControlador : ControllerBase
     {
         private readonly IInasistenciasServicio _serv;
-
+       
         public InasistenciasControlador(IInasistenciasServicio serv)
         {
             _serv = serv;
@@ -140,6 +140,39 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - InasistenciasControlador : {ex.Message}");
             }
         }
+        [HttpPost("CalcularDescuentosPorInasistencias")]
+        public async Task<IActionResult> CalcularDescuentosPorInasistencias([FromBody] BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                var descuentos = await _serv.CalcularDescuentosPorInasistencias(busquedaDTO);
+                return Ok(descuentos);
+            }
+            catch (Exception ex)
+            {
+                // Un buen manejo de errores es importante aquí.
+                // Podrías loggear 'ex' para ver el detalle en producción.
+                return StatusCode(500, $"Error - InasistenciasControlador al calcular descuentos: {ex.Message}");
+            }
+        }
+        [HttpPost("CalcularYGuardarDescuentos")]
+        public async Task<IActionResult> CalcularYGuardarDescuentos([FromBody] BusquedaDTO busquedaDTO)
+        {
+            try
+            {
+                // Llama al método del servicio que tiene la lógica de cálculo Y guardado
+                var descuentosGuardados = await _serv.CalcularYGuardarDescuentos(busquedaDTO);
+
+                // Devuelve un mensaje de éxito y los datos guardados
+                return Ok(new { Mensaje = "Descuentos calculados y guardados exitosamente.", Descuentos = descuentosGuardados });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al registrar los descuentos: {ex.Message}");
+            }
+        }
+
+
 
 
     }

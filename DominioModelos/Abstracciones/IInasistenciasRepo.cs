@@ -18,5 +18,8 @@ namespace Dominio.Modelos.Abstracciones
         Task<Inasistencias> BuscarPorIdYFecha(VerificarAsisInasisDTO dato);
 
         Task<List<InasistenciasEmpleadoDTO>> ObtenerInasistenciasPorMesAnio(BusquedaDTO busquedaDTO);
+       
+
+        //Task<List<DescuentoPorInasistenciaDTO>> CalcularDescuentosPorInasistencias(BusquedaDTO busquedaDTO);
     }
 }

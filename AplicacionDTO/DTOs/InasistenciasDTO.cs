@@ -12,6 +12,5 @@ namespace Aplicacion.DTO.DTOs
 
         public DateOnly Fecha { get; set; }
 
-        public int DiasContados { get; set; }
     }
 }

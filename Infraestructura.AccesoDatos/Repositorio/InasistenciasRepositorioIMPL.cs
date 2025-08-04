@@ -12,6 +12,7 @@ namespace Infraestructura.AccesoDatos.Repositorio
     public class InasistenciasRepositorioIMPL : RepositorioImpl<Inasistencias>, IInasistenciasRepo
     {
         private readonly NominaDBContext _context;
+     
         public InasistenciasRepositorioIMPL(NominaDBContext context) : base(context)
         {
             _context = context;
@@ -112,23 +113,26 @@ namespace Infraestructura.AccesoDatos.Repositorio
             try
             {
                 var resultado =
-                     _context.Inasistencias.Include(i => i.Empleado).Include(i => i.Licencia)
-                     .Where(i => i.Fecha.Month == busquedaDTO.mes && i.Fecha.Year == busquedaDTO.anio)
-                     .GroupBy(g => new
-                     {
-                         NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
-                         Cedula = g.Empleado.Cedula
-                     })
-                     .Select(i => new InasistenciasEmpleadoDTO
-                     {
-                         NombresCompletos = i.Key.NombresCompletos,
-                         CedulaEmpleado = i.Key.Cedula,
-                         inasistencias = i.Select(g => new InasistenciasDTO
-                         {
-                             Fecha = g.Fecha,
-                             Remunerable = g.Licencia.Remunerable,
-                         }).ToList()
-                     }).ToListAsync();
+                      _context.Inasistencias.Include(i => i.Empleado).Include(i => i.Licencia)
+                      .Where(i => i.Fecha.Month == busquedaDTO.mes && i.Fecha.Year == busquedaDTO.anio && i.Licencia.Remunerable == false)
+                      .GroupBy(g => new
+                      {
+                          NombresCompletos = g.Empleado.Nombres + " " + g.Empleado.Apellidos,
+                          Cedula = g.Empleado.Cedula,
+                          IdEmpleado = g.Empleado.IdEmpleado // <-- Aquí ya lo incluiste en la clave
+                      })
+                      .Select(i => new InasistenciasEmpleadoDTO
+                      {
+                          NombresCompletos = i.Key.NombresCompletos,
+                          CedulaEmpleado = i.Key.Cedula,
+                          IdEmpleado = i.Key.IdEmpleado, // <--- ¡LA CLAVE ESTÁ AQUÍ! Asigna IdEmpleado desde la clave del GroupBy
+                          inasistencias = i.Select(g => new InasistenciasDTO
+                          {
+                              Fecha = g.Fecha,
+                              Remunerable = g.Licencia.Remunerable,
+                              // diasContados = g.DiasContados // Si tienes esta propiedad en InasistenciasDTO
+                          }).ToList()
+                      }).ToListAsync();
 
                 return await resultado;
             }
@@ -138,7 +142,12 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
         }
 
-     
-        
+       
+
+       
     }
+
+
+
 }
+

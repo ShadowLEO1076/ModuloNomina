@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.DTO.DTOs
 {
-    public class InasistenciasEmpleadoDTO
+    public  class DescuentoPorInasistenciaDTO
     {
-
-        public int IdEmpleado { get; set; } // <--- ¡Asegúrate de agregar esta propiedad!
+        public int IdEmpleado { get; set; }
         public string NombresCompletos { get; set; }
         public string CedulaEmpleado { get; set; }
-        public List<InasistenciasDTO> inasistencias { get; set; }
+        public decimal SalarioBase { get; set; }
+        public int CantidadInasistenciasNoRemunerables { get; set; }
+        public decimal DescuentoTotal { get; set; }
     }
 }

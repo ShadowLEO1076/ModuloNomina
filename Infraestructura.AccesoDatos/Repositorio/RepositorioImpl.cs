@@ -34,6 +34,11 @@ namespace Infraestructura.AccesoDatos.Repositorio
             }
         }
 
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await _dbSet.AddRangeAsync(entities); // Usa _dbSet para la entidad específica
+            await _context.SaveChangesAsync();
+        }
 
         public async Task AgregarAsync(T entidad)
         {

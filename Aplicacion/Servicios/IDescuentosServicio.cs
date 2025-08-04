@@ -18,5 +18,7 @@ namespace Aplicacion.Servicios
         [OperationContract]
         public decimal CalcularDescuentosDeEmpleadoPorAnioYMes(List<DescuentosEmpleadoDTO> lista);
 
+
+
     }
 }

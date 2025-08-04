@@ -11,6 +11,7 @@ namespace ModuloNominaWebAPI.Controllers
     {
         private readonly IDescuentosServicio _serv;
 
+
         public DescuentosControlador(IDescuentosServicio serv)
         {
             _serv = serv;
@@ -87,6 +88,7 @@ namespace ModuloNominaWebAPI.Controllers
                 return StatusCode(500, $"Error - DescuentosControlador : {ex.Message}");
             }
         }
+        
 
     }
 }

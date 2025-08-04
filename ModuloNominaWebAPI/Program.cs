@@ -68,6 +68,7 @@ builder.Services.AddScoped<IContratosTipoServicio, ContratosTipoServicioIMPL>();
 builder.Services.AddScoped<IAprobacionVacacionesServicio, AprobacionVacacionesServicioIMPL>();
 // para empleados puestos 
 builder.Services.AddScoped<IEmpleadosServicio, EmpleadosServicioIMPL>();
+builder.Services.AddScoped<IEmpleadosRepo, EmpleadosRepositorioIMPL>();
 
 // puestos 
 builder.Services.AddScoped<IPuestosServicio, PuestosServicioIMPL>();
@@ -84,6 +85,7 @@ builder.Services.AddScoped<IUsuariosRepo, UsuariosRepositorioIMPL>();
 builder.Services.AddScoped<IUsuariosServicio, UsuariosServicioIMPL>();
 // para contratos
 builder.Services.AddScoped<IContratosHistoricoServicio, ContratosHistoricoServicioIMPL>();
+
 // ppara empleado con salario listar:
 
 
